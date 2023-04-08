@@ -25,7 +25,7 @@ $name ="Điện thoai";
 	<?php
    require 'inc/myconnect.php';
    //lay san pham theo id
-   $spid = $_GET["spid"];
+   $spid = $_GET["id"];
    $query="SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as TenLsp,s.LSP_ID
    from san_pham s 
    LEFT JOIN loai_sp l on l.LSP_ID = s.LSP_ID
