@@ -123,6 +123,12 @@
                       <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-n3 mb-0">Đăng nhập</button>
                     </div>
                   </form>
+                  <div class="text-center">
+                    <p class="mt-3 text-xs text-secondary ">- Hoặc -</p>
+                  </div>
+                  <div class="text-center">
+                    <a href="../index.php" class="btn btn-lg btn-outline-primary text-primary btn-lg w-100 mt-0 mb-0">Quay lại trang bán hàng</a>
+                  </div>
                 </div>
                 <script>
                   const passInput = document.getElementById('passInput');
