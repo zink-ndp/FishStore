@@ -35,7 +35,7 @@ if (file_exists($target_file)){
 }
 
 // Check file size
-if ($_FILES["productImg"]["size"] > 500000) {
+if ($_FILES["productImg"]["size"] > 30000000) {
   echo "Dung lượng file quá lớn";
   $uploadOk = 0;
 }
@@ -94,7 +94,7 @@ if ($uploadOk == 0) {
   
 	if ($conn->query($sql) == TRUE) {
 
-    $sql1 = "insert into chitiet_nhap values ($idnh, $pdid, $nvid, sysdate(),$pdsl)";
+    $sql1 = "insert into chitiet_nhap values ($pdid, $idnh, $nvid, sysdate(),$pdsl)";
 
     if ($conn->query($sql1) == TRUE){
       $message = "Thêm sản phẩm thành công";

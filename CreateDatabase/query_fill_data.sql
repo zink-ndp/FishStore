@@ -192,7 +192,8 @@ INSERT INTO `khach_hang` (`KH_ID`, `TK_ID`, `KH_HOTEN`, `KH_SDT`, `KH_EMAIL`, `K
 --
 
 INSERT INTO `khuyen_mai` (`KM_ID`, `KM_TGBATDAU`, `KM_TGKETTHUC`, `KM_GIATRI`) VALUES
-(1, '2022-04-01', '2022-05-01', 0.1);
+(1, '2023-04-01', '2023-05-01', 0.2),
+(2, '2023-05-01', '2023-06-01', 0.1);
 
 --
 -- Đang đổ dữ liệu cho bảng `loai_sp`
@@ -288,6 +289,16 @@ INSERT INTO `trangthai_hd` (`TT_ID`, `TT_TEN`) VALUES
 (1, 'Đợi xác nhận'),
 (2, 'Đang giao hàng'),
 (3, 'Hoàn thành');
+
+--
+-- Đang đổ dữ liệu cho bảng `tin_tuc`
+--
+INSERT INTO `tin_tuc` (`TTC_ID`, `TITLE`, `LINK`, `ANH`, `MOTA`, `HIENTHI`) VALUES 
+(1, 'Khuyến mãi lớn tháng 4', 'index.html','news1.png','Hãy mau thanh toán giỏ hàng của bạn và nhận ưu đãi đến 20%', true),
+(2, 'Khuyến mãi lớn tháng 5', 'index.html','news2.png','Hãy mau thanh toán giỏ hàng của bạn và nhận ưu đãi đến 10%', false),
+(3, 'Hướng dẫn nuôi cá cho người mới bắt đầu','https://maydochuyendung.com/tin-tuc/thiet-bi-kiem-tra-nuoc/chia-se-kinh-nghiem-nuoi-ca-canh-cho-nguoi-moi-bat-dau','news3.png','Tìm tòi, học hỏi để trở thành người nuôi cá tốt!', true),
+(4, 'Các loại thức ăn cho cá cảnh','https://www.bachhoaxanh.com/kinh-nghiem-hay/8-loai-thuc-an-cho-ca-canh-tot-va-de-mua-1345324','news4.png','Xem loại thức ăn nào là tốt nhât cho cá của bạn',true);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
