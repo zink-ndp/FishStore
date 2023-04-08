@@ -24,6 +24,7 @@ Giỏ hàng ():
 
 Đăng nhập ():
 - Login bằng tên đăng nhập (kphai email)
+- Đăng nhập xong thì hiển thị tên khách hàng lên header (bỏ nút đăng nhập + thêm nút đăng xuất)
 - Nút hiện mật khẩu + ghi nhớ mật khẩu (rảnh thì làm)
 
 Đăng ký tài khoản ():
