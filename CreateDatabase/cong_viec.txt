@@ -1,22 +1,34 @@
-Trang chủ:
+Trang quản lí Admin (Vinh)
+Tạo csdl, đổ csdl (Vinh)
+
+--------------------------------------------------
+
+Trang chủ ():
 - Sửa đoạn slide ảnh phía trên thành tin tức (lấy từ csdl)
 - Sản phẩm bán chạy nhất (count hd_id trong chitiet_hd)
 - Sản phẩm mới nhất (có thòi gian trong chitiep_nhap)
 - Phân loại từng loại sp
 - Làm lại footer (cập nhật lại cac chỗ khac luôn)
 
-Giỏ hàng:
-- Nếu chưa đăng nhập thì chuyển đến trang đăng nhập
-- Làm chức năng xem, thay đổ số lượng, xoá
-
-Liên hệ:
+Liên hệ ():
 - Form nhập liệu thông tin
 
-Đăng nhập:
+--------------------------------------------------
+
+Giỏ hàng ():
+- Nếu chưa đăng nhập thì chuyển đến trang đăng nhập
+- Làm chức năng xem, thay đổ số lượng, xoá
+- Làm thêm trang thanh toán
+
+---------------------------------------------------
+
+Đăng nhập ():
 - Login bằng tên đăng nhập (kphai email)
 - Nút hiện mật khẩu + ghi nhớ mật khẩu (rảnh thì làm)
 
-Đăng ký tài khoản:
+Đăng ký tài khoản ():
 - Thêm một số trường sao cho khớp với bảng khach_hang trong csdl
 - Ràng buộc 
 - Role mặc định là 'custommer'
+
+Vẽ sơ đồ Usecase + Làm báo cáo Word ()
