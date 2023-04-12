@@ -25,7 +25,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Đối tác nhập hàng
+    Tin tức
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -269,9 +269,7 @@
                       <h6 class="mb-0">Danh sách tin tức</h6>
                     </div>
                     <div class="col-6 text-end">
-                      <?php
-                        $sql = "select * from tin_tuc";
-                      ?>
+                      <button class="btn-add-news btn btn-primary text-white text-xs">Thêm tin mới</button>
                     </div>
                   </div>
                 </div>
@@ -320,7 +318,7 @@
                                         if ($row["TTC_HIENTHI"] == true){
                                           $style = "btn-success"
                                           ?>
-                                            <button class="btn text-xs font-weight-bold mb-0 <?php echo $style; ?>">Đang hiển thị</button>
+                                            <button class="btn text-xs font-weight-bold mb-0 <?php echo $style; ?>">Đang hiện</button>
                                           <?php
                                         } else {
                                           $style = "btn-warning"
@@ -375,7 +373,7 @@
     </div>
   </main>
   <style>
-    .overlay {
+    .overlay, .overlay1 {
       position: fixed;
       top: 0;
       left: 0;
@@ -386,7 +384,7 @@
       display: none;
     }
 
-    .my-box {
+    .my-box, .my-box1 {
       width: auto;
       height: auto;
       background-color: #fff;
@@ -399,19 +397,105 @@
     }
 
   </style>
+  <div class="overlay1" id="overlay1">
+    <div class="my-box1">
+      <h5 class="ms-3 mt-3 text-primary">Thêm tin tức</h5>
+      <div class="row">
+        <div class="col-12">
+          <form action="add_news.php" method="post" enctype="multipart/form-data">
+            <div class="row">
+              <div class="col-5 p-5 justify-content-center">
+                <div class="row mt-5">
+                  <div class="mb-3 px-3 col-12">
+                    Tải ảnh mới:
+                    <br>
+                    <input class="mt-1" type="file" name="productImg" id="productImg" accept="image/*">
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div id="preview_add" class="col-12">
+                    <img style="height: auto; width: 100%;" src="../assets/img/news_img/default.jpeg" alt="">
+                  </div>
+                  <script>
+                    var input = document.getElementById("productImg");
+                    var preview_add = document.getElementById("preview_add");
+
+                    input.addEventListener("change", function() {
+                      preview_add.innerHTML = ""; // clear previous preview_add
+                      var files = this.files;
+                      for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        if (!file.type.startsWith("image/")){ continue } // skip non-image files
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                          var img = document.createElement("img");
+                          img.src = e.target.result;
+                          img.style = "width: 100%; height: auto;"
+                          preview_add.appendChild(img); // append image to preview_add div
+                        };
+                        reader.readAsDataURL(file); // read file as data url
+                      }
+                    });
+                  </script>
+                </div>
+              </div>
+              <div class="col-7">
+                <div class="row">
+                  <div class="col-12">
+                    <input type="hidden" name="temp_id" id="temp_id">
+                    <div class="mb-3 mt-4 px-3 ">
+                      Tiêu đề tin tức <input required placeholder="Nhập tiêu đề tin" type="text" name="name" class="form-control form-control-lg mt-2">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="mb-3 mt-2 px-3 ">
+                      Mô tả <textarea required id="myTextarea" name="des" class="form-control form-control-md mt-1">Mô tả</textarea>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="mb-3 mt-2 px-3 ">
+                      URL <input required placeholder="Dán liên kết ở đây" type="text" name="url" class="form-control form-control-lg mt-2">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="mb-3 mt-2 px-3 ">
+                      Trạng thái 
+                      <select name="hienthi" class="form-control form-control-lg mt-1">
+                        <option selected hidden value="">Trạng thái</option>
+                        <option value="true">Hiển thị</option>
+                        <option value="false">Ẩn</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-center align-items-center" >
+                    <button onclick="this.submit()" class="btn btn-primary text-white font-weight-bold text-md ms-0 mt-4 ">
+                      Thêm tin
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="overlay" id="overlay">
     <div class="my-box">
       <h5 class="ms-3 mt-3 text-primary">Cập nhật tin tức</h5>
       <div class="row">
         <div class="col-12">
-          <form action="update_pdsource.php" method="post">
+          <form action="update_news.php" method="post">
             <div class="row">
               <div class="col-5 p-5 justify-content-center">
               <div class="row mt-5">
                   <div class="mb-3 px-3 col-12">
-                    Tải ảnh tin tức:
+                    Tải ảnh mới:
                     <br>
-                    <input class="mt-3" type="file" name="productImg" id="productImg" accept="image/*">
+                    <input class="mt-1" type="file" name="productImg" id="productImg" accept="image/*">
                   </div>
                 </div>
                 <div class="row mt-2">
@@ -466,7 +550,7 @@
                 </div>
                 <div class="row">
                   <div class="col-12 d-flex justify-content-center align-items-center" >
-                    <button onclick="this.submit()" class="btn btn-primary text-white font-weight-bold text-md ms-0 mt-4">
+                    <button onclick="this.submit()" class="btn btn-primary text-white font-weight-bold text-md ms-0 mt-4 ">
                       Cập nhật
                     </button>
                   </div>
@@ -483,10 +567,29 @@
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+
   <script>
 
-    const productButtons = document.querySelectorAll('.edit-btn');
+    const addNews = document.querySelectorAll('.btn-add-news');
+    addNews.forEach(button => {
+      button.addEventListener('click', function showNewsAdd(event) {
+      // Hiển thị overlay
+        const overlay1 = document.querySelector('.overlay1');
+        overlay1.style.display = 'block';
+      });
+    });
 
+    //Tắt overlay
+    const overlay1 = document.getElementById("overlay1");
+    overlay1.addEventListener("click", function(event) {
+      if (event.target === overlay) {
+        overlay1.style.display = "none";
+      }
+    });
+  </script>
+
+  <script>
+    const productButtons = document.querySelectorAll('.edit-btn');
     productButtons.forEach(button => {
       button.addEventListener('click', showProductDetails);
     });
