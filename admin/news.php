@@ -343,8 +343,8 @@
                                           </button>
                                         </div>
                                         <div class="align-middle col-sm-6">
-                                          <form method="post" action="del_product.php">
-                                              <input type="hidden" name="pdid" value="<?php echo $row["TTC_ID"]; ?>">
+                                          <form method="post" action="del_news.php">
+                                              <input type="hidden" name="nid" value="<?php echo $row["TTC_ID"]; ?>">
                                               <button onclick="this.form.submit()" class="btn btn-link text-warning text-secondary font-weight-bold text-sm">
                                                 Xoá
                                               </button>
@@ -582,7 +582,7 @@
     //Tắt overlay
     const overlay1 = document.getElementById("overlay1");
     overlay1.addEventListener("click", function(event) {
-      if (event.target === overlay) {
+      if (event.target === overlay1) {
         overlay1.style.display = "none";
       }
     });
