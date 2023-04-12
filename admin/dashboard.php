@@ -118,7 +118,7 @@
             <li class="nav-item">
               <a class="nav-link " href="../admin/backup_page.php">
                 <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="fas fa-user-tie text-info text-sm opacity-10"></i>
+                  <i class="fas fa-database text-danger text-sm opacity-10"></i>
                 </div>
                 <span class="nav-link-text ms-1">Sao lưu và Khôi phục</span>
               </a>
