@@ -111,7 +111,21 @@
             <span class="nav-link-text ms-1">Khách hàng</span>
           </a>
         </li>
-
+        
+        <?php
+          if($_SESSION["role"] == 'admin'){
+            ?>
+            <li class="nav-item">
+              <a class="nav-link " href="../admin/backup_page.php">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="fas fa-user-tie text-info text-sm opacity-10"></i>
+                </div>
+                <span class="nav-link-text ms-1">Sao lưu và Khôi phục</span>
+              </a>
+            </li>
+            <?php
+          }
+        ?>
         <?php
           if($_SESSION["role"] == 'admin')
             {
@@ -702,7 +716,7 @@
                   </form>
                 </div>
                 <div class="col-lg-6 d-flex text-end align-items-center justify-content-end mt-n4 ">
-                  <span>Tổng doanh thu: </span><h5 class="text-success ms-2 mt-1"><?php echo number_format($tongdt, 0, '.') ?> VNĐ</h5>
+                  <span>Tổng doanh thu: </span><h5 class="text-success ms-2 mt-1"><?php echo number_format($tongdt, 0) ?> VNĐ</h5>
                 </div>
               </div>
             </div>
@@ -725,7 +739,7 @@
                   <!-- <canvas id="chart-line" class="chart-canvas" height="300"></canvas> -->
                 </div>
                 <!-- <div class="d-flex text-center align-items-center justify-content-center mt-3">
-                  <span>Tổng doanh thu: </span><h4 class="text-success ms-2 mt-1"><?php echo number_format($tongdt, 0, '.') ?> VNĐ</h4>
+                  <span>Tổng doanh thu: </span><h4 class="text-success ms-2 mt-1"><?php echo number_format($tongdt, 0) ?> VNĐ</h4>
                 </div> -->
                 
               </div>
@@ -894,7 +908,7 @@
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">Tổng thu:</p>
-                        <h6 class="text-sm mb-0"><?php echo number_format($tt_ck, 0, '.') ; ?>đ</h6>
+                        <h6 class="text-sm mb-0"><?php echo number_format($tt_ck, 0) ; ?>đ</h6>
                       </div>
                     </td>
                   </tr>
@@ -919,7 +933,7 @@
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">Tổng thu:</p>
-                        <h6 class="text-sm mb-0"><?php echo number_format($tt_ta, 0, '.'); ?>đ</h6>
+                        <h6 class="text-sm mb-0"><?php echo number_format($tt_ta, 0); ?>đ</h6>
                       </div>
                     </td>
                   </tr>
@@ -944,7 +958,7 @@
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">Tổng thu:</p>
-                        <h6 class="text-sm mb-0"><?php echo number_format($tt_tt, 0, '.'); ?>đ</h6>
+                        <h6 class="text-sm mb-0"><?php echo number_format($tt_tt, 0); ?>đ</h6>
                       </div>
                     </td>
                   </tr>
@@ -970,7 +984,7 @@
                     <td>
                       <div class="text-center">
                         <p class="text-xs font-weight-bold mb-0">Tổng thu:</p>
-                        <h6 class="text-sm mb-0"><?php echo number_format($tt_k, 0, '.'); ?>đ</h6>
+                        <h6 class="text-sm mb-0"><?php echo number_format($tt_k, 0); ?>đ</h6>
                       </div>
                     </td>
                   </tr>

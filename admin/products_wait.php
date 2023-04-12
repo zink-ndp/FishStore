@@ -422,7 +422,7 @@
                                   </td>
                                   <!-- Tong tien-->
                                   <td>
-                                  <p class="text-s text-success font-weight-bold mb-0"><?php echo number_format($row["HD_TONGTIEN"], 0, '.')  ?> VNĐ</p>
+                                  <p class="text-s text-success font-weight-bold mb-0"><?php echo number_format($row["HD_TONGTIEN"], 0)  ?> VNĐ</p>
                                   </td>
                                   <!-- Phuong thuc-->
                                   <td class="align-middle text-center">

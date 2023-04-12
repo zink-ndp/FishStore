@@ -403,7 +403,7 @@
                                     </td>
                                     <!-- gia sp -->
                                     <td>
-                                      <p class="text-s font-weight-bold mb-0"><?php echo number_format($row["SP_GIA"], 0, '.') ; ?> VNĐ</p>
+                                      <p class="text-s font-weight-bold mb-0"><?php echo number_format($row["SP_GIA"], 0) ; ?> VNĐ</p>
                                     </td>
                                     <!-- soluong sp -->
                                     <td>

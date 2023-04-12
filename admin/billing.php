@@ -289,7 +289,7 @@
                     $sql = "select sum(HD_TONGTIEN) as tongtien from hoa_don where TT_ID = 3 and PTTT_ID = 1";
                     $result = $conn->query($sql);
                     $row = mysqli_fetch_assoc($result);
-                    $tong_tm = number_format($row["tongtien"], 0, '.');
+                    $tong_tm = number_format($row["tongtien"], 0);
                   ?>
                   <h6 class="text-center mb-0">Tiền mặt</h6>                  
                   <hr class="horizontal dark my-2">
@@ -310,7 +310,7 @@
                     $sql = "select sum(HD_TONGTIEN) as tongtien from hoa_don where TT_ID = 3 and PTTT_ID = 2";
                     $result = $conn->query($sql);
                     $row = mysqli_fetch_assoc($result);
-                    $tong_ck = number_format($row["tongtien"], 0, '.');
+                    $tong_ck = number_format($row["tongtien"], 0);
                   ?>
                   <h6 class="text-center mb-0">Chuyển khoản ngân hàng</h6>                  
                   <hr class="horizontal dark my-2">
@@ -331,7 +331,7 @@
                     $sql = "select sum(HD_TONGTIEN) as tongtien from hoa_don where TT_ID = 3 and PTTT_ID = 3";
                     $result = $conn->query($sql);
                     $row = mysqli_fetch_assoc($result);
-                    $tong_vm = number_format($row["tongtien"], 0, '.');
+                    $tong_vm = number_format($row["tongtien"], 0);
                   ?>
                   <h6 class="text-center mb-0">Visa/Mastercard</h6>                  
                   <hr class="horizontal dark my-2">
@@ -411,7 +411,7 @@
 
                                     <td class="align-middle font-weight-bold text-success text-center">
                                       <!-- tongtien -->
-                                      <?php echo number_format($row["HD_TONGTIEN"], 0, '.') ?>đ
+                                      <?php echo number_format($row["HD_TONGTIEN"], 0) ?>đ
                                     </td>
                                     <td class="align-middle text-center">
                                       <form action="" method="get">
@@ -580,10 +580,10 @@
                                   <?php echo $row["slsp"] ?>
                                 </td>
                                 <td>
-                                  <?php echo number_format($row["giasp"], 0, '.') ?>
+                                  <?php echo number_format($row["giasp"], 0) ?>
                                 </td>
                                 <td>
-                                  <?php echo number_format($row["tongtien"], 0, '.') ?>
+                                  <?php echo number_format($row["tongtien"], 0) ?>
                                 </td>
                               </tr>
                               <?php
@@ -608,7 +608,7 @@
                               ?>
                               <h7>Thành tiền:</h7>
                               <h6 class="fs-4 mt-n2">
-                                <?php echo number_format($row["tongtien"], 0, '.')." đ" ?>
+                                <?php echo number_format($row["tongtien"], 0)." đ" ?>
                               </h6> 
                             </td>
                           </tr>

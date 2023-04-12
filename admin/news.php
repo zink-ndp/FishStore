@@ -258,8 +258,7 @@
     ?>
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10">
+        <div class="col-lg-12">
           <div class="row ">
             <div class="col-lg-12">
               <div class="card h-100">
@@ -281,8 +280,8 @@
                             <tr class="col-12">
                               <th class="col-1 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mã tin</th>
                               <th class="col-4 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tiêu đề</th>                              
-                              <th class="col-6 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Mô tả</th>  
-                              <th class="col-6 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Trạng thái</th>  
+                              <th class="col-4 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Mô tả</th>  
+                              <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Trạng thái</th>  
                               <th class="col-1"></th>
                             </tr>
                           </thead>
@@ -303,12 +302,12 @@
                                       <?php echo $row["TTC_ID"] ?>
                                     </td>
 
-                                    <td class="align-middle text-center">
+                                    <td class="align-middle ">
                                       <!-- tieu de -->
                                       <?php echo $row["TTC_TITLE"] ?>
                                     </td>
 
-                                    <td class="align-middle text-center">
+                                    <td class="align-middle ">
                                       <!-- mota -->
                                       <?php echo $row["TTC_MOTA"] ?>
                                     </td>
@@ -367,7 +366,6 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-1"></div>
       </div>
        
     </div>
@@ -442,7 +440,6 @@
               <div class="col-7">
                 <div class="row">
                   <div class="col-12">
-                    <input type="hidden" name="temp_id" id="temp_id">
                     <div class="mb-3 mt-4 px-3 ">
                       Tiêu đề tin tức <input required placeholder="Nhập tiêu đề tin" type="text" name="name" class="form-control form-control-lg mt-2">
                     </div>
@@ -495,14 +492,14 @@
                   <div class="mb-3 px-3 col-12">
                     Tải ảnh mới:
                     <br>
-                    <input class="mt-1" type="file" name="productImg" id="productImg" accept="image/*">
+                    <input class="mt-1" type="file" name="newsImg" id="newsImg" accept="image/*">
                   </div>
                 </div>
                 <div class="row mt-2">
-                  <div id="preview" class="col-12 img"></div>
+                  <div id="preview-ed" class="col-12 img"></div>
                   <script>
-                    var input = document.getElementById("productImg");
-                    var preview = document.getElementById("preview");
+                    var input = document.getElementById("newsImg");
+                    var preview = document.getElementById("preview-ed");
 
                     input.addEventListener("change", function() {
                       preview.innerHTML = ""; // clear previous preview
@@ -624,11 +621,12 @@
       const productDes = document.querySelector('.des');
       productDes.innerHTML = 'Mô tả <textarea required id="myTextarea" name="des" class="form-control form-control-md mt-1">'+des+'</textarea>';
       const productLink = document.querySelector('.link');
-      productLink.innerHTML = 'URL <input required value="' + link + '" type="text" name="name" class="form-control form-control-lg mt-2">';
+      productLink.innerHTML = 'URL <input required value="' + link + '" type="text" name="url" class="form-control form-control-lg mt-2">';
       const productHienthi = document.querySelector('.hienthi');
-      productHienthi.innerHTML = 'Trạng thái <select name="hienthi" class="form-control form-control-lg mt-1"><option selected hidden value="'+hienthi+'">'+ht+'</option><option value="true">Hiển thị</option><option value="false">Ẩn</option></select>'
+      productHienthi.innerHTML = 'Trạng thái <select name="hienthi" class="form-control form-control-lg mt-1"><option selected hidden value="'+hienthi+'">'+ht+'</option><option value=1>Hiển thị</option><option value=0>Ẩn</option></select>'
       const productImg = document.querySelector('.img');
-      productImg.innerHTML = '<img style="height: auto; width: 100%;" src="../assets/img/news_img/'+anh+'" alt="">';
+      productImg.innerHTML = '<img style="height: auto; width: 100%;" src="../assets/img/news_img/'+anh+'" alt="">'
+                            +'<input type="hidden" name="old-img" value="'+anh+'">';
       
     }
 

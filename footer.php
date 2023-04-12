@@ -18,7 +18,7 @@
 						 Copyright © 2023
 					</div>
 					<div class="col-md-4">
-						<a style="margin-left: 60px" href="../Fish_Store/admin/sign-in.php">Đăng nhập trang quản trị</a>
+						<a style="margin-left: 60px" href="../FishStore/admin/sign-in.php">Đăng nhập trang quản trị</a>
 					</div>
 					<div class="col-md-4">
 						<div class="pull-right">
