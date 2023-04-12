@@ -314,6 +314,12 @@ INSERT INTO `trangthai_hd` (`TT_ID`, `TT_TEN`) VALUES
 (1, 'Đợi xác nhận'),
 (2, 'Đang giao hàng'),
 (3, 'Hoàn thành');
+
+INSERT INTO `tin_tuc` (`TTC_ID`,`TTC_TITLE`,`TTC_MOTA`, `TTC_ANH`, `TTC_HIENTHI`, `NV_ID`, `TTC_LINK`) VALUES
+(1,'Khuyến mãi tháng 4','Hãy thanh toán giỏ hàng của bạn và nhận ngay ưu đãi 20%!!!','news1.png',true,1,'../index.php'),
+(2,'Khuyến mãi tháng 5','Hãy thanh toán giỏ hàng của bạn và nhận ngay ưu đãi 10%!!!','news2.png',false,1,'../index.php'),
+(3,'Hướng dẫn trang trí hồ cá đẹp','Tìm hiểu làm sao để hồ cá của bạn thật đẹp!','news3.png',true,1,'../index.php');
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

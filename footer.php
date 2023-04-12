@@ -14,10 +14,13 @@
 		<div class="copyright">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-4">
 						 Copyright © 2023
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-4">
+						<a style="margin-left: 60px" href="../Fish_Store/admin/sign-in.php">Đăng nhập trang quản trị</a>
+					</div>
+					<div class="col-md-4">
 						<div class="pull-right">
 							Phát triển hệ thống web - Nhóm 04
 						</div>

@@ -258,7 +258,8 @@
     ?>
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
           <div class="row ">
             <div class="col-lg-12">
               <div class="card h-100">
@@ -281,15 +282,16 @@
                           <thead>
                             <tr class="col-12">
                               <th class="col-1 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mã tin</th>
-                              <th class="col-4 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tên đối tác nhập hàng</th>                              
+                              <th class="col-4 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tiêu đề</th>                              
                               <th class="col-6 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Mô tả</th>  
-                              <th class="col-1 text-secondary opacity-7"></th>
-
+                              <th class="col-6 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Trạng thái</th>  
+                              <th class="col-1"></th>
                             </tr>
                           </thead>
                           <tbody>
                             <!-- 1 hang -->
                             <?php
+                              $sql = "select * from tin_tuc";
                               $result = $conn->query($sql);
                               if ($result->num_rows > 0) {
                                 $result = $conn->query($sql);
@@ -299,26 +301,57 @@
                                   ?>
                                   <tr class="height-100">
                                     <td class="align-middle text-center" >
-                                      <!-- ma dt -->
-                                      <?php echo $row["NH_ID"] ?>
+                                      <!-- ma tin -->
+                                      <?php echo $row["TTC_ID"] ?>
                                     </td>
 
                                     <td class="align-middle text-center">
-                                      <!-- ten dt -->
-                                      <?php echo $row["NH_TENNGUON"] ?>
+                                      <!-- tieu de -->
+                                      <?php echo $row["TTC_TITLE"] ?>
                                     </td>
 
                                     <td class="align-middle text-center">
-                                      <!-- mota dt -->
-                                      <?php echo $row["NH_MOTA"] ?>
+                                      <!-- mota -->
+                                      <?php echo $row["TTC_MOTA"] ?>
                                     </td>
-                                    
+                                    <td class="align-middle text-center">
+                                      <!-- status -->
+                                      <?php 
+                                        if ($row["TTC_HIENTHI"] == true){
+                                          $style = "btn-success"
+                                          ?>
+                                            <button class="btn text-xs font-weight-bold mb-0 <?php echo $style; ?>">Đang hiển thị</button>
+                                          <?php
+                                        } else {
+                                          $style = "btn-warning"
+                                          ?>
+                                            <button class="btn text-xs font-weight-bold mb-0 <?php echo $style; ?>">Đang ẩn</button>
+                                          <?php
+                                        }
+                                      ?>
+                                    </td>
+                                    <!-- thao tac -->
                                     <td class="align-middle text-center">
                                       <div class="mt-3 d-flex col-sm-12">
-                                        <button data-id="<?php echo $row["NH_ID"];?>" data-name="<?php echo $row["NH_TENNGUON"];?>" data-des="<?php echo $row["NH_MOTA"];?>" class="edit-btn btn btn-link text-primary font-weight-bold text-sm">
-                                          Sửa
-                                        </button>
-                                      
+                                        <div class="align-middle col-sm-6">    
+                                          <button data-id=<?php echo $row["TTC_ID"];?> 
+                                                  data-name="<?php echo $row["TTC_TITLE"];?>" 
+                                                  data-des="<?php echo $row["TTC_MOTA"];?>" 
+                                                  data-link="<?php echo $row["TTC_LINK"];?>"
+                                                  data-anh="<?php echo $row["TTC_ANH"];?>"
+                                                  data-hienthi=<?php echo $row["TTC_HIENTHI"];?> 
+                                                  class="edit-btn btn btn-link text-primary font-weight-bold text-sm">
+                                            Sửa
+                                          </button>
+                                        </div>
+                                        <div class="align-middle col-sm-6">
+                                          <form method="post" action="del_product.php">
+                                              <input type="hidden" name="pdid" value="<?php echo $row["TTC_ID"]; ?>">
+                                              <button onclick="this.form.submit()" class="btn btn-link text-warning text-secondary font-weight-bold text-sm">
+                                                Xoá
+                                              </button>
+                                            </form>
+                                        </div>
                                       </div>
                                     </td>
                                   </tr>
@@ -336,40 +369,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-header pb-0 p-3">
-              <div class="row">
-                <div class="col-7 d-flex align-items-center">
-                  <h6 class="mb-0">Thêm đối tác mới</h6>
-                </div>
-                <div class="col-2 text-center"></div>
-                <div class="col-3 text-center"></div>
-              </div>
-            </div>
-            <div class="card-body p-3 pb-0">
-            <form action="add_source.php" method="post">
-              <div class="row">
-                <div class="col-12 mt-4">
-                  Tên đối tác nhập hàng:
-                  <input required type="text" name="ten" class="form-control form-control-lg mt-1" placeholder="Tên đối tác">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 mt-3">
-                  Tên đối tác nhập hàng:
-                  <textarea required id="myTextarea" name="mota" class="form-control form-control-md mt-1">Mô tả đối tác</textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-primary mt-2">Thêm đối tác</button>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+        <div class="col-lg-1"></div>
       </div>
        
     </div>
@@ -387,8 +387,8 @@
     }
 
     .my-box {
-      width: 30%;
-      height: 42%;
+      width: auto;
+      height: auto;
       background-color: #fff;
       border-radius: 10px;
       position: absolute;
@@ -401,32 +401,80 @@
   </style>
   <div class="overlay" id="overlay">
     <div class="my-box">
-      <h5 class="ms-3 mt-3 text-primary">Cập nhật thông tin đối tác</h5>
+      <h5 class="ms-3 mt-3 text-primary">Cập nhật tin tức</h5>
       <div class="row">
         <div class="col-12">
           <form action="update_pdsource.php" method="post">
             <div class="row">
-              <div class="col-12">
-                <input type="hidden" name="temp_id" id="temp_id">
-                <div class="mb-3 mt-4 px-3 name">
-                  
-                </div>
-              </div>
-              <div class="col-12">
-                  <div class="mb-3 mt-4 px-3 des">
-                    
+              <div class="col-5 p-5 justify-content-center">
+              <div class="row mt-5">
+                  <div class="mb-3 px-3 col-12">
+                    Tải ảnh tin tức:
+                    <br>
+                    <input class="mt-3" type="file" name="productImg" id="productImg" accept="image/*">
                   </div>
                 </div>
+                <div class="row mt-2">
+                  <div id="preview" class="col-12 img"></div>
+                  <script>
+                    var input = document.getElementById("productImg");
+                    var preview = document.getElementById("preview");
+
+                    input.addEventListener("change", function() {
+                      preview.innerHTML = ""; // clear previous preview
+                      var files = this.files;
+                      for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        if (!file.type.startsWith("image/")){ continue } // skip non-image files
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                          var img = document.createElement("img");
+                          img.src = e.target.result;
+                          img.style = "width: 100%; height: auto;"
+                          preview.appendChild(img); // append image to preview div
+                        };
+                        reader.readAsDataURL(file); // read file as data url
+                      }
+                    });
+                  </script>
+                </div>
               </div>
-              <div class="row">
-                <div class="col-12 d-flex justify-content-center align-items-center" >
-                  <button onclick="this.submit()" class="btn btn-primary text-white font-weight-bold text-md ms-0 mt-4">
-                    Cập nhật
-                  </button>
+              <div class="col-7">
+                <div class="row">
+                  <div class="col-12">
+                    <input type="hidden" name="temp_id" id="temp_id">
+                    <div class="mb-3 mt-4 px-3 name">
+                      
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="mb-3 mt-2 px-3 des">
+                      
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="mb-3 mt-2 px-3 link">
+                      
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="mb-3 mt-2 px-3 hienthi">
+                      
+                    </div>
+                  </div>
+                </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-center align-items-center" >
+                    <button onclick="this.submit()" class="btn btn-primary text-white font-weight-bold text-md ms-0 mt-4">
+                      Cập nhật
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </form>
+        </div>
       </div>
     </div>
   </div>
@@ -442,12 +490,23 @@
     productButtons.forEach(button => {
       button.addEventListener('click', showProductDetails);
     });
+    
+    
 
     function showProductDetails(event) {
       // Lấy ID của sản phẩm được click
       const id = event.target.getAttribute('data-id');
       const name = event.target.getAttribute('data-name');
       const des = event.target.getAttribute('data-des');
+      const link = event.target.getAttribute('data-link');
+      const anh = event.target.getAttribute('data-anh');
+      const hienthi = event.target.getAttribute('data-hienthi');
+      let ht = 'Trạng thái';
+      if(hienthi==1){
+        ht = 'Đang hiển thị';
+      } else {
+        ht = 'Đang ẩn';
+      }
       
       
       document.getElementById("temp_id").value = id;
@@ -458,12 +517,17 @@
 
       // Hiển thị thông tin chi tiết của sản phẩm
       const productName = document.querySelector('.name');
-      productName.innerHTML = 'Tên đối tác <input required value="' + name + '" type="text" name="name" class="form-control form-control-lg mt-3">';
-      const productImg = document.querySelector('.des');
-      productImg.innerHTML = 'Mô tả <textarea required id="myTextarea" name="des" class="form-control form-control-md mt-1">'+des+'</textarea>';
+      productName.innerHTML = 'Tiêu đề tin tức <input required value="' + name + '" type="text" name="name" class="form-control form-control-lg mt-2">';
+      const productDes = document.querySelector('.des');
+      productDes.innerHTML = 'Mô tả <textarea required id="myTextarea" name="des" class="form-control form-control-md mt-1">'+des+'</textarea>';
+      const productLink = document.querySelector('.link');
+      productLink.innerHTML = 'URL <input required value="' + link + '" type="text" name="name" class="form-control form-control-lg mt-2">';
+      const productHienthi = document.querySelector('.hienthi');
+      productHienthi.innerHTML = 'Trạng thái <select name="hienthi" class="form-control form-control-lg mt-1"><option selected hidden value="'+hienthi+'">'+ht+'</option><option value="true">Hiển thị</option><option value="false">Ẩn</option></select>'
+      const productImg = document.querySelector('.img');
+      productImg.innerHTML = '<img style="height: auto; width: 100%;" src="../assets/img/news_img/'+anh+'" alt="">';
       
     }
-
 
     //Tắt overlay
     const overlay = document.getElementById("overlay");

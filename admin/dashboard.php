@@ -310,14 +310,14 @@
                     </h5>
                     <?php
                       if($dt_thangtruoc<$tongdoanhthu){
-                        $perc = round($tongdoanhthu / $dt_thangtruoc, 2);
+                        $perc = round(($dt_thangtruoc / $tongdoanhthu)*100, 2);
                         ?>                        
                         <p class="mb-0">
                           <span class="text-success text-sm font-weight-bolder">+<?php echo $perc ?>% </span>so với tháng trước
                         </p>
                         <?php
                       } else {
-                        $perc = round($dt_thangtruoc / $tongdoanhthu, 1);
+                        $perc = round(($tongdoanhthu / $dt_thangtruoc)*100, 2);
                         ?>                        
                         <p class="mb-0">
                           <span class="text-danger text-sm font-weight-bolder">-<?php echo $perc ?>% </span>so với tháng trước

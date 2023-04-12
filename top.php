@@ -19,12 +19,12 @@ $name ="Shop Cá Kiểng";
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-6">
-					<select class="language">
+					<!-- <select class="language">
 						<option value="English" selected>VietNam</option>
 					</select>
 					<select class="currency">
 						<option value="USD" selected>VNĐ</option>
-					</select>
+					</select> -->
 				</div>
 				<div class="col-xs-6">
 					<ul class="top-link">

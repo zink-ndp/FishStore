@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Nhà sách Online">
+    <meta name="description" content="Cá kiểng Online">
 	<?php
 $title ="Cửa hàng cá kiểng online";
 $name ="Cá kiểng";
@@ -21,6 +21,8 @@ $name ="Cá kiểng";
 	<!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="plugins/select2/select2.min.css">
+    <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+
 
     <!-- Font Awesome -->
 
