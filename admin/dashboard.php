@@ -995,21 +995,25 @@
               $row3 = $result->fetch_assoc();
               $row4 = $result->fetch_assoc();
 
+              $top1_id = $row1["id"];
               $top1_ten = $row1["ten"];
               $top1_soban = $row1["so_ban"];
               $top1_anh = $row1["anh"];
               $top1_hd = $row1["so_hd"];
 
+              $top2_id = $row2["id"];
               $top2_ten = $row2["ten"];
               $top2_soban = $row2["so_ban"];
               $top2_anh = $row2["anh"];
               $top2_hd = $row2["so_hd"];
 
+              $top3_id = $row3["id"];
               $top3_ten = $row3["ten"];
               $top3_soban = $row3["so_ban"];
               $top3_anh = $row3["anh"];
               $top3_hd = $row3["so_hd"];
 
+              $top4_id = $row4["id"];
               $top4_ten = $row4["ten"];
               $top4_soban = $row4["so_ban"];
               $top4_anh = $row4["anh"];
@@ -1033,7 +1037,7 @@
                   </div>
                   <div class="d-flex">
                     <img src="../assets/img/gold_cup.png" style="height:40px; margin-right: 5px;" alt="">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                    <a href="../product.php?id=<?php echo $top1_id; ?>"><button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button></a>
                   </div>
                 </li>
                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
@@ -1048,7 +1052,7 @@
                   </div>
                   <div class="d-flex">
                     <img src="../assets/img/silver_cup.png" style="height:40px; margin-right: 5px;" alt="">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                    <a href="../product.php?id=<?php echo $top2_id; ?>"><button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button></a>
                   </div>
                 </li>
                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
@@ -1063,7 +1067,7 @@
                   </div>
                   <div class="d-flex">
                     <img src="../assets/img/copper_cup.png" style="height:40px; margin-right: 5px;" alt="">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                    <a href="../product.php?id=<?php echo $top3_id; ?>"><button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button></a>
                   </div>
                 </li>
                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
@@ -1078,7 +1082,7 @@
                   </div>
                   <div class="d-flex">
                     <img src="../assets/img/medal4.png" style="height:40px; margin-right: 5px;" alt="">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                    <a href="../product.php?id=<?php echo $top4_id; ?>"><button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button></a>
                   </div>
                 </li>
               </ul>
