@@ -99,19 +99,9 @@
     <!-- End Navbar -->
     <div class="container-fluid py-4">
     <div class="row">
-      <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "shop_db";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-        }
-      ?>
+    <?php
+      require 'connect.php';
+    ?>
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">

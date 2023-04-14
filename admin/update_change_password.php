@@ -14,17 +14,8 @@
                         $message = "Nhập lại mật khẩu mới không khớp!";
                         echo "<script type='text/javascript'>alert('$message');</script>";
                     } else {
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $dbname = "shop_db";
-    
-                        // Create connection
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-                        // Check connection
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
+                        require 'connect.php';
+
 
                         $sql = "update tai_khoan set tk_matkhau = '{$new_p}' where tk_id = '$tkid' ";
 

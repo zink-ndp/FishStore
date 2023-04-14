@@ -153,17 +153,7 @@
 
                 $nvid = $_SESSION["nvid"];
 
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "shop_db";
-        
-                // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-                // Check connection
-                if ($conn->connect_error) {
-                  die("Connection failed: " . $conn->connect_error);
-                }
+                require 'connect.php';
         
                 $sql = "select nv_id, tk_id, nv_hoten, nv_sdt, nv_email, nv_ngaysinh, nv_gioitinh, nv_ngaytuyen from nhan_vien where nv_id = ".$nvid."";
                 $result = $conn->query($sql);

@@ -19,17 +19,7 @@ if($nvpass != $nvrepass){
   header('Refresh: 0;url=staff_add.php'); 
 } else {
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "shop_db";
-
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-	  die("Connection failed: " . $conn->connect_error);
-	}
+  require 'connect.php';
   
     $file_name = basename($_FILES["staffImg"]["name"]);
     $target_dir = "../assets/img/staff_img/";

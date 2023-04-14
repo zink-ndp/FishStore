@@ -1,18 +1,8 @@
 <?php
+  require 'connect.php';
+?>
 
-session_start();
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "shop_db";
-
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-	  die("Connection failed: " . $conn->connect_error);
-	}
+<?php
 
     $sql = "select max(NH_ID) as maxid from nguon_hang;";
     if ($conn->query($sql)==true){

@@ -100,32 +100,9 @@
     <!-- End Navbar -->
     <div class="container-fluid py-4">
     <div class="row">
-      <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "shop_db";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-        }
-
-        $idsp = $_POST["pdid"]; 
-        $anhsp = $_POST["anhsp"];
-        $lsp = $_POST["lsp"]; 
-        $mlsp = $_POST["mlsp"];
-        $tensp = $_POST["tensp"]; 
-        $giasp = $_POST["giasp"]; 
-        $motasp = $_POST["motasp"];
-        $nguonsp = $_POST["nguonsp"];
-        $manguonsp = $_POST["manguonsp"];
-        $dvtsp = $_POST["dvtsp"];
-        $slsp = $_POST["slsp"];
-
-      ?>
+    <?php
+      require 'connect.php';
+    ?>
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
