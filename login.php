@@ -22,6 +22,7 @@ session_start();
     if ($result->num_rows > 0) {
         require 'inc/myconnect.php';
         $row = $result->fetch_assoc();
+        $_SESSION["pic"]=$row['tk_avatar'];
         $_SESSION["id"] = $row['tk_id'];
         $_SESSION["pass"] = $row['tk_matkhau'];
         $_SESSION["role"] = $row['tk_vaitro'];
@@ -42,7 +43,7 @@ session_start();
             header('location: index.php');
         }
         else{
-            header('location: admin\dashboard.php');
+            header('location: admin/dashboard.php');
         }
     }
     else
