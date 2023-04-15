@@ -140,7 +140,7 @@ if(isset($_POST['dangky'])){
         if (($conn->query($sql) == TRUE)&&($conn->query($sql1) == TRUE)) {
             $message = "Thêm khach hang thành công";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            header('Refresh: 0;url=account.php');
+            header('Refresh: 1;url=account.php');
         } else {
             echo "<br>Error: " . $sql . "<br>" . $conn->error."<br>" . $sql1 . "<br>". $conn->error;
         }

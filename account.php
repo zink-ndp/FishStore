@@ -164,7 +164,7 @@ if(isset($_POST['dangky']))
 						</select>
 						</div>
 						<div class="form-group">
-						Dia chi
+						dia chi
 						<input type="text" class="form-control" placeholder="Dia chi lien he" name="position" id="position" required>
 						</div>
 						<div class="form-group">
