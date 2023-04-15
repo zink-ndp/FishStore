@@ -37,7 +37,8 @@ $name ="Shop Cá Kiểng";
 							       }
 							       else{
 							       	echo '<li><span class="glyphicon glyphicon-user"></span> Xin chào ' ; echo '<span style="color:Tomato;"><b>' . $_SESSION['name'] . '</b></span></li>' ;
-							       	echo '<li><span class="glyphicon glyphicon-log-out"></span><a href="dangxuat.php"> Đăng xuất!</a></li>';
+							       	// echo '<li><span"><b>' . $_SESSION['pic'] . '</b></span> Xin chào ' ; echo '<span style="color:Tomato;"><b>' . $_SESSION['name'] . '</b></span></li>' ;
+									echo '<li><span class="glyphicon glyphicon-log-out"></span><a href="dangxuat.php"> Đăng xuất!</a></li>';
 							       }
 
 							?>
