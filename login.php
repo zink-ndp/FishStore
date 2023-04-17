@@ -32,11 +32,11 @@ session_start();
         if ($result1->num_rows > 0) {
             $row1 = $result1->fetch_assoc();
             $_SESSION["name"] = $row1['KH_HOTEN'];
-            $_SESSION["email"] = $row1['kh_email'];
-            $_SESSION["sdt"] = $row1['kh_sdt'];
-            $_SESSION["date"] =$row1['kh_ngaysinh'];
-            $_SESSION["location"] =$row1['kh_diachi'];
-            $_SESSION["sex"] =$row1['kh_gioitinh'];
+            $_SESSION["email"] = $row1['KH_EMAIL'];
+            $_SESSION["sdt"] = $row1['KH_SDT'];
+            $_SESSION["date"] =$row1['KH_NGAYSINH'];
+            $_SESSION["location"] =$row1['KH_DIACHI'];
+            $_SESSION["sex"] =$row1['KH_GIOITINH'];
 
           }
         if($_SESSION["role"]=='custommer'){
@@ -50,7 +50,7 @@ session_start();
     {
         $message = $_POST["txtus"] + $_POST["txtem"];
         echo "<script type='text/javascript'>alert('$message');</script>";
-        header('Refresh: 10s;url=account.php');
+        header('Refresh: 0;url=account.php');
         }
     }
 ?>
