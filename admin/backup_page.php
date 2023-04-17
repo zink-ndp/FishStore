@@ -107,7 +107,7 @@
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-lg-1"></div>
-        <div class="col-lg-5">
+        <div class="col-lg-5 mt-3">
           <div class="row ">
             <div class="col-lg-12">
               <div class="card h-100">
@@ -122,44 +122,48 @@
                 </div>
                 <div class="card-body p-3 pb-3">
                     <div class="col-12 align-items-center text-center">
-                        <button type="submit" class="check_log btn btn-primary mt-3">Tạo file Backup</button>
+                        <button data-type="backup" type="submit" class="check_log btn btn-primary mt-3">Tạo file Backup</button>
                     </div>
-                    <div class="col-12 align-items-center text-center">
+                    <div class="col-12 align-items-center text-center">                    
                         <?php 
                             $filename = 'FishStoreBAK';
+                            date_default_timezone_set('Asia/Bangkok');
                             $date = date('d-m-Y_H-i-s');
                             $bk_file = $filename.'_'.$date.'.sql';
-                            if(isset($_POST['pw']) && isset($_POST['rpw'])){
-                                $pw = $_POST['pw'];
-                                $rpw = $_POST['rpw'];
-                                if ($pw !== $rpw){
-                                    $message = "Mật khẩu nhập lại không đúng";
-                                    echo "<script type='text/javascript'>alert('$message');</script>";
-                                } else {
-                                    if ($pw == $_SESSION['pw']){
-                                        require 'dumper.php';
-                                        try {
-                                            $dumper = Shuttle_Dumper::create(array(
-                                                'host' => 'localhost',
-                                                'username' => 'root',
-                                                'password' => '',
-                                                'db_name' => 'shop_db',
-                                            ));
-
-                                            // dump the database to plain text file
-                                            $dumper->dump($bk_file);
-
-                                            echo $bk_file;
-                                            echo "<br><a href='$bk_file'>Tải xuống file backup</a>";
-
-
-                                        } catch(Shuttle_Exception $e) {
-                                            echo "Couldn't dump database: " . $e->getMessage();
-                                        }
-
-                                    } else {
-                                        $message = "Mật khẩu không đúng!";
+                            if (isset($_POST["type"]) && $_POST["type"]=="backup"){
+                                if(isset($_POST['pw']) && isset($_POST['rpw'])){
+                                    $pw = $_POST['pw'];
+                                    $rpw = $_POST['rpw'];
+                                    if ($pw !== $rpw){
+                                        $message = "Mật khẩu nhập lại không đúng";
                                         echo "<script type='text/javascript'>alert('$message');</script>";
+                                    } else {
+                                        if ($pw == $_SESSION['pw'] && !isset($_FILES["backup_file"])){
+                                            require 'dumper.php';
+                                            try {
+                                                $dumper = Shuttle_Dumper::create(array(
+                                                    'host' => 'localhost',
+                                                    'username' => 'root',
+                                                    'password' => '',
+                                                    'db_name' => 'shop_db',
+                                                ));
+    
+                                                // dump the database to plain text file
+                                                $dumper->dump($bk_file);
+    
+                                                
+                                                echo $bk_file;
+                                                echo "<br><a href='$bk_file'>Tải xuống file backup</a>";
+    
+    
+                                            } catch(Shuttle_Exception $e) {
+                                                echo "Couldn't dump database: " . $e->getMessage();
+                                            }
+    
+                                        } else {
+                                            $message = "Mật khẩu không đúng!";
+                                            echo "<script type='text/javascript'>alert('$message');</script>";
+                                        }
                                     }
                                 }
                             }
@@ -172,7 +176,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-5 mt-3">
           <div class="row ">
             <div class="col-lg-12">
               <div class="card h-100">
@@ -187,10 +191,54 @@
                 </div>
                 <div class="card-body p-3 pb-3">
                     <div class="col-12 align-items-center text-center">
-                        <input type="file" name="filebak" id="">
                         <div class="col-12 align-items-center text-center">
-                        <button type="submit" disabled class="check_log btn btn-primary mt-4">Khôi phục</button>
-                    </div>
+                            <button data-type="restore" type="submit" id="restoreBuntton" class="check_log btn btn-primary mt-3">Khôi phục</button> 
+                        </div>   
+                        <?php
+                            if (isset($_POST["type"]) && $_POST["type"]=="restore"){
+                                if(isset($_POST['pw']) && isset($_POST['rpw'])){
+                                    $pw = $_POST['pw'];
+                                    $rpw = $_POST['rpw'];
+                                    if ($pw !== $rpw){
+                                        $message = "Mật khẩu nhập lại không đúng";
+                                        echo "<script type='text/javascript'>alert('$message');</script>";
+                                    } else {
+                                        if ($pw == $_SESSION['pw']){                                            
+                                            require 'restore.php';  
+                                            // Kiểm tra xem người dùng đã upload file hay chưa
+                                            if (isset($_FILES["backup_file"])) {
+                                                // Kiểm tra lỗi khi upload file
+                                                if ($_FILES["backup_file"]['error'] == UPLOAD_ERR_OK) {
+                                                    // Lưu tên file backup vào biến
+                                                    $backup_file = $_FILES["backup_file"]["name"];
+                                                    
+                                                    // Di chuyển file backup vào thư mục tạm
+                                                    move_uploaded_file($_FILES["backup_file"]["tmp_name"], $backup_file);
+                                                    
+                                                    // Khôi phục cơ sở dữ liệu từ file backup
+                                                    restoreDatabaseTables($host,$username,$password,$database,$backup_file);
+                                                    
+                                                    // Xóa file backup tạm sau khi khôi phục
+                                                    unlink($backup_file);
+                                                    
+                                                    // Hiển thị thông báo thành công
+                                                    echo "Khôi phục cơ sở dữ liệu thành công. Vui lòng đăng nhập lại";
+                                                    header('Refresh: 0;url=sign-in.php');
+                                                } else {
+                                                    // Hiển thị thông báo lỗi khi upload file
+                                                    echo "Lỗi khi upload file backup: " . $_FILES["backup_file"]['error'];
+                                                }
+                                            } else {
+                                                echo "!isset";
+                                            }                                             
+                                        } else {
+                                            $message = "Mật khẩu không đúng!";
+                                            echo "<script type='text/javascript'>alert('$message');</script>";
+                                        }
+                                    }
+                                }
+                            }
+                        ?>
                     </div>
                 </div>
               </div>  
@@ -234,8 +282,12 @@
         <div class="col-12">
           <form action="backup_page.php" method="post">
             <div class="row">
+                <div class="col-12">
+                    <div id="uploadFile" class="mb-2 px-3 mt-2">
+                    </div>
+                </div>
               <div class="col-12">
-                <div class="mb-2 px-3 name">
+                <div class="mb-2 px-3 mt-2 name">
                     <input required type="password" name="pw" class="form-control form-control-lg mt-2" placeholder="Nhập mật khẩu">                  
                 </div>
               </div>
@@ -246,9 +298,9 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-12 d-flex justify-content-center align-items-center" >
-                  <input type="hidden" name="tenbk" value="">                                      
-                  <button onclick="this.submit()" class="btn btn-primary text-white font-weight-bold text-md ms-0 mt-4">
+                <div class="col-12 d-flex justify-content-center align-items-center" >  
+                  <input type="hidden" name="type" id="type">
+                  <button onclick="this.submit()" class="btn btn-primary text-white font-weight-bold text-md ms-0 mt-2">
                     Xác nhận
                   </button>
                 </div>
@@ -275,6 +327,14 @@
       // Hiển thị overlay
       const overlay = document.querySelector('.overlay');
       overlay.style.display = 'block';
+
+      const type = event.target.getAttribute('data-type');
+      document.getElementById("type").value = type;  
+      
+      if(type=="restore"){
+        document.getElementById("uploadFile").innerHTML = '<input type="file" name="backup_file" id="">';
+      }
+
     }
 
 
