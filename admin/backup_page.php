@@ -126,26 +126,40 @@
                     </div>
                     <div class="col-12 align-items-center text-center">
                         <?php 
-                           if (isset($_POST['tenbk'])){
-                                $filename = $_POST['tenbk'];
-                                $date = date('d-m-Y_H-i-s');
-                                $bk_file = $filename.'_'.$date.'.sql';
-                                if(isset($_POST['pw']) && isset($_POST['rpw'])){
-                                    $pw = $_POST['pw'];
-                                    $rpw = $_POST['rpw'];
-                                    if ($pw !== $rpw){
-                                        $message = "Mật khẩu nhập lại không đúng";
-                                        echo "<script type='text/javascript'>alert('$message');</script>";
-                                    } else {
-                                        if ($pw == $_SESSION['pw']){
-                                            // Sử dụng mysqldump để tạo file backup
-                                            exec("mysqldump --user=$username --password=$password --host=$servername $dbname > $bk_file");
+                            $filename = 'FishStoreBAK';
+                            $date = date('d-m-Y_H-i-s');
+                            $bk_file = $filename.'_'.$date.'.sql';
+                            if(isset($_POST['pw']) && isset($_POST['rpw'])){
+                                $pw = $_POST['pw'];
+                                $rpw = $_POST['rpw'];
+                                if ($pw !== $rpw){
+                                    $message = "Mật khẩu nhập lại không đúng";
+                                    echo "<script type='text/javascript'>alert('$message');</script>";
+                                } else {
+                                    if ($pw == $_SESSION['pw']){
+                                        require 'dumper.php';
+                                        try {
+                                            $dumper = Shuttle_Dumper::create(array(
+                                                'host' => 'localhost',
+                                                'username' => 'root',
+                                                'password' => '',
+                                                'db_name' => 'shop_db',
+                                            ));
+
+                                            // dump the database to plain text file
+                                            $dumper->dump($bk_file);
+
                                             echo $bk_file;
                                             echo "<br><a href='$bk_file'>Tải xuống file backup</a>";
-                                        } else {
-                                            $message = "Mật khẩu không đúng!";
-                                            echo "<script type='text/javascript'>alert('$message');</script>";
+
+
+                                        } catch(Shuttle_Exception $e) {
+                                            echo "Couldn't dump database: " . $e->getMessage();
                                         }
+
+                                    } else {
+                                        $message = "Mật khẩu không đúng!";
+                                        echo "<script type='text/javascript'>alert('$message');</script>";
                                     }
                                 }
                             }
@@ -220,11 +234,6 @@
         <div class="col-12">
           <form action="backup_page.php" method="post">
             <div class="row">
-              <div class="col-12">
-                <div class="mb-2 px-3 name">
-                    <input required type="text" name="tenbk" class="form-control form-control-lg mt-2" placeholder="Đặt tên file...">
-                </div>
-              </div>
               <div class="col-12">
                 <div class="mb-2 px-3 name">
                     <input required type="password" name="pw" class="form-control form-control-lg mt-2" placeholder="Nhập mật khẩu">                  
