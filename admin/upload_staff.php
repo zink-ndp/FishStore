@@ -18,17 +18,7 @@ if($nvpass != $nvrepass){
   header('Refresh: 0;url=staff_add.php'); 
 } else {
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "shop_db";
-
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-	  die("Connection failed: " . $conn->connect_error);
-	}
+  require 'connect.php';
 
   $check = "select tk_tendangnhap from tai_khoan where tk_tendangnhap = '".$nvus."'";
   $rs_check = $conn->query($check);
@@ -39,7 +29,7 @@ $dbname = "shop_db";
 
   } else 
   {
-      $target_dir = "C:/xampp/htdocs/qlck/assets/img/staff_img/";
+      $target_dir = "../assets/img/staff_img/";
       $target_file = $target_dir . basename($_FILES["staffImg"]["name"]);
       $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
       $uploadOk = 1;

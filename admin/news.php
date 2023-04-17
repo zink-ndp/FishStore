@@ -337,9 +337,9 @@
               <div class="col-5 p-5 justify-content-center">
               <div class="row mt-5">
                   <div class="mb-3 px-3 col-12">
-                    Tải ảnh mới:
-                    <br>
-                    <input class="mt-1" type="file" name="newsImg" id="newsImg" accept="image/*">
+                    Tải ảnh mới: <button class="btn btn-danger text-white font-weight-bold text-md">Chức năng đang bảo trì!</button>
+                    <!-- <br>
+                    <input class="mt-1" type="file" name="newsImg" id="newsImg" accept="image/*"> -->
                   </div>
                 </div>
                 <div class="row mt-2">

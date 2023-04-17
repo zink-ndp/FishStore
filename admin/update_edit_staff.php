@@ -57,7 +57,7 @@ if($nvpass != $nvrepass){
     
     
     // Check file size
-    if ($_FILES["staffImg"]["size"] > 500000) {
+    if ($_FILES["staffImg"]["size"] > 50000000) {
       echo "Dung lượng file quá lớn";
       $uploadOk = 0;
     }
