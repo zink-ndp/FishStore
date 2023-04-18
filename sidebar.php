@@ -37,7 +37,7 @@ if ($rs->num_rows > 0) {
 								<a href="product.php?spid=<?php echo $row["SP_ID"]?>"><img src="assets/img/product_img/<?php echo $row["SP_HINHANH"]?>" style="width:80px;height:100px"/></a>
 								<div class="wrapper">
 									<h5><a href="product.php?spid=<?php echo $row["SP_ID"]?>"><?php echo $row["SP_TEN"]?></a></h5>
-									<div class="price"><?php echo $row["SP_GIA"] ?>.000 VNĐ</div>
+									<div class="price"><?php echo $row["SP_GIA"] ?> VNĐ</div>
 								</div>
 							</div>
 							<?php
