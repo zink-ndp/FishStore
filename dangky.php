@@ -55,7 +55,7 @@ if(isset($_POST['dangky'])){
     //mysqli_close($conn);
     else 
     {
-        $target_dir = "C:\xampp\htdocs\FishStore\assets\img\cus_img";
+        $target_dir = "../assets/img/cus_img";
         $target_file = $target_dir . basename($_FILES["cusImg"]["name"]);
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $uploadOk = 1;
