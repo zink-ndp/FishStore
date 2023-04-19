@@ -192,6 +192,11 @@ hr.line {
     border: none;
 }
 
+#top ul.top-link li img {
+    width: 25px;
+    height: 25px;
+}
+
 @media(max-width:767px) {
     #top ul.top-link li {
         float: none;
@@ -800,12 +805,12 @@ footer .copyright ul li {
     margin: 10px 0;
 }
 
-
-form#thugiua{
-   margin-left: 30  %;
-   width: 437px;
-    
+form#thugiua {
+    margin-left: 30 %;
+    width: 437px;
 }
+
+
 /* ---------------------------------------------------------------------------- */
 
 

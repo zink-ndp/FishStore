@@ -36,7 +36,7 @@ $name ="Shop Cá Kiểng";
 										<li><a href="contact.php"><span class="glyphicon glyphicon-envelope"></span> Liên hệ</a></li>');
 							       }
 							       else{
-							       	echo '<li><img src="../assets/img/cus_img/<?php echo '.$_SESSION["pic"].' ?>"> Xin chào ' ; echo '<span style="color:Tomato;"><a href="ttkh.php"><b>' . $_SESSION['name'] . '</b></a></span></li>' ;
+							       	echo '<li><img src="assets/img/cus_img/'.$_SESSION["pic"].'"> Xin chào ' ; echo '<span style="color:Tomato;"><a href="ttkh.php"><b>' . $_SESSION['name'] . '</b></a></span></li>' ;
 							       	// echo '<li>
 									// 		<span class="glyphicon glyphicon-user"></span> Xin chào ' ;
 									//  echo '<div class="dropdown">
