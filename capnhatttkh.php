@@ -1,5 +1,5 @@
 <?php
-    $khid= $_POST["khid"];
+    $TKid= $_POST["tkid"];
     $khname = $_POST["khname"];
     $khbirth = $_POST["khbirth"];
     $khsex = $_POST["khsex"];
@@ -20,13 +20,13 @@
     session_start();
 
     $sql = "update khach_hang set
-                KH_HOTEN = '{$khname}',
-                KH_SDT = '{$khsdt}',
-                KH_EMAIL = '{$khemail}',
-                KH_NGAYSINH = '{$khbirth}',
-                KH_DIACHI = '{$khdiachi}',
-                KH_GIOITINH = '{$khsex}'
-            where KH_ID = {$khid}";
+                KH_HOTEN = '$khname',
+                KH_SDT = '$khsdt',
+                KH_EMAIL = '$khemail',
+                KH_NGAYSINH = '$khbirth',
+                KH_DIACHI = '$khdiachi',
+                KH_GIOITINH = '$khsex'
+            where TK_ID = '$TKid'";
 
     if ($conn->query($sql) == true){
         $message = "Cập nhật thông tin thành công. Vui lòng đăng nhập lại!";
