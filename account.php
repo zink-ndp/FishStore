@@ -170,7 +170,7 @@ if(isset($_POST['dangky']))
 						<div class="form-group">
 						Tải ảnh đại diện:
 						<br>
-						<input class="mt-3" type="file" name="cusImg" id="input" accept="image/*" required>
+						<input class="mt-3" type="file" name="cusImg" id="cusImg" accept="image/*" required>
 						</div>
 						<div class="mb-3 px-3 col-3">
                           <div id="preview"></div>

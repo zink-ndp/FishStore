@@ -32,8 +32,7 @@ $name ="Shop Cá Kiểng";
 			</div>
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="heading"><h1 style="color:red">Giỏ hàng của bạn hiện không có sách nào hãy thêm sách vào giỏ hàng bạn nhé.</h1></div>
-					<p><h5><a href="/index.php">Bấm vào đây để về trang chủ.</a></h5></p>
+					<div class="heading"><h1 style="color:red">Giỏ hàng của bạn hiện không có sản phẩm nào, bạn vui lòng quay lại trang chủ để thêm vào.<a href="index.php">Tại đây</a></h1></div>
 				</div>
 			</div>
 		</div>
