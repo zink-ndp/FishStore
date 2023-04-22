@@ -50,7 +50,7 @@ include "navigation.php"
 			<div class="col-lg-12">
 				<ul class="breadcrumb">
 					<li><a href="index.php">Trang chủ</a></li>
-					<li><a href="#">Cá Kiểng</a></li>
+					<li><a href="product.php">Cá Kiểng</a></li>
 					<li><a href="#"><?php echo $row["SP_Ten"] ?></a></li>
 				</ul>
 			</div>
