@@ -78,25 +78,9 @@ if(isset($_POST['submit']))
 									
 									</ul>
 								</div>
-								<?php
-                            /*    if($row["KhuyenMai"] == true)
-								 {                                      
-								?>
-									<div class="price"><?php echo $row["giakhuyenmai"]?>.000 VNĐ<span><?php echo $row["Gia"]?>.000 VNĐ</span></div>
-								<?php 
-								}
-								?>
-								<?php
-                                 if($row["KhuyenMai"] == false)
-								 {
-								?>
-								    <p style="color:red">Không có khuyến mãi</p>
-									<div class="price"><?php echo $row["SP_Gia"]?>.000 VNĐ<span></span></div>
-								<?php 
-								}*/
-								?>
 
 								<p style="color:red">Không có khuyến mãi</p>
+
 								<div class="price"><?php echo $row["SP_Gia"]?> VNĐ<span></span></div>
 	
 								<div class="well">

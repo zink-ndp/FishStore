@@ -3,6 +3,7 @@ ob_start();
 
  ?>
 <?php
+session_start();
  require "login.php";
       if(!isset($_SESSION['txtus'])) // If session == null thi tra ve trang login
        {
@@ -67,18 +68,19 @@ $name ="Shop Cá Kiểng";
                     <select class="selectpicker" name="hinhthuctt">
 						<?php
 						require "inc/myconnect.php";
-                         $sql="SELECT * from pt_thanhtoan ";
-                         $result = $conn->query($sql); 
-                         if ($result->num_rows > 0) {
+                        $sql="SELECT * from pt_thanhtoan ";
+                        $result = $conn->query($sql); 
+                        if ($result->num_rows > 0) {
                           // xuat data cho moi dong
-                          while($row = $result->fetch_assoc()) {
-                      ?>
-                      <option value="<?php echo $row["PTTT_ID"] ?>"><?php echo $row["PTTT_TEN"] ?></option>
-											<?php
-													}
-												}
-											?>
-                    </select>	</label>	
+                          	while($row = $result->fetch_assoc()) {
+                      			?>
+                      			<option value="<?php echo $row["PTTT_ID"] ?>"><?php echo $row["PTTT_TEN"] ?></option>
+									<?php
+								}
+						}
+						?>
+                    	</select>	
+					</label>	
 	
 			 </div>
 			 
