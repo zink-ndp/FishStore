@@ -23,22 +23,8 @@ ob_start();
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-				<?php 
-					require 'inc/myconnect.php'; 
-					$maloaisp = $_GET["maloaisp"];
-					$truyvan = "SELECT s.SP_ID, l.LSP_ID, l.LSP_Ten
-					from san_pham s
-					LEFT JOIN loai_sp l on l.LSP_ID = s.LSP_ID
-					WHERE  s.LSP_ID =" . $maloaisp;
-				 	$re = $conn->query($truyvan);
-					$dong = $re->fetch_assoc();
-
-				?>
 					<ul class="breadcrumb">
 					<li><a href="index.php">Trang chủ</a></li>
-					<li><a href="index.php">Danh mục sản phẩm</a></li>
-					<li><a href="index.php?id=<?php echo $dong["SP_ID"] ?>"><?php echo $dong["LSP_Ten"] ?></a></li>
-					
 					</ul>
 				</div>
 			</div>

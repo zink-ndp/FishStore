@@ -54,38 +54,53 @@ $name ="Shop Cá Kiểng";
 			 <label>Tên khách hàng : <?php echo  $_SESSION['HoTen']?></label>
 			 <label>Điện thoại: <?php echo  $_SESSION['dienthoai']?></label>
 			 <label>Email:<?php echo    $_SESSION['email']?></label>     
-			 <label><input type="text"  class="form-control" placeholder="Nhập địa chỉ giao hàng:" name="diachi"  required ></label>
+			 <label><input type="text"  class="form-control" placeholder="Nhập địa chỉ giao hàng   :" name="diachi"  required ></label>
 			 <br/>
 
-			<label><input type="date" class="form-control" placeholder="Ngày giao:" name="date" id="datechoose"  required ></label>
-			<label> Hình thức thanh toán :<select class="selectpicker" name="hinhthuctt">
+			<label><input type="date" class="form-control" placeholder="Ngày giao  :" name="date" id="datechoose"  required ></label>
+			<!-- <label> Hình thức thanh toán :<select class="selectpicker" name="hinhthuctt">
     										<option value="ATM">Trả thẻ</option>
     										<option value="Live">Trực tiếp</option>
   											</optgroup>
 										</select>
-				</label>
+				</label> -->
+				<label>Hình thức thanh toán:
+                    <select class="selectpicker" name="hinhthuctt">
+						<?php
+						require "inc/myconnect.php";
+                         $sql="SELECT * from pt_thanhtoan ";
+                         $result = $conn->query($sql); 
+                         if ($result->num_rows > 0) {
+                          // xuat data cho moi dong
+                          while($row = $result->fetch_assoc()) {
+                      ?>
+                      <option value="<?php echo $row["PTTT_ID"] ?>"><?php echo $row["PTTT_TEN"] ?></option>
+											<?php
+													}
+												}
+											?>
+                    </select>	</label>	
 	
 			 </div>
 			 
 				   </div>		
 					 		 
-			</div>		
-					
-			<label>Chọn nhà vận chuyển</label>
+			</div>				
+			<label>Chọn nhà vận chuyển vận chuyển</label>
                     <select class="form-control select2" multiple="multiple" name="nhavanchuyen" id="nhavanchuyen" data-placeholder="Chọn nhà vận chuyển" >
 										<?php
-												require "inc/myconnect.php";
-                        $sql="SELECT * from nha_van_chuyen ";
-                        $result = $conn->query($sql); 
-                        if ($result->num_rows > 0) {
+													require "inc/myconnect.php";
+                         $sql="SELECT * from nha_van_chuyen ";
+                         $result = $conn->query($sql); 
+                         if ($result->num_rows > 0) {
                           // xuat data cho moi dong
-                          	while($row = $result->fetch_assoc()) {
+                          while($row = $result->fetch_assoc()) {
                       ?>
                       <option value="<?php echo $row["NVC_ID"] ?>"><?php echo $row["NVC_TEN"] ?></option>
-						<?php
-							}
-						}
-						?>
+											<?php
+													}
+												}
+											?>
                     </select>						
 		</div>        
 		<div class="col-lg-5">
@@ -99,7 +114,7 @@ $name ="Shop Cá Kiểng";
       <tr>
         <th>Tên sản phẩm</th>
         <th>Số lượng</th>
-        <th>Đơn giá</th>
+        <th>Giá</th>
 		<th>Tổng</th>
       </tr>
     </thead>
@@ -113,24 +128,27 @@ $name ="Shop Cá Kiểng";
 				}
 				// echo $item;
 				$str= implode(",",$item);
-			    $query = "SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as tenloaisp,s.LSP_ID
-                from san_pham s 
-                LEFT JOIN loai_sp l on l.LSP_ID = s.LSP_ID
-                WHERE  s.SP_ID in ($str)";
-
+			    $query = "SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as Tenloaisp,s.LSP_ID
+				from san_pham s 
+				LEFT JOIN loai_sp l on s.LSP_ID = l.LSP_ID
+				 WHERE  s.SP_ID  in ($str)";
 				$result = $conn->query($query);
-				$total = 0;
-				$s = $result->fetch_assoc();
+				
+				$total=0;
 				foreach($result as $s)
 				{
 			?>
       <tr>
         <td><?php  echo $s["SP_Ten"]?></td>
-        <td><?php echo $_SESSION['cart'][$s["SP_ID"]]?></td>	
-		<td><?php  echo $s["SP_Gia"]?> VNĐ</td>
-		<td><?php  echo $s["SP_Gia"]*$_SESSION['cart'][$s["SP_ID"]]?> VNĐ</td>	
+        <td><?php echo $_SESSION['cart'][$s["SP_ID"]]?></td>
+		<td><?php  echo $s["SP_Gia"]?> </td>
+		<td><?php echo $_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"]?></td>					
+   
       </tr>
-		<?php $total +=$_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"];  ?>
+	
+		<?php $total +=$_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"]  ?>
+								
+								
 	  <?php 
 				}
 			}?>
@@ -153,7 +171,7 @@ $name ="Shop Cá Kiểng";
 		<th  name="result"  style="color:red"><strong style="color:red" id="result" name="total"><?php echo  $total    ?> VNĐ</strong></th>  
 		<input type="hidden" id="thannhtien" name="totalkcodv" value="<?php echo  $total    ?>"/>     
 		<input type="hidden" name="total" id="total" value="" />  
-		<input type="hidden" name="nhavanchuyen" id="nhavanchuyen" value="" />  
+		<!-- <input type="hidden" name="madv" id="madv" value="" />   -->
       </tr>
     </thead>
     <tbody>
@@ -169,7 +187,7 @@ $name ="Shop Cá Kiểng";
 		</div> 
 					<div class="row">
 			<div class="panel panel-default">	
-			<div class="panel-heading">Số lượng sản phẩm (<?php  echo count($_SESSION['cart'])?>)</div>
+			<div class="panel-heading">Số sản phẩm (<?php  echo count($_SESSION['cart'])?>)</div>
              <div class="panel-body">		
 			 <?php
 
@@ -183,20 +201,19 @@ $name ="Shop Cá Kiểng";
 				}
 				// echo $item;
 				$str= implode(",",$item);
-			    $query = "SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as tenloaisp,s.LSP_ID
-                from san_pham s 
-                LEFT JOIN loai_sp l on l.LSP_ID = s.LSP_ID
-                WHERE  s.SP_ID in ($str)";
+			    $query = "SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as Tenloaisp,s.LSP_ID
+				from san_pham s 
+				LEFT JOIN loai_sp l on s.LSP_ID = l.LSP_ID
+				 WHERE  s.SP_ID  in ($str)";
 				$result = $conn->query($query);
-				$total = 0;
-				$s = $result->fetch_assoc();
+				$total=0;
 				foreach($result as $s)
 				{
 			?>
 				<div class="product well">
 					<div class="col-md-3">
 						<div class="image">
-							<img src="assets/img/product_img/<?php  echo $s["SP_HinhAnh"]?>" style="width:300px;height:300px" />
+							<img src="assets/img/product_img/<?php echo $s["SP_HinhAnh"]?>" style="width:300px;height:300px" />
 						</div>
 					</div>
 					<div class="col-md-9">
@@ -204,11 +221,13 @@ $name ="Shop Cá Kiểng";
 							<div class="name"><h3><a href="product.php?id=<?php  echo $s["SP_ID"]?>"><?php  echo $s["SP_Ten"]?></a></h3></div>
 							<div class="info">	
 								<ul>
-									<li>Loại sản phẩm: <?php  echo $s["tenloaisp"]?></li>
+									<li>Tên loại sản phẩm: <?php  echo $s["Tenloaisp"]?></li>
 								</ul>
 							</div>
 							
+							
 							<div class="price"><?php  echo $s["SP_Gia"]?> VNĐ</div>
+								
 			
 							<!-- <label>Số lượng: </label>  -->
 							<input class="form-inline quantity"  type="hidden" name ="qty[<?php echo $s["SP_ID"] ?>]" value="<?php echo $_SESSION['cart'][$s["SP_ID"]]?>"> 
@@ -218,8 +237,7 @@ $name ="Shop Cá Kiểng";
 							<input type="hidden" name="idsprm" value="<?php echo $s["SP_ID"] ?>" />
 							
 							<input type="hidden" name="dongia" value="<?php echo $s["SP_Gia"] ?>" />
-								
-        
+							
 						</div>
 					</div>
 
@@ -293,7 +311,7 @@ function laygiatheoiddichvu(str) {
 		//ep thanh kieu float de tinh thanh tien
 		div.innerHTML = parseFloat(sum) + parseFloat(thannhtien.value) ;
 		//truyen du lieu de hien thi len html
-		div.innerHTML = div.innerHTML + ".000 VNĐ";
+		div.innerHTML = div.innerHTML + " VNĐ";
 		//truyen madv ve html co id la total
 		document.getElementById("total").value =   parseFloat(sum) + parseFloat(thannhtien.value);
 		// console.log(sum);
