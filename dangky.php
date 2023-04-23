@@ -88,7 +88,7 @@ if(isset($_POST['dangky'])){
         
         
         // Check file size
-        if ($_FILES["cusImg"]["size"] > 500000) {
+        if ($_FILES["cusImg"]["size"] > 50000000) {
             echo "Dung lượng file quá lớn";
             $uploadOk = 0;
         }
@@ -140,7 +140,7 @@ if(isset($_POST['dangky'])){
         if (($conn->query($sql) == TRUE)&&($conn->query($sql1) == TRUE)) {
             $message = "Thêm khách hàng thành công";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            header('Refresh: 1;url=account.php');
+            header('Refresh: 10;url=account.php');
         } else {
             echo "<br>Error: " . $sql . "<br>" . $conn->error."<br>" . $sql1 . "<br>". $conn->error;
         }

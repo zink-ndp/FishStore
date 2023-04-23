@@ -42,7 +42,8 @@ session_start();
             header('location: index.php');
         }
         else{
-            header('location: admin/dashboard.php');
+            $message = "Tài khoản không tồn tại!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
         }
     }
     else

@@ -140,10 +140,6 @@ if(isset($_POST['dangky']))
 							<input type="text" class="form-control" placeholder="Họ Tên" name="fullname" id="firstname" value="<?php echo $name;?>" required >
 						</div>
 						<div class="form-group">
-						Tên đăng nhập
-						<input type="text" class="form-control" placeholder="Nhập tên đang nhập" name="account" id="account">
-						</div>
-						<div class="form-group">
 						Email
 							<input type="email" class="form-control" placeholder="Email" name="email" id="email"  value="<?php echo $email;?>" required>
 						</div>
@@ -164,8 +160,8 @@ if(isset($_POST['dangky']))
 						</select>
 						</div>
 						<div class="form-group">
-						dia chi
-						<input type="text" class="form-control" placeholder="Dia chi lien he" name="position" id="position" required>
+						Địa chỉ
+						<input type="text" class="form-control" placeholder="Địa chỉ liên hệ" name="position" id="position" required>
 						</div>
 						<div class="form-group">
 						Tải ảnh đại diện:
@@ -197,6 +193,10 @@ if(isset($_POST['dangky']))
                             });
                           </script>
                       </div>
+					    <div class="form-group">
+						Tên đăng nhập
+						<input type="text" class="form-control" placeholder="Nhập tên đăng nhập" name="account" id="account">
+						</div>
 						<div class="form-group">
 						Mật khẩu
 						<input type="password" class="form-control" placeholder="Mật khẩu" name="password" id="password"  value="<?php echo $mk;?>"required >
