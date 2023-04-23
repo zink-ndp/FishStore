@@ -117,6 +117,9 @@
                       <h6 class="mb-0">Sao lưu</h6>
                     </div>
                     <div class="col-6 text-end">
+                      <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                        <i class="fas fa-cloud-upload-alt text-lg opacity-10" aria-hidden="true"></i>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -186,6 +189,9 @@
                       <h6 class="mb-0">Khôi phục</h6>
                     </div>
                     <div class="col-6 text-end">
+                      <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                        <i class="fas fa-cloud-download-alt text-lg opacity-10" aria-hidden="true"></i>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -281,7 +287,7 @@
       <div class="row">
         <div class="col-12">
           <form action="backup_page.php" method="post">
-            <div class="row">
+            <div class="row" id="abc">
                 <div class="col-12">
                     <div id="uploadFile" class="mb-2 px-3 mt-2">
                     </div>
