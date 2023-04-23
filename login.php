@@ -15,7 +15,6 @@ session_start();
     $tk = addslashes($_POST['txtus']) ;
     $mk = addslashes($_POST['txtem']) ;
 
-    // $sql="select tk_id, tk_tendangnhap, tk_matkhau, tk_avatar, tk_vaitro from TAI_KHOAN  where tk_tendangnhap = '".strtolower($_POST['txtus'])."'  and tk_matkhau = '".$_POST['txtem']."'";
     $sql="select tk_id, tk_tendangnhap, tk_matkhau, tk_avatar, tk_vaitro from TAI_KHOAN  where tk_tendangnhap = '".strtolower($tk)."'  and tk_matkhau = '".$mk."'";
 
     $result = $conn->query($sql);

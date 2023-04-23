@@ -65,9 +65,8 @@ if(isset($_POST['submit']))
 				<div id="main-content" class="col-md-8">
 					<div class="product">
 						<div class="col-md-6">
-							<div class="image">
-								<img src="assets/img/product_img/<?php echo $row["SP_HinhAnh"]?>" style="width:300px;height:300px" />
-								
+							<div class="image" style="width:300px;height:300px">
+								<img src="assets/img/product_img/<?php echo $row["SP_HinhAnh"]?>" style="width:100%;height:100%;object-fit: cover;" />
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -115,7 +114,7 @@ if(isset($_POST['submit']))
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content" style="padding: 3rem;">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title" style="text-align: center">Thông tin khách hàng</h4>
@@ -142,16 +141,28 @@ if(isset($_POST['submit']))
 						<label><input type="date" class="form-control" placeholder="Ngày giao  :" name="date" id="datechoose"  required ></label>
 						</div>
 						<div class="form-group">
-						<label> Hình thức thanh toán :<select class="selectpicker" name="hinhthuctt">
-    										<option value="ATM">Trả thẻ</option>
-    										<option value="Live">Trực tiếp</option>
-  											</optgroup>
+						<label> Hình thức thanh toán :
+										<select class="form-control form-control-md" name="method" id="method">
+											<option value="" selected disabled hidden>- Phương thức thanh toán -</option>
+											<?php
+											$sql1 = "SELECT * FROM pt_thanhtoan";
+											$result1 = $conn->query($sql1);
+											if ($result1->num_rows > 0) {
+												$result1 = $conn->query($sql1);
+												$result_all1 = $result1 -> fetch_all(MYSQLI_ASSOC);
+												foreach ($result_all1 as $row1) {
+												echo "<option value=" .$row1["PTTT_ID"]. ">".$row1["PTTT_TEN"]. "</option>";
+												}                          
+											} else {
+												echo "<option value=''>Không có dữ liệu</option>";
+											}
+											?>
 										</select>
 										</lable>
 						</div>
 				
-						<input type="hidden" name="idsp" value="<?php echo $row["ID"] ?>" />
-						<input type="hidden" name="gia" value="<?php echo $row["Gia"] ?>" />
+						<input type="hidden" name="idsp" value="<?php echo $row["SP_ID"] ?>" />
+						<input type="hidden" name="gia" value="<?php echo $row["SP_Gia"] ?>" />
 						<button type="submit" name="muangay"  class="btn btn-1">Đặt hàng</button>
 		</form>
         </div>

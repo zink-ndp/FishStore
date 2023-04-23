@@ -30,7 +30,7 @@ ob_start();
 			</div>
 
 			<div class="row">
-				<div id="main-content" class="col-md-8">
+				<div id="main-content" class="col-md-9">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="products">
@@ -67,13 +67,13 @@ ob_start();
 							   // BƯỚC 5: TRUY VẤN LẤY DANH SÁCH
 							   // Có limit và start rồi thì truy vấn CSDL lấy danh Sách
 							   $result = mysqli_query($conn, "SELECT * FROM san_pham where LSP_ID = '$maloaisp' LIMIT $start, $limit " );
-	// output data of each row
-	while ($row = mysqli_fetch_assoc($result)){
+									// output data of each row
+									while ($row = mysqli_fetch_assoc($result)){
 
-?>
+								?>
 								<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="product">
-								<div class="image"><a href="product.php?id=<?php echo $row["SP_ID"]?>"><img src="assets/img/product_img/<?php echo $row["SP_HINHANH"]?>" style="width:300px;height:300px"/></a></div>
+								<div class="image" style="width:250px;height:240px"><a href="product.php?id=<?php echo $row["SP_ID"]?>"><img src="assets/img/product_img/<?php echo $row["SP_HINHANH"]?>" style="width: 100%; height: 100%; object-fit: cover;"/></a></div>
 								<div class="caption">
 									<div class="name"><h3><a href="product.php?id=<?php echo $row["SP_ID"]?>"><?php echo $row["SP_TEN"]?></a></h3></div>
 									<div class="price"><?php echo $row["SP_GIA"] ?> VNĐ</div>
