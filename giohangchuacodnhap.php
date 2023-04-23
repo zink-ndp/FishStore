@@ -54,11 +54,11 @@ $name ="Điện thoai";
 			
 			 if($ok == 2)
 			 {
-				echo "Có ".count($_SESSION['cart']). " sách trong giỏ hàng ";
+				echo "Có ".count($_SESSION['cart']). " sản phẩm trong giỏ hàng ";
 			 }
 			else
 			{
-				echo   "<p>Không có có Sách nào trong giỏ hàng</p>";
+				echo   "<p>Không có SẢN PHẨM nào trong giỏ hàng</p>";
 			}
 			
 			$sl = count($_SESSION['cart']);
@@ -77,10 +77,10 @@ $name ="Điện thoai";
 				}
 				// echo $item;
 				$str= implode(",",$item);
-			    $query = "SELECT s.ID,s.Ten,s.date,s.Gia,s.HinhAnh,s.KhuyenMai,s.giakhuyenmai,s.Mota, n.Ten as Tennhasx,s.Manhasx
-				from sanpham s 
-				LEFT JOIN nhaxuatban n on n.ID = s.Manhasx
-				 WHERE  s.id  in ($str)";
+			    $query = "SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as Tenloaisp,s.LSP_ID
+				from san_pham s 
+				LEFT JOIN loai_sp l on s.LSP_ID = l.LSP_ID
+				 WHERE  s.SP_ID  in ($str)";
 				$result = $conn->query($query);
 				$total=0;
 				foreach($result as $s)
@@ -92,58 +92,29 @@ $name ="Điện thoai";
 				<div class="product well">
 					<div class="col-md-3">
 						<div class="image">
-							<img src="images/<?php  echo $s["HinhAnh"]?>" style="width:300px;height:300px" />
+							<img src="assets/img/product_img/<?php  echo $s["SP_HinhAnh"]?>" style="width:300px;height:300px" />
 						</div>
 					</div>
 					<div class="col-md-9">
 						<div class="caption">
-							<div class="name"><h3><a href="product.php?id=<?php  echo $s["ID"]?>"><?php  echo $s["Ten"]?></a></h3></div>
+							<div class="name"><h3><a href="product.php?id=<?php  echo $s["SP_ID"]?>"><?php  echo $s["SP_Ten"]?></a></h3></div>
 							<div class="info">	
 								<ul>
-									<li>Nhà xuất bản: <?php  echo $s["Tennhasx"]?></li>
+									<li>Loại sản phẩm: <?php  echo $s["Tenloaisp"]?></li>
 								</ul>
 							</div>
-							<?php
-                                 if($s["KhuyenMai"] == true)
-								 {                                      
-								?>
-								<div class="price"><?php  echo $s["giakhuyenmai"]?>.000 VNĐ</div>
-								<?php 
-								}
-								?>
-								<?php
-                                 if($s["KhuyenMai"] == false)
-								 {
-								?>
-								<div class="price"><?php  echo $s["Gia"]?>.000 VNĐ</div>
-								<?php 
-								}
-								?>
+							
+							<div class="price"><?php  echo $s["SP_Gia"]?> VNĐ</div>
+							
 
 							<label>Số lượng: </label> 
-							<input class="form-inline quantity" style="margin-right: 80px;width:50px" min="1" max ="99" type="number" name ="qty[<?php echo $s["ID"] ?>]" value="<?php echo $_SESSION['cart'][$s["ID"]]?>"> 
+							<input class="form-inline quantity" style="margin-right: 80px;width:50px" min="1" max ="99" type="number" name ="qty[<?php echo $s["SP_ID"] ?>]" value="<?php echo $_SESSION['cart'][$s["SP_ID"]]?>"> 
 						     <div>
 							
 							</div>
 							<hr>
-							<?php
-                                 if($s["KhuyenMai"] == true)
-								 {                                      
-								?>
-									<label style="color:red">Thành tiền: <?php ;
-							    echo  $_SESSION['cart'][$s["ID"]] * $s["giakhuyenmai"]?>.000  </label> 
-								<?php 
-								}
-								?>
-								<?php
-                                 if($s["KhuyenMai"] == false)
-								 {
-								?>
-									<label style="color:red">Thành tiền: <?php ;
-							    echo  $_SESSION['cart'][$s["ID"]] * $s["Gia"]?>.000  </label> 
-								<?php 
-								}
-								?>
+							
+							<label style="color:red">Thành tiền: <?php echo  $_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"]?>  </label> 
 						
 						</div>
 					</div>
@@ -151,28 +122,9 @@ $name ="Điện thoai";
 					<div class="clear"></div>
 				</div>	
 			</form>
-			<?php
-                                 if($s["KhuyenMai"] == true)
-								 {                                      
-								?>
-											<?php 
-				              $total +=$_SESSION['cart'][$s["ID"]] * $s["giakhuyenmai"]?>
-								<?php 
-								}
-								?>
-								<?php
-                                 if($s["KhuyenMai"] == false)
-								 {
-								?>
-								<?php 
-				              $total +=$_SESSION['cart'][$s["ID"]] * $s["Gia"]?>
-								<?php 
-								}
-								?>
-		
-			</div>
+		</div>
 			<?php 
-				}
+			}
 			}
 			?>
 				
@@ -180,7 +132,7 @@ $name ="Điện thoai";
 				<div class="col-md-4 col-md-offset-8 ">
                 
 					<center><p style="color:red"><i class="fa fa-exclamation" aria-hidden="true"> Bạn cần đăng nhập để đặt hàng</i></p>
-                    <a href="index.php" class="btn btn-1" style="margin-left:-76px">Chọn những sách khác</a></center>
+                    <a href="index.php" class="btn btn-1" style="margin-left:-76px">Chọn những sản phẩm khác</a></center>
 				</div>
 			<div class="row">
 				<div class="pricedetails">
@@ -188,16 +140,16 @@ $name ="Điện thoai";
 						<table style="margin-right:31px">
 							<h6>Price Details</h6>
 							<tr>
-								<td>Số lượng sách </td>
+								<td>Số lượng sản phẩm </td>
 								<td><?php echo $sl ?></td>
 							</tr>
 							<tr style="border-top: 1px solid #333">
 								<td><h5>Tổng cộng</h5></td>
-								<td><?php echo $total ?>.000</td>
+								<td><?php echo $total ?>VNĐ</td>
 							</tr>
 						</table>
 						<center>
-                      <a href="account.php"  class="btn btn-1">vào trang đăng nhập</a>
+                      <a href="account.php"  class="btn btn-1">Trang đăng nhập</a>
                       </center>
                    
 					</div>

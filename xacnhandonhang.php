@@ -32,7 +32,7 @@ $name ="Shop Cá Kiểng";
 			</div>
 			<div class="row">
 				<div class="col-lg-10">
-					<div class="heading"><h1 style="color:blue;text-align:center">Thông tin đơn hàng của bạn đã được chúng tôi ghi nhận                   
+					<div class="heading"><h1 style="color:blue;text-align:center">Thông tin đơn hàng của bạn đã được chúng tôi ghi nhận,                    
                     chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất
                     </h1></div>
                 </div>

@@ -15,7 +15,7 @@
 					$offset =1;
 					// BƯỚC 3: TÌM LIMIT VÀ CURRENT_PAGE
 					$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-					$limit = 4;
+					$limit = 8;
 					// BƯỚC 4: TÍNH TOÁN TOTAL_PAGE VÀ START
 					// tổng số trang
 					$total_page = ceil($total_records / $limit);
@@ -43,7 +43,7 @@
 							<div class="image"><a href="product.php?id=<?php echo $row["SP_ID"]?>"><img src="assets/img/product_img/<?php echo $row["SP_HINHANH"]?>" style="width:300px;height:300px"/></a></div>
 							<div class="caption">
 								<div class="name"><h3><a href="product.php?id=<?php echo $row["SP_ID"]?>"><?php echo $row["SP_TEN"]?></a></h3></div>
-								<div class="price"><?php echo $row["SP_GIA"] ?>.000 VNĐ</div>
+								<div class="price"><?php echo $row["SP_GIA"] ?> VNĐ</div>
 							</div>
 						</div>
 		
@@ -80,7 +80,7 @@
 			}
 						  ?>
 						</ul>
-					</div>
+				</div>
 				
 		
-				</div>
+			</div>

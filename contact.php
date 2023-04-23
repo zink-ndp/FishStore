@@ -1,3 +1,9 @@
+<?php
+ob_start();
+session_start();
+
+?>
+
 <?php 
 	include "head.php"
 	?>
@@ -44,3 +50,5 @@ $name ="Shop Cá Kiểng";
 	?>
 </body>
 </html>
+<?php ob_end_flush(); ?>
+

@@ -75,7 +75,7 @@
 								<div class="image"><a href="product.php?id=<?php echo $row["SP_ID"]?>"><img src="assets/img/product_img/<?php echo $row["SP_HINHANH"]?>" style="width:300px;height:300px" /></a></div>
 								<div class="caption">
 									<div class="name"><h3><a href="product.php"><?php echo $row["SP_TEN"]?></a></h3></div>
-									<div class="price"><?php echo $row["SP_GIA"] ?>.000 VNĐ<span>$98</span></div>
+									<div class="price"><?php echo $row["SP_GIA"] ?> VNĐ</div>
 								</div>
 							</div>
 								</div>

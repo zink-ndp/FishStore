@@ -5,8 +5,8 @@
 	include "head.php";
 	?>
 <?php
-$title ="Shop huy";
-$name ="Điện thoai";
+$title ="Shop Cá Kiểng";
+$name ="Shop Cá Kiểng";
 ?>
 <?php 
 	include "top.php"
@@ -45,7 +45,7 @@ if(isset($_POST['submit']))
             $sl=1;
         }
         $_SESSION['cart'][$idsp] = $sl;
-        echo "<script>window.location.replace('http://host2.org/cart.php'); </script>";
+        //  echo "<script>window.location.replace('http://host2.org/cart.php'); </script>";
 
 }
 
@@ -76,7 +76,7 @@ if(isset($_POST['submit']))
 								<div class="info">
 									<ul>
 										<li>Loại sản phẩm: <a href="/category.php?maloaisp=<?php echo $row["LSP_ID"]?>"><?php echo $row["TenLsp"]?></a> <h3></li>
-										<li>Mô tả: <b><?php echo $row["SP_Mota"]?> <h3></b></li>
+									
 									</ul>
 								</div>
 								<?php
@@ -98,7 +98,7 @@ if(isset($_POST['submit']))
 								?>
 
 								<p style="color:red">Không có khuyến mãi</p>
-								<div class="price"><?php echo $row["SP_Gia"]?>.000 VNĐ<span></span></div>
+								<div class="price"><?php echo $row["SP_Gia"]?> VNĐ<span></span></div>
 	
 								<div class="well">
 								<form name="form3" id="ff3" method="POST" action="">

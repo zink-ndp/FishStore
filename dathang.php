@@ -15,8 +15,8 @@ ob_start();
 	include "head.php"
 	?>
 <?php
-$title ="Shop huy";
-$name ="Điện thoai";
+$title ="Shop Cá Kiểng";
+$name ="Shop Cá Kiểng";
 ?>
 <?php 
 	include "top.php"
@@ -54,33 +54,48 @@ $name ="Điện thoai";
 			 <label>Tên khách hàng : <?php echo  $_SESSION['HoTen']?></label>
 			 <label>Điện thoại: <?php echo  $_SESSION['dienthoai']?></label>
 			 <label>Email:<?php echo    $_SESSION['email']?></label>     
-			 <label><input type="text"  class="form-control" placeholder="Nhập địa chỉ giao hàng   :" name="diachi"  required ></label>
+			 <label><input type="text"  class="form-control" placeholder="Nhập địa chỉ giao hàng:" name="diachi"  required ></label>
 			 <br/>
-
-			<label><input type="date" class="form-control" placeholder="Ngày giao  :" name="date" id="datechoose"  required ></label>
-			<label> Hình thức thanh toán :<select class="selectpicker" name="hinhthuctt">
+			<label>Ngày đặt hàng: <input type="date" class="form-control" placeholder="Ngày đặt hàng:" name="date" id="datechoose"  required ></label>
+			<!-- <label> Hình thức thanh toán :<select class="selectpicker" name="hinhthuctt">
     										<option value="ATM">Trả thẻ</option>
     										<option value="Live">Trực tiếp</option>
   											</optgroup>
 										</select>
-				</label>
+				</label> -->
+				<label>Hình thức thanh toán:
+                    <select class="selectpicker" name="hinhthuctt">
+						<?php
+						require "inc/myconnect.php";
+                         $sql="SELECT * from pt_thanhtoan ";
+                         $result = $conn->query($sql); 
+                         if ($result->num_rows > 0) {
+                          // xuat data cho moi dong
+                          while($row = $result->fetch_assoc()) {
+                      ?>
+                      <option value="<?php echo $row["PTTT_ID"] ?>"><?php echo $row["PTTT_TEN"] ?></option>
+											<?php
+													}
+												}
+											?>
+                    </select>	</label>	
 	
 			 </div>
 			 
 				   </div>		
 					 		 
 			</div>				
-			<label>Dịch vụ</label>
-                    <select class="form-control select2" multiple="multiple" name="dichvu" id="dichvu" onchange ="laygiatheoiddichvu(this.value)"  data-placeholder="Chọn dịch vụ" >
+			<label>Chọn nhà vận chuyển vận chuyển</label>
+                    <select class="form-control select2" multiple="multiple" name="nhavanchuyen" id="nhavanchuyen" data-placeholder="Chọn nhà vận chuyển" >
 										<?php
 													require "inc/myconnect.php";
-                         $sql="SELECT * from dichvu ";
+                         $sql="SELECT * from nha_van_chuyen ";
                          $result = $conn->query($sql); 
                          if ($result->num_rows > 0) {
                           // xuat data cho moi dong
                           while($row = $result->fetch_assoc()) {
                       ?>
-                      <option value="<?php echo $row["madv"] ?>"><?php echo $row["tendv"] ?></option>
+                      <option value="<?php echo $row["NVC_ID"] ?>"><?php echo $row["NVC_TEN"] ?></option>
 											<?php
 													}
 												}
@@ -96,9 +111,10 @@ $name ="Điện thoai";
   <table class="table">
     <thead>
       <tr>
-        <th>Sách</th>
+        <th>Tên sản phẩm</th>
         <th>Số lượng</th>
         <th>Giá</th>
+		<th>Tổng</th>
       </tr>
     </thead>
     <tbody>
@@ -111,10 +127,10 @@ $name ="Điện thoai";
 				}
 				// echo $item;
 				$str= implode(",",$item);
-			    $query = "SELECT s.ID,s.Ten,s.date,s.Gia,s.HinhAnh,s.KhuyenMai,s.giakhuyenmai,s.Mota, n.Ten as Tennhasx,s.Manhasx
-				from sanpham s 
-				LEFT JOIN nhaxuatban n on n.ID = s.Manhasx
-				 WHERE  s.id  in ($str)";
+			    $query = "SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as Tenloaisp,s.LSP_ID
+				from san_pham s 
+				LEFT JOIN loai_sp l on s.LSP_ID = l.LSP_ID
+				 WHERE  s.SP_ID  in ($str)";
 				$result = $conn->query($query);
 				
 				$total=0;
@@ -122,45 +138,16 @@ $name ="Điện thoai";
 				{
 			?>
       <tr>
-        <td><?php  echo $s["Ten"]?></td>
-        <td><?php echo $_SESSION['cart'][$s["ID"]]?></td>
-				<?php
-               if($s["KhuyenMai"] == true)
-								 {                                      
-								?>
-						 <td><?php  echo $s["giakhuyenmai"]?>.000 VNĐ</td>
-								<?php 
-								}
-								?>
-								<?php
-                if($s["KhuyenMai"] == false)
-								 {
-								?>
-								     <td><?php  echo $s["Gia"]?>.000 VNĐ</td>
-								<?php 
-								}
-								?>
+        <td><?php  echo $s["SP_Ten"]?></td>
+        <td><?php echo $_SESSION['cart'][$s["SP_ID"]]?></td>
+		<td><?php  echo $s["SP_Gia"]?> </td>
+		<td><?php echo $_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"]?></td>					
    
       </tr>
-			<?php
-               if($s["KhuyenMai"] == true)
-								 {                                      
-								?>
-			  <?php 
-				 $total +=$_SESSION['cart'][$s["ID"]] * $s["giakhuyenmai"]  ?>
-								<?php 
-								}
-								?>
-								<?php
-                if($s["KhuyenMai"] == false)
-								 {
-								?>
-								  <?php 
-				 $total +=$_SESSION['cart'][$s["ID"]] * $s["Gia"]  ?>
-								<?php 
-								}
-								?>
-
+	
+		<?php $total +=$_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"]  ?>
+								
+								
 	  <?php 
 				}
 			}?>
@@ -180,10 +167,10 @@ $name ="Điện thoai";
 		<th></th>
 		<th></th>
 		<th></th>
-		<th  name="result"  style="color:red"><strong style="color:red" id="result" name="total"><?php echo  $total    ?>.000 VNĐ</strong></th>  
+		<th  name="result"  style="color:red"><strong style="color:red" id="result" name="total"><?php echo  $total    ?> VNĐ</strong></th>  
 		<input type="hidden" id="thannhtien" name="totalkcodv" value="<?php echo  $total    ?>"/>     
 		<input type="hidden" name="total" id="total" value="" />  
-		<input type="hidden" name="madv" id="madv" value="" />  
+		<!-- <input type="hidden" name="madv" id="madv" value="" />   -->
       </tr>
     </thead>
     <tbody>
@@ -199,7 +186,7 @@ $name ="Điện thoai";
 		</div> 
 					<div class="row">
 			<div class="panel panel-default">	
-			<div class="panel-heading">Sách (<?php  echo count($_SESSION['cart'])?>)</div>
+			<div class="panel-heading">Số sản phẩm (<?php  echo count($_SESSION['cart'])?>)</div>
              <div class="panel-body">		
 			 <?php
 
@@ -213,10 +200,10 @@ $name ="Điện thoai";
 				}
 				// echo $item;
 				$str= implode(",",$item);
-			    $query = "SELECT s.ID,s.Ten,s.date,s.Gia,s.HinhAnh,s.KhuyenMai,s.giakhuyenmai,s.Mota, n.Ten as Tennhasx,s.Manhasx
-				from sanpham s 
-				LEFT JOIN nhaxuatban n on n.ID = s.Manhasx
-				 WHERE  s.id  in ($str)";
+			    $query = "SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as Tenloaisp,s.LSP_ID
+				from san_pham s 
+				LEFT JOIN loai_sp l on s.LSP_ID = l.LSP_ID
+				 WHERE  s.SP_ID  in ($str)";
 				$result = $conn->query($query);
 				$total=0;
 				foreach($result as $s)
@@ -225,57 +212,31 @@ $name ="Điện thoai";
 				<div class="product well">
 					<div class="col-md-3">
 						<div class="image">
-							<img src="images/<?php  echo $s["HinhAnh"]?>" style="width:300px;height:300px" />
+							<img src="assets/img/product_img/<?php echo $s["SP_HinhAnh"]?>" style="width:300px;height:300px" />
 						</div>
 					</div>
 					<div class="col-md-9">
 						<div class="caption">
-							<div class="name"><h3><a href="product.php?id=<?php  echo $s["ID"]?>"><?php  echo $s["Ten"]?></a></h3></div>
+							<div class="name"><h3><a href="product.php?id=<?php  echo $s["SP_ID"]?>"><?php  echo $s["SP_Ten"]?></a></h3></div>
 							<div class="info">	
 								<ul>
-									<li>Nhà xuất bản: <?php  echo $s["Tennhasx"]?></li>
+									<li>Tên loại sản phẩm: <?php  echo $s["Tenloaisp"]?></li>
 								</ul>
 							</div>
-							<?php
-							if($s["KhuyenMai"] == true)
-								 {                                      
-								?>
-											<div class="price"><?php  echo $s["giakhuyenmai"]?>.000 VNĐ</div>
-								<?php 
-								}
-								?>
-								<?php
-                if($s["KhuyenMai"] == false)
-								 {
-								?>
-												<div class="price"><?php  echo $s["Gia"]?>.000 VNĐ</div>
-								<?php 
-								}
-								?>
+							
+							
+							<div class="price"><?php  echo $s["SP_Gia"]?> VNĐ</div>
+								
 			
 							<!-- <label>Số lượng: </label>  -->
-							<input class="form-inline quantity"  type="hidden" name ="qty[<?php echo $s["ID"] ?>]" value="<?php echo $_SESSION['cart'][$s["ID"]]?>"> 
+							<input class="form-inline quantity"  type="hidden" name ="qty[<?php echo $s["SP_ID"] ?>]" value="<?php echo $_SESSION['cart'][$s["SP_ID"]]?>"> 
 							<hr>
 					
-							<lable>Số lượng :<?php echo $_SESSION['cart'][$s["ID"]] ?></lable>
-							<input type="hidden" name="idsprm" value="<?php echo $s["ID"] ?>" />
-							<?php
-							if($s["KhuyenMai"] == true)
-								 {                                      
-								?>
-								<input type="hidden" name="dongia" value="<?php echo $s["giakhuyenmai"] ?>" />
-								<?php 
-								}
-								?>
-								<?php
-                if($s["KhuyenMai"] == false)
-								 {
-								?>
-								      <input type="hidden" name="dongia" value="<?php echo $s["Gia"] ?>" />
-								<?php 
-								}
-								?>
-         
+							<lable>Số lượng :<?php echo $_SESSION['cart'][$s["SP_ID"]] ?></lable>
+							<input type="hidden" name="idsprm" value="<?php echo $s["SP_ID"] ?>" />
+							
+							<input type="hidden" name="dongia" value="<?php echo $s["SP_Gia"] ?>" />
+							
 						</div>
 					</div>
 
@@ -283,7 +244,7 @@ $name ="Điện thoai";
 				</div>	
 
 			<?php 
-				 $total +=$_SESSION['cart'][$s["ID"]] * $s["Gia"]?>
+				 $total +=$_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"]?>
 				 	<?php 
 				}
 			}?>
@@ -349,7 +310,7 @@ function laygiatheoiddichvu(str) {
 		//ep thanh kieu float de tinh thanh tien
 		div.innerHTML = parseFloat(sum) + parseFloat(thannhtien.value) ;
 		//truyen du lieu de hien thi len html
-		div.innerHTML = div.innerHTML + ".000 VNĐ";
+		div.innerHTML = div.innerHTML + " VNĐ";
 		//truyen madv ve html co id la total
 		document.getElementById("total").value =   parseFloat(sum) + parseFloat(thannhtien.value);
 		// console.log(sum);

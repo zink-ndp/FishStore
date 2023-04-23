@@ -126,10 +126,10 @@ if(isset($_POST['dangky']))
 							<input type="text" class="form-control" placeholder="Tài khoản" name="txtus" required >
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" placeholder="Mật khẫu" name="txtem"required >
+							<input type="password" class="form-control" placeholder="Mật khẩu" name="txtem"required >
 						</div>
 						<button type="submit" name="submit" class="btn btn-1" name="login" id="login">Đăng nhập</button>
-					<i>* Bạn chưa có tài khoản? Vui lòng đăng ký.</i>
+					<i style="color:Tomato">* Bạn chưa có tài khoản? Vui lòng đăng ký.</i>
 					</form>
 				</div>
 				<div class="col-md-6">
