@@ -5,10 +5,10 @@ ob_start();
 require "login.php";
 if (!isset($_SESSION['txtus'])) // If session is not set then redirect to Login Page
 {
-	header("Location:giohangchuacodnhap.php");
+	// header("Location:giohangchuacodnhap.php");
 }
 
-?>
+?> 
 <?php
 include "head.php"
 ?>

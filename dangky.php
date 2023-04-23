@@ -25,7 +25,7 @@ if(isset($_POST['dangky'])){
     $check = "select tk_tendangnhap from tai_khoan where tk_tendangnhap = '".$tk."'";
     $rs_check = $conn->query($check);        
     if($rs_check->num_rows >0){
-        $message = "Tên đăng nhập đã được sử dụng, vui long dùng tên khác!";
+        $message = "Tên đăng nhập đã được sử dụng, vui lòng dùng tên khác!";
         echo "<script type='text/javascript'>alert('$message');</script>";
         header('Refresh: 0;url=account.php');    
     }
@@ -138,7 +138,7 @@ if(isset($_POST['dangky'])){
                 
         
         if (($conn->query($sql) == TRUE)&&($conn->query($sql1) == TRUE)) {
-            $message = "Thêm khach hang thành công";
+            $message = "Thêm khách hàng thành công";
             echo "<script type='text/javascript'>alert('$message');</script>";
             header('Refresh: 1;url=account.php');
         } else {
