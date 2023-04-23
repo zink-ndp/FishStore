@@ -110,7 +110,6 @@ INSERT INTO `chitiet_hd` (`SP_ID`, `HD_ID`, `SP_SOLUONG`) VALUES
 (1, 35, 1),
 (2, 35, 2),
 (3, 35, 1);
-
 --
 -- Đang đổ dữ liệu cho bảng `chitiet_nhap`
 --
@@ -123,19 +122,31 @@ INSERT INTO `chitiet_nhap` (`SP_ID`, `NH_ID`, `NV_ID`, `NH_NGAYNHAP`, `SP_SOLUON
 (5, 1, 1, '2023-03-19', 11),
 (6, 1, 1, '2023-03-19', 14),
 (7, 3, 1, '2023-03-19', 50),
-(10, 3, 1, '2023-04-08', 50),
-(11, 3, 1, '2023-04-08', 50),
-(12, 1, 1, '2023-04-08', 100),
-(13, 2, 1, '2023-04-08', 30),
-(14, 3, 1, '2023-04-08', 15),
-(15, 1, 1, '2023-04-08', 20),
-(16, 4, 1, '2023-04-08', 10),
-(17, 2, 1, '2023-04-08', 20),
-(18, 2, 1, '2023-04-08', 15),
-(19, 3, 1, '2023-04-08', 25),
-(20, 3, 1, '2023-04-08', 10),
-(21, 2, 1, '2023-04-08', 50),
-(22, 3, 1, '2023-04-08', 25);
+(8, 1, 1, '2023-04-19', 20),
+(9, 1, 1, '2023-04-23', 40),
+(10, 2, 1, '2023-04-23', 10),
+(11, 3, 1, '2023-04-23', 10),
+(12, 1, 1, '2023-04-23', 20),
+(13, 1, 1, '2023-04-23', 15),
+(14, 1, 1, '2023-04-23', 5),
+(15, 1, 1, '2023-04-23', 25),
+(16, 1, 1, '2023-04-23', 50),
+(17, 2, 1, '2023-04-23', 70),
+(18, 2, 1, '2023-04-23', 30),
+(19, 2, 1, '2023-04-23', 200),
+(20, 2, 1, '2023-04-23', 100),
+(21, 2, 1, '2023-04-23', 30),
+(22, 2, 1, '2023-04-23', 15),
+(23, 2, 1, '2023-04-23', 12),
+(24, 3, 1, '2023-04-23', 20),
+(25, 3, 1, '2023-04-23', 200),
+(26, 3, 1, '2023-04-23', 20),
+(27, 3, 1, '2023-04-23', 30),
+(28, 3, 1, '2023-04-23', 30),
+(29, 4, 1, '2023-04-23', 20),
+(30, 4, 1, '2023-04-23', 200),
+(31, 4, 1, '2023-04-23', 18),
+(32, 4, 1, '2023-04-23', 200);
 
 --
 -- Đang đổ dữ liệu cho bảng `don_van_chuyen`
@@ -184,7 +195,7 @@ INSERT INTO `hoa_don` (`HD_ID`, `DVC_ID`, `TT_ID`, `NV_ID`, `KM_ID`, `PTTT_ID`, 
 (32, 1, 3, 1, NULL, 1, 4, 850000, '2022-10-27', 'Lí do huỷ đơn'),
 (33, 1, 3, 1, NULL, 2, 1, 500000, '2023-03-12', NULL),
 (34, 2, 3, 1, NULL, 1, 2, 450000, '2023-04-02', NULL),
-(35, 1, 3, 1, NULL, 2, 1, 520000, '2023-04-01', NULL);
+(35, 1, 1, NULL, NULL, 2, 1, 520000, '2023-04-01', NULL);
 
 --
 -- Đang đổ dữ liệu cho bảng `khach_hang`
@@ -270,19 +281,31 @@ INSERT INTO `san_pham` (`SP_ID`, `LSP_ID`, `SP_TEN`, `SP_MOTA`, `SP_GIA`, `SP_HI
 (5, 3, 'Bể cá mini', 'Bể cá mini kích thước 20x20x20cm, có thể đặt trên bàn làm việc', 150000, 'mau-be-ca-de-ban-lam-viec-1.jpg', 4, 'Cái'),
 (6, 1, 'Cá chép vàng', 'Cá chép vàng có kích thước từ 5-7cm, phù hợp để nuôi trong bể nhỏ Cá chép vàng có kích thước từ 5-7cm, phù hợp để nuôi trong bể nhỏ', 15000, 'ca-chep-canh-hellothucung-1.jpg', 57, 'Con'),
 (7, 3, 'Thảm cỏ hồ cá', 'Thảm cỏ giả kích thước 30x30cm, giúp tạo cảnh quan tự nhiên cho bể', 50000, 'tham-co-nhan-tao-be-ca-chat-luong.jpg', 20, 'm2'),
-(10, 1, 'Cá rồng huyết long', 'Cá rồng Huyết long là loài cá rồng phân bố ở thượng lưu sông Kapuas và vùng hồ Sentarum, tỉnh Tây Kalimantan, đảo Borneo, Indonesia. Hồ Sentarum là một tập hợp gồm vô số những hồ nhỏ ăn thông với nhau', 450000, 'carong.png', 50, 'Con'),
-(11, 1, 'Cá hổ', 'Cá hổ có lẽ là loài cá cảnh hung dữ nhất hiện nay, thậm chí có thời gian đã bị cấm nhập khẩu vào Việt Nam. Tuy nhiên, nếu yêu thích loài cá cảnh nước ngọt dũng mãnh này và biết cách chăm sóc chúng, bạ', 250000, 'caho.png', 50, 'Con'),
-(12, 1, 'Cá Koi Việt Nam', 'Cá Koi đã từ lâu được xem là một trong những biểu tượng cho sự phồn vinh, giàu có và thành công cũng chính vì vậy mà cá koi được rất nhiều người săn đón trên khu vực quốc tế nói chung và cả Việt Nam n', 150000, 'cakoivn.png', 100, 'Con'),
-(13, 1, 'Cá la hán', 'cá La Hán lần đầu tiên xuất hiện tại Malaysia. Con cá này có họ hàng với cá rô phi và thuộc bộ cá vược. Cá La Hán được lai tạo ra với mong muốn ban đầu chỉ là khám phá bí quyết lai cá hồng két của Đài', 300000, 'calahan.png', 30, 'Con'),
-(14, 2, 'Thức ăn cao cấp cho cá Koi COLOR LARGE 6MM', 'Thức ăn cao cấp size lớn cho cá Koi Sera Koi Color Large 6mm, là thực phẩm màu bao gồm các hạt được xử lý cẩn thận cho tất cả Koi.', 280000, 'thucancakoi.png', 15, 'Hộp 1kg'),
-(15, 2, 'Thức ăn kích thích lên màu cá  JBL NOVOCOLOR', 'Thức ăn cho cá cảnh dạng miếng kích lên màu cá JBL NovoColor, kết hợp với chuyên môn của nhóm nghiên cứu và phát triển JBL, đã tạo ra hỗn hợp thực phẩm tối ưu và cân bằng được làm từ nguyên liệu chất', 140000, 'jbl.png', 20, 'Hộp 500gr'),
-(16, 4, 'Phân nền Gex xanh 10kg', 'Phân nền Gex Xanh tên đầy đủ là GEX FivePlant COPORATION, được sản xuất tại nhật bản, giàu chất dinh dưỡng giúp cây phát triển tốt.', 470000, 'gexxanh.png', 10, 'Bao'),
-(17, 4, 'Phân nền Gex đỏ 5kg', 'Phân nền Gex đỏ chuyên cho thủy sinh - Gex Shrimp Sand, Có hình dạng tròn nhỏ màu nâu đen, là loại phân nền rất thích hợp để nuôi tép và cây thủy sinh.', 130000, 'gexdo.png', 20, 'Bao'),
-(18, 4, 'Phân nước Azoo Chelated Iron Liquid', 'Phân nước AZOO CHELATED IRON LIQUID là một loại phân nước có hàm lượng sắt ( Fe ) cao 10.000 mg/L . Dùng để bổ sung sắt cho các loại cây thủy sinh lá đỏ có nhu cầu sắt cao.', 150000, 'azoo.png', 15, 'Chai'),
-(19, 3, 'Lũa dễ Xương Chùm', 'Lũa dễ Xương Chùm là laoij gỗ lũa thủy sinh có hình dạng như những chiếc xương đan xen lẫn nhau tạo thành những tán cây dùng trang trí cây bonsai thủy sinh.', 20000, 'ldxc.png', 25, 'Cái'),
-(20, 3, 'San hô vụn', 'San hô vụn là một dạng san hô khai thác từ biển khơi, thường được dùng làm tăng ph cho các hồ cá, hồ thủy sinh một cách tự nhiên nhất.', 80000, 'sanho.png', 10, 'Kg'),
-(21, 3, 'Khối vuông rỗng cho tép', 'Với những chiếc hình vuông có kích thước chỉ 2cm bạn có thể dễ dàng tạo nên mô hình đồ vật trang trí cho những chú tép cảnh chơi một cách thẩm mỹ và tinh tế.', 10000, 'dochoivuong.png', 50, 'Cái'),
-(22, 2, 'Sâu SuperWorn 100gr', 'Sâu Superworn là món ăn ưa thích cho  các loại thú cưng như chim, cá rồng, chuột hamster, bọ...chúng chưa rất nhiều loại vitamin, hàm lượng chất đạm,protein chất sơ,chất béo.... rất thích hợp cho nhu', 20000, 'sau.png', 25, 'Gói');
+(8, 1, 'Ali Thái - Kadango Cichlid', 'song theo dang, ca san moi', 60000, 'ali-fish.png', 20, 'con'),
+(9, 1, 'Cá Nẻ Xanh ( Dory ) – Blue Tang', '\r\nMức Độ Chăm Sóc	Trung Bình\r\nTính Cách	Bán tích cực , có tính lãnh thổ với các cá thể cùng loài ( Semi-aggressive )\r\nMàu sắc	Màu xanh da trời\r\nChế độ ăn	Thực vật\r\nThân thiện với rạn san hô (Reef Comp', 750000, 'lg_73746_Blue_Tang.jpg', 40, 'con'),
+(10, 1, 'Cá Axolotl', 'Cá axolotl có nguồn gốc từ Mexico. Chúng thường sống ở tầng đáy, nơi rất ít ánh sáng nên gần như mắt của chúng bị mù, không thể nhìn thấy được. Để tìm thức ăn, chúng đánh hơi bằng mũi và ăn các loại c', 500000, 'ky-nhong-o-dau-e1633279267534.jpg', 10, 'con'),
+(11, 4, 'Horned Nerite Snail', 'Ốc táo có tên khoa học là Pomacea bridgesi, có nhiều màu sắc. Và đặc biệt loài ốc táo rất được yêu thích vì rất đẹp, kích thước khoảng 6,5cm với 2 hệ hô hấp song song là phổi và chi. Ốc Táo hiện nay đ', 110000, 'images.jpg', 10, 'con'),
+(12, 1, 'Cá thần tiên', 'Cá Thần Tiên hay còn có tên tiếng Anh là ANGELFISH là dòng cá có kiểu bơi đặc biệt, bơi theo chiều dọc. Có dáng tròn (gần giống với cá dĩa), vây lưng, vây ngực, và vây bụng dài khiến cho dáng bơi của', 250000, '3ec1525f-3668-4e42-8402-db9e67a819c5.jpg', 20, 'con'),
+(13, 1, 'CÁ MÓ', 'Carpenter’s Flasher Warasse thuộc hộ Labbridae có nguồn gốc Cebu,Sumatra khi trưởng thành có kích thước tối đa 3inch( 7,62cm) hay còn được biết đến với tên gọi Carpenter’s Wrasse hoặc Redfin Flasher W', 500000, '20190618_PToVn2jfDbtwFdQ7tUYIUQN2.jpg', 15, 'con'),
+(14, 1, 'CÁ THIÊN THẦN LƯNG CAM - FLAMEBACK ANGELFISH', 'Họ: Pomacanthidae\r\nNguồn gốc: Afica\r\nKích thước tối đa: 3 inch\r\nMức độ chăm sóc: Trung bình', 1200000, 'lg36855FlamebackAngel.jpg', 5, 'con'),
+(15, 1, 'CÁ BỐNG MIDAS-MIDAS BLENNY', 'Họ:Blenniidae\r\nNguồn gốc: Africa, Fiji, Indonesia, Maldives\r\nKích thước tối đa: 6 inch( 15,24cm)\r\nMức độ chăm sóc: Dễ', 120000, '20190618_65EEmTUcUUFpISh5ZW7hag8k.jpg', 25, 'con'),
+(16, 1, 'Cá Betta', 'Cá Betta là một loài cá ăn thịt, do đó chúng chủ yếu ăn các loài phiêu sinh, bọ gậy hoặc những ấu trùng. Khi được cung cấp thức ăn và môi trường sống trong lành, giống cá này có thể sinh tồn và phát t', 90000, 'ca-betta2.jpg', 50, 'con'),
+(17, 2, 'Artemia', 'Artemia là một dòng thức ăn được rất nhiều người chơi sử dụng đặc biệt là các trại cá cảnh lớn nuôi với số lượng nhiều. Dòng thức ăn này có thể phù hợp cho cá cảnh từ nhỏ cho đến lớn với hàm lượng din', 700000, 'Artemia (1).jpg', 70, 'Hộp'),
+(18, 2, 'Giun, Trùn chỉ, Trùn huyết', 'Tuy là dòng thực phẩm cho cá cảnh cực tốt, nhưng phần lớn dạng thực phẩm này được khai thác tự nhiên ở những khu vực không quá sạch sẽ nên rất dễ mang mần bệnh và khiến cá nhiễm bệnh nếu không biết cá', 80000, 'thuc-an-ca-trun-chi.jpg', 30, 'Kg'),
+(19, 2, 'Tim bò kích đỏ', 'Thức ăn tim bò kích đỏ gần đây được nhiều người chơi cá cảnh thủy sinh sử dụng. Phần lớn người sử dụng dòng thức ăn này là dành cho những cho cá cảnh có kích thước lớn và có màu đỏ như: cá Dĩa, cá Cầu', 30000, 'Thuc-an-tim-bo-kich-do-dong-lanh-1024x1024.jpg', 200, 'Bịch'),
+(20, 2, 'Cám thái Inve -50g', 'Nhắc đến thức ăn cá cảnh dạng cám mà không nhắc đến cám thái Inve thì quả thật là thiếu sót, đây là dòng cám được rất nhiều người chơi cá cảnh sử dụng vì giá thành rẻ và giá trị dinh dưỡng khá tốt. Ba', 15000, 'Cam-thai-inve.jpg', 100, 'Hộp'),
+(21, 2, 'Thức ăn Tetra -75g', 'Thức ăn cá cảnh TetraColor được thiết kế cho các loài cá lớn hơn như cá dĩa và cá thần tiên. Ngoài ra, những hạt chìm chậm này mang lại dinh dưỡng tăng cường màu sắc cho cá tầng trung và ăn đáy. Tăng', 70000, 'Thuc-an-Tetra-Color.jpg', 30, 'Hộp'),
+(22, 2, 'Thức ăn Tropical&Color -50g', 'Tropical Vitality & Color là thức ăn dạng viên nén hoàn chỉnh, đặc biệt có giá trị dinh dưỡng cao, tăng cường màu sắc cho tất cả các loài cá cảnh. Hàm lượng lecithin và vitamin E kích thích sinh sản v', 60000, 'cam-dan-Tropical-Vitality-color-300x300.jpg', 15, 'Hộp'),
+(23, 2, 'Thức ăn JBL -160g', 'Sử dụng protein nguyên chất, không sử dụng bột cá giá rẻ.\r\nTỷ lệ protein/chất béo tối ưu.\r\nChủ yếu là protein từ động vật sống trong nước.\r\nGiảm sự phát triển của tảo và tăng trưởng cá tối ưu nhờ hàm', 160000, 'Thuc-an-ca-canh-JBL-Novo-Tab-160g-250ml.jpg', 12, 'Hộp'),
+(24, 3, 'Cây nhựa trang trí hồ cá cảnh, hòn non bộ nhiều mẫ', 'Cây nhựa trang trí hồ cá cảnh, hòn non bộ nhiều mẫu mã.\r\nSử dụng làm nơi vui chơi cho cá cảnh, giúp cá giảm stress và có nơi trú ngụ.\r\nCây được làm bằng nhựa, không bay màu, không gây hại cho cá cảnh.', 8000, 'tải xuống.jpg', 20, 'cái'),
+(25, 3, 'Tượng gốm tháp chùa và mô hình ngôi nhà sàn, nhà r', '- Chúng ta thường bắt gặp hình ảnh những ngôi nhà sàn, nhà rơm trong chuyện cổ tích quen thuộc, ở quê rơm là của thân các loại cây lúa (lúa nước, lúa mì, lúa mạch) đã gặt và đập hết hạt, hoặc là các l', 30000, 'vn-11134207-23030-gb0xpvnvamov9b.jpg', 200, 'cái'),
+(26, 3, 'Sỏi Sạn Suối 1kg Trải Nền Trang Trí Bể Cá, Bể Thủy', 'Sỏi sạn suối được chọn lọc sử dụng setup và trang trí bể của bạn. Bể cá của bạn sẽ trông tự nhiên và đẹp hơn với sỏi sạn suối.\r\nLƯU Ý: Tùy từng đơt hàng mà màu sắc và kích thước viên sạn suối khác nha', 15000, 'tải xuống.png', 20, 'Bịch'),
+(27, 3, 'Ráy Nana Tàu Cây Thủy Sinh Gắn Đá Lũa Không Cần CO', '-Cây  thủy sinh ráy nana có lá nhỏ xanh đẹp nên xử lý gắn giá thể có dinh dưỡng hoặc không có dinh dưỡng, không cắm xuống nền phân\r\n- Ráy nana được sử dụng làm điểm hoặc trọng tâm của các bố cục. Cây', 35000, 'tải xuống (1).png', 30, 'Cây'),
+(28, 3, 'Set Đá Dạ Quang Trang Trí Bể Cá', 'Mô tả:\r\nNhững gì mà viên đá dạ quang này có thể cung cấp cho bạn là nó thân thiện với môi trường, an toàn và sẽ không ảnh hưởng đến sức khỏe của cuộc sống thủy sinh. Ngay cả khi ngâm trong nước lâu cũ', 45000, 'đá dạ quang.jpg', 30, 'Bịch'),
+(29, 4, 'La Hán xanh', 'Tên gọi khác: rong đuôi chồn.\r\nƯu điểm: dễ trồng, dễ chăm sóc, không đòi hỏi dinh dưỡng cao.\r\nNhược điểm: cây phát triển nhanh nên cần phải cắt tỉa thường xuyên, cần phải có dòng chảy nhẹ trong bể thủ', 30000, 'la-han-xanh.jpg', 20, 'Cây'),
+(30, 4, 'Cỏ thìa', 'Ưu điểm: dễ trồng, dễ chăm sóc, không đòi hỏi dinh dưỡng cao, tốc độ sinh trưởng nhanh.\r\nNhược điểm: bộ rễ phát triển khá nhanh và mạnh nên chú ý khi setup lại tránh làm động nền.\r\nCách bố trí: Làm ti', 7000, 'co-thia.jpg', 200, 'Cây'),
+(31, 4, 'Thủy cúc', 'Tên gọi khác: Thủy yêu.\r\nƯu điểm: dễ trồng, dễ chăm sóc, phát triển nhanh.\r\nNhược điểm: bộ rễ phát triển khá nhanh, mạnh, ăn sâu vào nền nên chú ý khi setup lại tránh làm động nền.\r\nMuốn cây đẹp nên t', 12000, 'thuy-cuc.jpg', 18, 'cây'),
+(32, 4, 'Tép dọn bể', 'Tép sẽ giúp bể cá của bạn sạch sẽ hơn. Bản chất của tép là loài ăn xác thối và tảo thực vật, chúng cũng sẽ ăn thức ăn thừa và một số chất hữu cơ khác lắng động trong bể. Ngoài ra thì bạn cũng có thể b', 6000, 'Tep.jpg', 200, 'con');
 
 --
 -- Đang đổ dữ liệu cho bảng `tai_khoan`
