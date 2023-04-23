@@ -55,9 +55,9 @@ if (is_countable($_SESSION['cart']) == 0) {
 				}
 
 				if ($ok == 2) {
-					echo "Có " . count($_SESSION['cart']) . " sách trong giỏ hàng ";
+					echo "Có " . count($_SESSION['cart']) . " sản phẩm trong giỏ hàng ";
 				} else {
-					echo   "<p>Không có có Sách nào trong giỏ hàng</p>";
+					echo   "<p>Không có SẢN PHẨM nào trong giỏ hàng</p>";
 				}
 
 				$sl = count($_SESSION['cart']);
@@ -102,19 +102,19 @@ if (is_countable($_SESSION['cart']) == 0) {
 										</ul>
 									</div>
 									
-									<div class="price"><?php echo $s["SP_Gia"] ?>.000 VNĐ</div>
+									<div class="price"><?php echo $s["SP_Gia"] ?> VNĐ</div>
 									
 
 									<label>Số lượng: </label>
 									<input class="form-inline quantity" style="margin-right: 80px;width:50px" min="1" max="99" type="number" name="qty[<?php echo $s["SP_ID"] ?>]" value="<?php echo $_SESSION['cart'][$s["SP_ID"]] ?>">
 									<div>
-										<input type="submit" name="update" style="margin-top:31px" value="cập nhật sản phẩm này" class="btn btn-2" />
+										<input type="submit" name="update" style="margin-top:31px" value="Cập nhật sản phẩm" class="btn btn-2" />
 									</div>
 									<hr>
-									<input type="submit" name="remove" value="xóa SẢN PHẨM này" class="btn btn-default pull-right" />
+									<input type="submit" name="remove" value="Delete" class="btn btn-default pull-right" />
 									<input type="hidden" name="idsprm" value="<?php echo $s["SP_ID"] ?>" />
 									
-									<label style="color:red">Thành tiền: <?php echo  $_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"] ?>.000 </label>
+									<label style="color:red">Thành tiền: <?php echo  $_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"] ?> </label>
 																				
 									
 
@@ -152,7 +152,7 @@ if (is_countable($_SESSION['cart']) == 0) {
 								<td>
 									<h5>Tổng cộng</h5>
 								</td>
-								<td><?php echo $total ?>.000</td>
+								<td><?php echo $total ?>VNĐ</td>
 							</tr>
 						</table>
 						<center><a href="dathang.php" class="btn btn-1">Đặt hàng</a></center>
