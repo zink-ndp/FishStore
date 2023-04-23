@@ -53,54 +53,62 @@ include "sider.php"
 			?>
 			<!-- San pham top 1 -->
 			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-				<div class="product">
-					<div class="image"><img src="assets/img/product_img/<?php echo $top1_hinhanh ?>" style="width:300px;height:300px" /></a></div>
-					<div class="caption">
-						<div class="name">
-							<h3><a href="product.php?id=<?php echo $top1_id ?>"><?php echo $top1_ten ?></a></h3>
+				<a href="product.php?id=<?php echo $top1_id ?>">
+					<div class="product">
+						<div class="image" style="width:230px;height:250px"><img src="assets/img/product_img/<?php echo $top1_hinhanh ?>" style="width:100%;height:100%;object-fit:cover;" /></a></div>
+						<div class="caption">
+							<div class="name">
+								<h3><?php echo $top1_ten ?></h3>
+							</div>
+							<div class="price"><?php echo $top1_gia ?> VNĐ</div>
 						</div>
-						<div class="price"><?php echo $top1_gia ?> VNĐ</div>
 					</div>
-				</div>
+				</a>
 			</div>
 
 			<!-- San pham top 2 -->
 			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-				<div class="product">
-					<div class="image"><img src="assets/img/product_img/<?php echo $top2_hinhanh ?>" style="width:300px;height:300px" /></a></div>
-					<div class="caption">
-						<div class="name">
-							<h3><a href="product.php?id=<?php echo $top2_id ?>"><?php echo $top2_ten ?></a></h3>
+				<a href="product.php?id=<?php echo $top2_id ?>">
+					<div class="product">
+						<div class="image" style="width:230px;height:250px"><img src="assets/img/product_img/<?php echo $top2_hinhanh ?>" style="width:100%;height:100%;object-fit:cover;" /></a></div>
+						<div class="caption">
+							<div class="name">
+								<h3><?php echo $top2_ten ?></h3>
+							</div>
+							<div class="price"><?php echo $top2_gia ?> VNĐ</div>
 						</div>
-						<div class="price"><?php echo $top2_gia ?> VNĐ</div>
 					</div>
-				</div>
+				</a>
 			</div>
 
 			<!-- San pham top 3 -->
 			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-				<div class="product">
-					<div class="image"><img src="assets/img/product_img/<?php echo $top3_hinhanh ?>" style="width:300px;height:300px" /></a></div>
-					<div class="caption">
-						<div class="name">
-							<h3><a href="product.php?id=<?php echo $top3_id ?>"><?php echo $top3_ten ?></a></h3>
+				<a href="product.php?id=<?php echo $top3_id ?>">
+					<div class="product">
+						<div class="image" style="width:230px;height:250px"><img src="assets/img/product_img/<?php echo $top3_hinhanh ?>" style="width:100%;height:100%;object-fit:cover;" /></a></div>
+						<div class="caption">
+							<div class="name">
+								<h3><?php echo $top3_ten ?></h3>
+							</div>
+							<div class="price"><?php echo $top3_gia ?> VNĐ</div>
 						</div>
-						<div class="price"><?php echo $top3_gia ?> VNĐ</div>
 					</div>
-				</div>
+				</a>
 			</div>
 
 			<!-- San pham top 4 -->
 			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-				<div class="product">
-					<div class="image"><img src="assets/img/product_img/<?php echo $top4_hinhanh ?>" style="width:300px;height:300px" /></a></div>
-					<div class="caption">
-						<div class="name">
-							<h3><a href="product.php?id=<?php echo $top4_id ?>"><?php echo $top4_ten ?></a></h3>
+				<a href="product.php?id=<?php echo $top4_id ?>">
+					<div class="product">
+						<div class="image" style="width:230px;height:250px"><img src="assets/img/product_img/<?php echo $top4_hinhanh ?>" style="width:100%;height:100%;object-fit:cover;" /></a></div>
+						<div class="caption">
+							<div class="name">
+								<h3><a href="product.php?id=<?php echo $top4_id ?>"><?php echo $top4_ten ?></a></h3>
+							</div>
+							<div class="price"><?php echo $top4_gia ?> VNĐ</div>
 						</div>
-						<div class="price"><?php echo $top4_gia ?> VNĐ</div>
 					</div>
-				</div>
+				</a>
 			</div>
 
 
