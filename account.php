@@ -134,7 +134,7 @@ if(isset($_POST['dangky']))
 				</div>
 				<div class="col-md-6">
 					<div class="heading"><h2> Đăng ký tài khoản</h2></div>
-					<form name="form2" id="ff2" method="post" action="dangky.php">
+					<form name="form2" id="ff2" method="post" action="dangky.php" enctype="multipart/form-data">
 						<div class="form-group">
 						Họ Tên
 							<input type="text" class="form-control" placeholder="Họ Tên" name="fullname" id="firstname" value="<?php echo $name;?>" required >
