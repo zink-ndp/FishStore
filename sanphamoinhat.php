@@ -41,7 +41,7 @@
 					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 						<div class="product">
 							<div class="image"><a href="product.php?id=<?php echo $row["SP_ID"]?>"><img src="assets/img/product_img/<?php echo $row["SP_HINHANH"]?>" style="width:300px;height:300px"/></a></div>
-							<div class="caption">
+							<div class="caption" style="height:62.08px">
 								<div class="name"><h3><a href="product.php?id=<?php echo $row["SP_ID"]?>"><?php echo $row["SP_TEN"]?></a></h3></div>
 								<div class="price"><?php echo $row["SP_GIA"] ?> VNĐ</div>
 							</div>
