@@ -71,7 +71,7 @@
 		<div class="copyright">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-4" style="color:#fff;">
 						Copyright © 2023
 					</div>
 					<div class="col-md-4">
