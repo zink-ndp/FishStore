@@ -187,7 +187,7 @@
                                         </td>
                                         <!-- phuong thuc -->
                                         <td class="align-middle text-center">
-                                          <p class="text-s text-secondary mb-0"><?php echo $phuongthuc;  ?></p>
+                                          <p class="text-xs font-weight-bold text-secondary mb-0"><?php echo $phuongthuc;  ?></p>
                                         </td>
                                         <!-- status-->
                                         <td class="align-middle text-center">
@@ -217,7 +217,7 @@
                       </div>
                       <div class="col-6 d-flex align-items-center  justify-content-end"></div>
                       <div class="col-3 d-flex align-items-center justify-content-end">
-                        Ngày đặt hàng: <span class="ms-2 text-secondary text-s text-center font-weight-bold"><?php echo $ngaydat; ?></span>
+                        Ngày đặt hàng: <span class="ms-2 text-secondary text-s text-center font-weight-bold"><?php echo date('d/m/Y', strtotime($ngaydat)); ?></span>
                       </div>
                   </div>
                   <div class="card-body px-0 pt-0 pb-2 px-4 py-4">
@@ -325,17 +325,45 @@
                           </select>
                       </div>
                       <?php
-                        $display = "none";
-                        if ($trangthai == 0){
-                          $display = "block";
+                        $dp = "none";
+                        if ($trangthai==0){
+                          $dp = "block";
+                        } else {
+                          $dp = "none";
                         }
-                      ?>  
-                      <div class="col-12 d-flex align-items-center me-4 mt-4">
-                        <textarea id="myTextarea" style="display: <?php echo $display; ?>;" name="lido" class="form-control form-control-md"><?php echo $lidohuy ?></textarea>
+                      ?>
+                      <div class="col-12 d-flex align-items-center mt-2">
+                        <textarea id="myTextarea" style="display: <?php echo $dp ?>;" name="lido" class="form-control form-control-md"><?php echo $lidohuy ?></textarea>
+                      </div>
+                      <?php
+                        $dp1 = "none";
+                        if ($trangthai==2){
+                          $dp1 = "block";
+                        } else {
+                          $dp1 = "none";
+                        }
+                      ?>
+                      <div class="col-12 d-flex align-items-center mt-2">                        
+                        <select id="myTextarea1" style="display: <?php echo $dp1 ?>;" name="donvc" class="form form-control form-control-md" id="city" aria-label=".form-select-sm">
+                          <option value="" selected hidden disabled>- Chọn ĐVC -
+                          <?php
+                              $sql_dvc = "select * from don_van_chuyen where DVC_TGBATDAU > sysdate()";
+                              $rs_dvc = $conn->query($sql_dvc);
+                              if ($rs_dvc->num_rows > 0) {
+                                  $rs_dvc = $conn->query($sql_dvc);
+                                  $rsnvc_all = $rs_dvc -> fetch_all(MYSQLI_ASSOC);
+                                  foreach ($rsnvc_all as $r_dvc) {
+                                  ?>
+                                      <option value=<?php echo $r_dvc["DVC_ID"] ?>><?php echo $r_dvc["DVC_ID"] .' - '. $r_dvc["DVC_DIACHI"] .' - '. date('d/m/Y', strtotime($r_dvc["DVC_TGBATDAU"])); ?>
+                                  <?php
+                                  }
+                              }
+                          ?>          
+                        </select>
                       </div>
                       <div class="col-12 d-flex align-items-center justify-content-center">
                         <input type="hidden" name="mahd" value="<?php echo $mahd; ?>">
-                        <button class="btn btn-primary text-white mt-3 ms-3" type="submit">Cập nhật đơn hàng</button>
+                        <button class="btn btn-primary text-white mt-2 ms-3" type="submit">Cập nhật đơn hàng</button>
                       </div>
                     </form>
                     <script>
@@ -345,6 +373,11 @@
                           document.getElementById("myTextarea").style.display = "block";
                         } else {
                           document.getElementById("myTextarea").style.display = "none";
+                        }
+                        if (selectValue == 2) {
+                          document.getElementById("myTextarea1").style.display = "block";
+                        } else {
+                          document.getElementById("myTextarea1").style.display = "none";
                         }
                       }
                     </script>

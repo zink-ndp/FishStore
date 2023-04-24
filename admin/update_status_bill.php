@@ -4,12 +4,15 @@
 	
 	$reason = null ;
 
+	$nvid = $_SESSION["nvid"];
 	$mahd = $_POST["mahd"];
     $status = $_POST["status"];
+
 	if (isset($_POST["lido"])){
 		$reason = $_POST["lido"];
+		$sql .= ", HD_LIDOHUY = '{$reason}'";
 	};
-	$nvid = $_SESSION["nvid"];
+	
 
 	$sql = "update hoa_don set TT_ID = {$status}";
 
@@ -18,13 +21,13 @@
 	} else {
 		$sql .= ", NV_ID = null";
 	}
-
-	if ($reason!=null){
-		$sql .= ", HD_LIDOHUY = '{$reason}'";
+	
+	if (isset($_POST["donvc"])){
+		$dvc = $_POST["donvc"];
+		$sql .= ", DVC_ID = {$dvc}";
 	}
-
+	
 	$sql .= " where HD_ID = {$mahd}";
-
 
 	$rs = $conn->query($sql);
 	if($rs) {

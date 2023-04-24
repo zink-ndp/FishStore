@@ -153,8 +153,8 @@ INSERT INTO `chitiet_nhap` (`SP_ID`, `NH_ID`, `NV_ID`, `NH_NGAYNHAP`, `SP_SOLUON
 --
 
 INSERT INTO `don_van_chuyen` (`DVC_ID`, `NVC_ID`, `DVC_DIACHI`, `DVC_TGBATDAU`, `DVC_TGHOANTHANH`) VALUES
-(1, 2, 'A, đường A, huyện A, tỉnh A', '2022-03-16', '2022-05-13'),
-(2, 1, 'B, đường B, huyện B, tỉnh B', '2022-03-15', '2022-05-12');
+(1, 2, 'Cà Mau', '2022-03-16', '2022-05-13'),
+(2, 1, 'Bình Dương', '2022-03-15', '2022-05-12');
 
 --
 -- Đang đổ dữ liệu cho bảng `hoa_don`

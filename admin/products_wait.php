@@ -297,6 +297,7 @@
                                   <td class="align-middle">
                                       <form action="detail-pdwait.php" method="post">
                                           <input type="hidden" name="mahd" value="<?php echo $row["HD_ID"]; ?>">
+                                          <input type="hidden" name="madvc" value="<?php echo $row["DVC_ID"]; ?>">
                                           <input type="hidden" name="avtkh" value="<?php echo $row2["TK_AVATAR"]; ?>">
                                           <input type="hidden" name="tenkh" value="<?php echo $row1["KH_HOTEN"]; ?>">
                                           <input type="hidden" name="ngaysinh" value="<?php echo $row1["KH_NGAYSINH"]; ?>">
