@@ -121,7 +121,7 @@
                                 echo "Giao đến: ".$des."</br>";
                                 echo "Bắt đầu: ".date('d/m/Y', strtotime($start))." - Hoàn thành: ".date('d/m/Y', strtotime($finish));
 
-                                $sql = "select * from hoa_don where ";
+                                $sql = "select * from hoa_don where DVC_ID = {$id}";
 
                             ?>
                         </div>
@@ -168,28 +168,30 @@
                                 foreach ($result_all as $row) {
 
                                   ?>
-                                  <tr class="height-100">
+                                  <tr class="height-50">
                                     <td class="align-middle text-center" >
                                       <!-- ma dt -->
-                                      <?php echo $row["DVC_ID"] ?>
+                                      <?php echo $row["HD_ID"] ?>
                                     </td>
 
                                     <td class="align-middle text-center">
                                       <!-- ten dt -->
                                       <?php 
-                                        $sql_nvc = "select NVC_TEN from NHA_VAN_CHUYEN where NVC_ID = '".$row["NVC_ID"]."'";
-                                        $result_nvc = $conn->query($sql_nvc);
-                                        if ($result_nvc->num_rows > 0) {
-                                            $result_nvc = $conn->query($sql_nvc);
-                                            $row_nvc = mysqli_fetch_assoc($result_nvc);
-                                            echo $row_nvc["NVC_TEN"];
-                                        }
+                                        $s_kh = "select KH_HOTEN from khach_hang where KH_ID = {$row["KH_ID"] }";
+                                        $rs_kh = $conn->query($s_kh);
+                                        $r_kh = mysqli_fetch_assoc($rs_kh);
+                                        echo $r_kh["KH_HOTEN"];
                                       ?>
                                     </td>
 
                                     <td class="align-middle text-center">
-                                      <!-- dia diem -->
-                                      <?php echo $row["DVC_DIACHI"] ?>
+                                      <!-- ngay dat -->
+                                      <?php echo date('d/m/Y', strtotime($row["HD_NGAYDAT"])) ?>
+                                    </td>
+
+                                    <td class="align-middle text-center">
+                                      <!-- gia tri -->
+                                      <?php echo number_format($row["HD_TONGTIEN"],0) ?>đ
                                     </td>
                                   </tr>
                                   <?php
