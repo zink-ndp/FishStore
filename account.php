@@ -75,39 +75,39 @@ $mk= "";
 $kqdk ="";
 $repass ="";
 
-if(isset($_POST['dangky']))
-{
-	require 'inc/myconnect.php';
-	$name  = $_POST['fullname'] ;
-	$email = $_POST['email'];
-	$dt = $_POST['phone'];
-	$mk = $_POST['password'];
-	$repass = $_POST['repass'];
-	if($repass != $mk  )
-	{
-		$kqdk = "Mật khẩu nhập lại không chính xác";
-	}
-	else
-	{
-		$sql="INSERT INTO  loginuser (email,matkhau,hoten,DienThoai) 
-		VALUES ('$email','$mk' ,'$name','$dt') ";
-		// echo  $mk;
-		if (mysqli_query($conn, $sql)) {
-			$name = "" ;
-			$email = "" ;
-			$dt= "";
-			$mk= "";
-			$repass ="";
-			$kqdk = "Đăng ký thành công";
-		} else {
-			$kqdk = "Đăng ký không thành công xin hay kiểm tra lại thông tin";
-		}
-	}
+// if(isset($_POST['dangky']))
+// {
+// 	require 'inc/myconnect.php';
+// 	$name  = $_POST['fullname'] ;
+// 	$email = $_POST['email'];
+// 	$dt = $_POST['phone'];
+// 	$mk = $_POST['password'];
+// 	$repass = $_POST['repass'];
+// 	if($repass != $mk  )
+// 	{
+// 		$kqdk = "Mật khẩu nhập lại không chính xác";
+// 	}
+// 	else
+// 	{
+// 		$sql="INSERT INTO  loginuser (email,matkhau,hoten,DienThoai) 
+// 		VALUES ('$email','$mk' ,'$name','$dt') ";
+// 		// echo  $mk;
+// 		if (mysqli_query($conn, $sql)) {
+// 			$name = "" ;
+// 			$email = "" ;
+// 			$dt= "";
+// 			$mk= "";
+// 			$repass ="";
+// 			$kqdk = "Đăng ký thành công";
+// 		} else {
+// 			$kqdk = "Đăng ký không thành công xin hay kiểm tra lại thông tin";
+// 		}
+// 	}
 
 	
-	mysqli_close($conn);
-}
-?>
+// 	mysqli_close($conn);
+// }
+// ?>
 	<div id="page-content" class="single-page">
 		<div class="container">
 			<div class="row">
@@ -128,7 +128,7 @@ if(isset($_POST['dangky']))
 						<div class="form-group">
 							<input type="password" class="form-control" placeholder="Mật khẩu" name="txtem"required >
 						</div>
-						<button type="submit" name="submit" class="btn btn-1" name="login" id="login">Đăng nhập</button>
+						<button type="submit" name="submit" class="btn btn-1" name="login" id="login" style="background-color: #1014f5;">Đăng nhập</button>
 					<i style="color:Tomato">* Bạn chưa có tài khoản? Vui lòng đăng ký.</i>
 					</form>
 				</div>
@@ -205,7 +205,7 @@ if(isset($_POST['dangky']))
 						Mật khẩu nhập lại
 						<input type="password" class="form-control" placeholder="Mật khẩu nhập lại" name="repass" id="repass" value="<?php echo $repass;?>" required >
 						</div>
-						<button type="submit" name="dangky" class="btn btn-1">Đăng kí</button>
+						<button type="submit" name="dangky" class="btn btn-1" style="background-color: #1014f5;">Đăng kí</button>
 						<P style="color:red"><?php echo $kqdk; ?></p>
 					</form>
 				</div>

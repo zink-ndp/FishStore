@@ -11,7 +11,7 @@
 				</form>
 			</div>
 			<div class="col-md-2">
-				<div id="cart"><a class="btn btn-1 h-50" href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span>Giỏ hàng (<?php
+				<div id="cart"><a class="btn btn-1 h-50" href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span>(<?php
 			$ok=1;
 			 if(isset($_SESSION['cart']))
 			 {

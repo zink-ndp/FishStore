@@ -19,8 +19,8 @@ Free Bootstrap Themes : https://www.365bootstrap.com
 body {
     font-family: Arial;
     color: #666;
-    background-color: #fff;
-    font-size: 14px;
+    background-color: #ffff;
+    font-size: 16px;
     line-height: 1.6em;
     font-weight: 400;
 }
@@ -91,7 +91,7 @@ h5,
 h6 {
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
-    color: #111;
+    color: #0000ff;
 }
 
 p {
@@ -99,7 +99,7 @@ p {
 }
 
 a {
-    color: #333;
+    color: #2f0a88;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
@@ -205,7 +205,7 @@ hr.line {
 }
 
 header {
-    padding: 50px 0;
+    padding: 40px 0;
 }
 
 header #logo {
@@ -214,22 +214,30 @@ header #logo {
 
 header #cart {
     float: right;
+    margin-top: -12px;
+}
+
+header #cart a {
+    background-color: #fff;
+    color: #1014f5;
 }
 
 header .form-search input {
     width: 70%;
-    height: 36px;
+    height: 45px;
+    margin-right: -4px;
+    border: 2px solid #ccc;
 }
 
 header .form-search button {
-    background: #222;
-    color: #fff;
-    padding: 12px 20px;
+    background: #2110be;
+    color: #ffffff;
+    padding: 7px 20px;
     font-size: 20px;
 }
 
 header .form-search button:hover {
-    color: #eee;
+    color: #72a5e0;
 }
 
 @media(max-width:968px) {
@@ -242,7 +250,7 @@ header .form-search button:hover {
 }
 
 #menu {
-    background-color: #111;
+    background-color: #0F9ED4;
     border-radius: 0;
 }
 
@@ -258,12 +266,12 @@ header .form-search button:hover {
 }
 
 #menu .dropdown-menu {
-    background-color: #111;
+    background-color: #0F9ED4;
 }
 
 #menu .dropdown-menu li>a:hover {
     color: #ffffff;
-    background-color: #3f3f3f;
+    background-color: #d31e11;
 }
 
 #menu .dropdown-inner {
@@ -280,24 +288,26 @@ header .form-search button:hover {
     padding: 3px 20px;
     clear: both;
     line-height: 20px;
-    color: #333333;
-    font-size: 12px;
+    color: #0F9ED4;
+    font-size: 20px;
 }
 
 #menu li.dropdown:hover>a,
 #menu li.dropdown:focus>a,
 #menu li.dropdown:active>a {
-    background: #272727;
+    background: #cfb170;
 }
 
 #menu ul.nav li a {
     color: #fff;
     padding: 20px;
     text-transform: uppercase;
+    height: 60px;
+    margin-top: 0px;
 }
 
 #menu ul.nav li a:hover {
-    background-color: #3f3f3f;
+    background-color: #FFAE00;
 }
 
 #menu .btn-navbar {
@@ -335,11 +345,11 @@ header .form-search button:hover {
     #menu div.dropdown-menu {
         margin-left: 0 !important;
         padding-bottom: 10px;
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: rgba(220, 235, 15, 0.87);
     }
     #menu .dropdown-menu a:hover,
     #menu .dropdown-menu ul li a:hover {
-        background: rgba(0, 0, 0, 0.1);
+        background: rgba(200, 233, 17, 0.808);
     }
 }
 
@@ -379,7 +389,7 @@ header .form-search button:hover {
 
 .heading h1,
 .heading h2 {
-    font-size: 30px;
+    font-size: 35px;
     padding-bottom: 10px;
 }
 
@@ -478,11 +488,17 @@ header .form-search button:hover {
     border-bottom: 1px solid #eee;
 }
 
-.product .name h3 {
+.product .name h3,
+a {
     font-weight: 500;
-    font-size: 17px;
-    color: #666;
+    font-size: 20px;
+    color: #272727;
     margin-top: 10px;
+}
+
+.product .name h3:hover,
+a:hover {
+    color: rgb(60, 233, 17);
 }
 
 .product .info ul li {
@@ -608,7 +624,7 @@ header .form-search button:hover {
 }
 
 .widget .heading {
-    background-color: #3F3F3F;
+    background-color: #0F9ED4;
     padding: 10px 20px;
     margin: 0;
 }
@@ -681,7 +697,7 @@ header .form-search button:hover {
 /* ---------------------------------------------------------------------------- */
 
 footer {
-    background: #2A2A2A;
+    background: #1F82DB;
 }
 
 footer .wrap-footer {
@@ -689,7 +705,7 @@ footer .wrap-footer {
 }
 
 footer .col-footer {
-    border-right: 1px solid #666;
+    border-right: 1px solid #1F82DB;
     padding: 0 30px;
 }
 
@@ -701,6 +717,10 @@ footer .col-footer .heading {
     margin: 0 0 20px;
 }
 
+footer .col-footer p {
+    color: #fff;
+}
+
 footer .col-footer .heading h4 {
     color: #fff;
     font-size: 23px;
@@ -709,7 +729,7 @@ footer .col-footer .heading h4 {
 }
 
 footer .col-footer a {
-    color: #666;
+    color: #fff;
 }
 
 footer .col-footer ul {
@@ -718,6 +738,7 @@ footer .col-footer ul {
 
 footer .col-footer ul li {
     list-style: circle;
+    color: #fff;
 }
 
 footer .footer-1 img {
@@ -742,7 +763,7 @@ footer .footer-4 span {
 }
 
 footer .copyright {
-    background: #393939;
+    background: #5b4fcc;
     padding: 20px 0;
 }
 
@@ -752,6 +773,7 @@ footer .copyright a {
 
 footer .copyright a:hover {
     text-decoration: underline;
+    color: red;
 }
 
 footer .copyright ul li {
@@ -806,7 +828,7 @@ footer .copyright ul li {
 }
 
 form#thugiua {
-    margin-left: 30 %;
+    margin-left: 30%;
     width: 437px;
 }
 
@@ -822,7 +844,7 @@ form#thugiua {
 .nav-tabs>li.active>a,
 .nav-tabs>li.active>a:hover,
 .nav-tabs>li.active>a:focus {
-    background: #272727;
+    background: #0F9ED4;
     border-radius: 0;
     color: #fff;
 }
@@ -853,7 +875,7 @@ form#thugiua {
 .btn {}
 
 .btn.btn-1 {
-    background-color: #222;
+    background-color: #1014f5;
     color: #fff;
     font-size: 25px;
     padding: 10px 15px;
@@ -863,6 +885,13 @@ form#thugiua {
     margin-left: 5px;
     background: #D9534F;
     color: #fff;
+}
+
+.btn.btn-3 {
+    background-color: #0000ff;
+    color: #632222;
+    font-size: 20px;
+    padding: 10px 15px;
 }
 
 .pull-right {
