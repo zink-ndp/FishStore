@@ -410,7 +410,7 @@
                   } else {
                     $sql = "SELECT MONTH(HD_NGAYDAT) AS THANG, SUM(HD_TONGTIEN) AS DOANH_THU 
                             FROM HOA_DON 
-                            WHERE TT_ID = 3 AND YEAR(HD_NGAYDAT)=2022
+                            WHERE TT_ID = 3 AND YEAR(HD_NGAYDAT)=2023
                             GROUP BY THANG";
                     $result = mysqli_query($conn, $sql);
                     // Lấy dữ liệu từ kết quả truy vấn

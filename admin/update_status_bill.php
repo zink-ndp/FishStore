@@ -8,13 +8,14 @@
 	$mahd = $_POST["mahd"];
     $status = $_POST["status"];
 
+	$sql = "update hoa_don set TT_ID = {$status}";
+	
 	if (isset($_POST["lido"])){
 		$reason = $_POST["lido"];
 		$sql .= ", HD_LIDOHUY = '{$reason}'";
 	};
 	
 
-	$sql = "update hoa_don set TT_ID = {$status}";
 
 	if ($status!=1){
 		$sql .= ", NV_ID = {$nvid}";

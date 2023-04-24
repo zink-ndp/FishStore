@@ -79,8 +79,7 @@ if ($uploadOk == 0) {
 
   $sql1 = "update chitiet_nhap set
             NH_ID = {$nguonsp},
-            NV_ID = {$_SESSION["nvid"]},
-            NH_NGAYNHAP = sysdate()
+            NV_ID = {$_SESSION["nvid"]}
           where SP_ID = {$idsp};";
 
   $sql2 = "update san_pham set 
@@ -100,7 +99,6 @@ if ($uploadOk == 0) {
       header('Refresh: 0;url=products.php');
     }
   } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
     echo "Error: " . $sql1 . "<br>" . $conn->error;
     echo "Error: " . $sql2 . "<br>" . $conn->error;
   }

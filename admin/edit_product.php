@@ -102,6 +102,19 @@
     <div class="row">
     <?php
       require 'connect.php';
+      $idsp = $_POST["pdid"];
+      $anhsp = $_POST["anhsp"];
+      $lsp = $_POST["lsp"];
+      $mlsp = $_POST["mlsp"];
+      $tensp = $_POST["tensp"];
+      $giasp = $_POST["giasp"];
+      $motasp = $_POST["motasp"];
+      $nguonsp = $_POST["nguonsp"];
+      $manguonsp = $_POST["manguonsp"];
+      $dvtsp = $_POST["dvtsp"];
+      $slsp = $_POST["slsp"];
+
+
     ?>
         <div class="col-12">
           <div class="card mb-4">
@@ -179,7 +192,7 @@
                       </div>
                       <div class="mb-3 px-3 col-2">
                           Số lượng
-                        <input disabled min="1" max="10000" step="1" type="number" name="slsp" class="form-control form-control-lg" value="<?php echo $slsp; ?>">
+                        <input readonly min="1" max="10000" step="1" type="number" name="slsp" class="form-control form-control-lg" value="<?php echo $slsp; ?>">
                       </div>
                       <div class="mb-3 px-3 col-3">
                           Tải ảnh sản phẩm:

@@ -92,14 +92,15 @@
     ?>
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
           <div class="row ">
             <div class="col-lg-12">
               <div class="card h-100">
                 <div class="card-header pb-0 p-3">
                   <div class="row">
                     <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Danh sách đơn vận chuyển</h6>
+                      <h6 class="mb-0">Chi tiết ĐVC</h6>
                     </div>
                     <div class="col-6 text-end">
                       <?php
@@ -109,13 +110,49 @@
                   </div>
                 </div>
                 <div class="card-body p-3 pb-0">
-                  <div class="table-responsive p-0">
+                    <div class="row px-5 mt-3">
+                        <div class="col-6">
+                            <?php
+                                $id = $_POST["dvcid"];
+                                $nvc = $_POST["nvc"];
+                                $des = $_POST["des"];
+                                $start = $_POST["start"];
+                                $finish = $_POST["finish"];
+
+                                echo "Mã đơn: ".$id."</br>";
+                                echo "Cty vận chuyển: ".$nvc."</br>";
+                                echo "Giao đến: ".$des."</br>";
+                                echo "Bắt đầu: ".date('d/m/Y', strtotime($start))." - Hoàn thành: ".date('d/m/Y', strtotime($finish));
+                            ?>
+                        </div>
+                        <div class="col-6 text-end">
+                            <?php
+                                $style="";
+                                $stt="";
+                                $currentDate = date('Y-m-d'); // Lấy ngày hiện tại
+                                $startDate = $start;
+                                $finishDate = $finish;
+                                if (strtotime($currentDate) < strtotime($startDate)) {
+                                    $stt="Chưa bắt đầu";
+                                    $style = "btn-outline-primary text-primary";
+                                } elseif((strtotime($currentDate) >= strtotime($startDate)) && (strtotime($currentDate) <= strtotime($finishDate))) {
+                                    $stt="Đang vận chuyển";
+                                    $style = "btn-outline-warning text-warning";
+                                } else {
+                                    $stt="Đã hoàn thành";
+                                    $style = "btn-outline-success text-success";
+                                }
+                            ?>
+                            <button class="btn text-md font-weight-bold mb-0 <?php echo $style; ?>"><?php echo $stt ?></button>
+                        </div>
+                    </div>
+                  <div class="table-responsive p-0 mt-3">
                         <!-- table 5 cot -->
                         <table class="table align-items-center mb-0">
                           <thead>
                             <tr class="col-12">
                               <th class="col-1 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mã đơn</th>
-                              <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tên Cty VC</th>                              
+                              <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Khách hàng</th>                              
                               <th class="col-1 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Đến</th>
                               <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ngày đi</th> 
                               <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ngày đến</th>   
@@ -160,12 +197,12 @@
 
                                     <td class="align-middle text-center">
                                       <!-- tg di -->
-                                      <?php echo date('d/m/Y', strtotime($row["DVC_TGBATDAU"])) ?>
+                                      <?php echo $row["DVC_TGBATDAU"] ?>
                                     </td>
 
                                     <td class="align-middle text-center">
                                       <!-- tg den -->
-                                      <?php echo date('d/m/Y', strtotime($row["DVC_TGHOANTHANH"])) ?>
+                                      <?php echo $row["DVC_TGHOANTHANH"] ?>
                                     </td>
                                     
                                     <td class="align-middle text-center">
@@ -209,10 +246,6 @@
                                         </button>
                                         <form action="detail_trans_bill.php" method="post">
                                           <input type="hidden" name="dvcid" value="<?php echo $row["DVC_ID"] ?>">
-                                          <input type="hidden" name="nvc" value="<?php echo $row_nvc["NVC_TEN"]?>">
-                                          <input type="hidden" name="des" value="<?php echo $row["DVC_DIACHI"]?>">
-                                          <input type="hidden" name="start" value="<?php echo $row["DVC_TGBATDAU"]?>">
-                                          <input type="hidden" name="finish" value="<?php echo $row["DVC_TGHOANTHANH"]?>">
                                           <button type="submit" class="view-btn btn btn-link text-warning font-weight-bold text-sm">
                                             Chi tiết
                                           </button>
@@ -234,187 +267,20 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-header pb-0 p-3">
-              <div class="row">
-                <div class="col-12 d-flex align-items-center">
-                  <h6 class="mb-0">Thêm ĐVC mới</h6>
-                </div>
-              </div>
-            </div>
-            <div class="card-body p-3 pb-0">
-            <form action="add_transbill.php" method="post">
-              <div class="row">
-                <div class="col-12 mt-4">
-                  Tên công ty VC:
-                  <select name="ctvc" class="form form-control form-control-lg" id="city" aria-label=".form-select-sm">
-                    <option value="" selected hidden disabled>- Tên NVC -
-                    <?php
-                        $sql_nvc = "select * from NHA_VAN_CHUYEN";
-                        $rs_nvc = $conn->query($sql_nvc);
-                        if ($rs_nvc->num_rows > 0) {
-                            $rs_nvc = $conn->query($sql_nvc);
-                            $rsnvc_all = $rs_nvc -> fetch_all(MYSQLI_ASSOC);
-                            foreach ($rsnvc_all as $r_nvc) {
-                            ?>
-                                <option value=<?php echo $r_nvc["NVC_ID"] ?>><?php echo $r_nvc["NVC_TEN"] ?>
-                            <?php
-                            }
-                        }
-                    ?>          
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 mt-3">
-                  Giao đến:
-                  <input required name="giaoden" class="form form-control form-control-lg" list="browsers" placeholder="- Tỉnh/Thành phố -" >
-                  <?php require 'datalist_provine.php' ?>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 mt-3">
-                  Ngày bắt đầu:
-                  <input required class="form form-control form-control-lg" type="date" name="start_date" id="">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 mt-3">
-                  Ngày hoàn thành:
-                  <input required class="form form-control form-control-lg" type="date" name="finish_date" id="">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-primary mt-2">Thêm ĐVC</button>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+        <div class="col-lg-2"></div>
+        
       </div>
        
     </div>
   </main>
-  <style>
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 99999;
-      background: rgba(0, 0, 0, 0.5);
-      display: none;
-    }
-
-    .my-box {
-      width: 30%;
-      height: auto;
-      background-color: #fff;
-      border-radius: 10px;
-      position: absolute;
-      padding: 15px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-  </style>
-  <div class="overlay" id="overlay">
-    <div class="my-box">
-      <h5 class="ms-3 mt-3 text-primary">Cập nhật thông tin đơn vận chuyển</h5>
-      <div class="row">
-        <div class="col-12">
-          <form action="update_transbill.php" method="post" enctype=multipart/form-data>
-            <div class="row">
-              <div class="col-12">
-                <input type="hidden" name="temp_id" id="temp_id">
-                <div class="mb-3 mt-4 px-3 nvc">
-                  
-                </div>
-              </div>
-              <div class="col-12">
-                <?php require 'datalist_provine.php' ?>
-                  <div class="mb-3 mt-4 px-3 des">
-                    
-                  </div>
-              </div>
-              <div class="col-12">
-                  <div class="mb-3 mt-4 px-3 start">
-                    
-                  </div>
-              </div>
-              <div class="col-12">
-                  <div class="mb-3 mt-4 px-3 finish">
-                    
-                  </div>
-              </div>
-              <div class="row">
-                <div class="col-12 d-flex justify-content-center align-items-center" >
-                  <button onclick="this.submit()" class="btn btn-primary text-white font-weight-bold text-md ms-0 mt-4">
-                    Cập nhật
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
-      </div>
-    </div>
-  </div>
+  
+  
   <!--   Core JS Files   -->
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script>
-
-    const productButtons = document.querySelectorAll('.edit-btn');
-
-    productButtons.forEach(button => {
-      button.addEventListener('click', showProductDetails);
-    });
-
-    function showProductDetails(event) {
-      // Lấy ID của sản phẩm được click
-      const id = event.target.getAttribute('data-id');
-      const nvcid = event.target.getAttribute('data-nvcid');
-      const nvc = event.target.getAttribute('data-nvc');
-      const des = event.target.getAttribute('data-des');
-      const start = event.target.getAttribute('data-start');
-      const finish = event.target.getAttribute('data-finish');
-      
-      
-      document.getElementById("temp_id").value = id;
-
-      // Hiển thị overlay
-      const overlay = document.querySelector('.overlay');
-      overlay.style.display = 'block';
-
-      // Hiển thị thông tin chi tiết của sản phẩm
-      const nvct = document.querySelector('.nvc');
-      nvct.innerHTML = 'Tên Cty vận chuyển <input class="form-control form-control-lg mt-1" disabled value = "'+nvc+'" />'
-      const dest = document.querySelector('.des');
-      dest.innerHTML = 'Vận chuyển đến <input required name="giaoden" class="form form-control form-control-lg" list="browsers" value="'+des+'" >'                    
-      const startt = document.querySelector('.start');
-      startt.innerHTML = 'Ngày đi <input required class="form form-control form-control-lg" type="date" name="start_date" id="" value="'+start+'">'
-      const finisht = document.querySelector('.finish');
-      finisht.innerHTML = 'Ngày đến <input required class="form form-control form-control-lg" type="date" name="finish_date" id="" value="'+finish+'">'
-      
-    }
-
-
-    //Tắt overlay
-    const overlay = document.getElementById("overlay");
-    overlay.addEventListener("click", function(event) {
-      if (event.target === overlay) {
-        overlay.style.display = "none";
-      }
-    });
-
-  </script>
+  
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
