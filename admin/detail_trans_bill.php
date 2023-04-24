@@ -103,9 +103,6 @@
                       <h6 class="mb-0">Chi tiết ĐVC</h6>
                     </div>
                     <div class="col-6 text-end">
-                      <?php
-                        $sql = "select * from don_van_chuyen";
-                      ?>
                     </div>
                   </div>
                 </div>
@@ -123,6 +120,9 @@
                                 echo "Cty vận chuyển: ".$nvc."</br>";
                                 echo "Giao đến: ".$des."</br>";
                                 echo "Bắt đầu: ".date('d/m/Y', strtotime($start))." - Hoàn thành: ".date('d/m/Y', strtotime($finish));
+
+                                $sql = "select * from hoa_don where ";
+
                             ?>
                         </div>
                         <div class="col-6 text-end">
@@ -152,12 +152,9 @@
                           <thead>
                             <tr class="col-12">
                               <th class="col-1 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mã đơn</th>
-                              <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Khách hàng</th>                              
-                              <th class="col-1 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Đến</th>
-                              <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ngày đi</th> 
-                              <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ngày đến</th>   
-                              <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Trạng thái</th>   
-                              <th class="col-2 text-secondary opacity-7"></th>
+                              <th class="col-4 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Khách hàng</th>                              
+                              <th class="col-4 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ngày đặt hàng</th> 
+                              <th class="col-3 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Giá trị đơn hàng</th> 
 
                             </tr>
                           </thead>
@@ -193,64 +190,6 @@
                                     <td class="align-middle text-center">
                                       <!-- dia diem -->
                                       <?php echo $row["DVC_DIACHI"] ?>
-                                    </td>
-
-                                    <td class="align-middle text-center">
-                                      <!-- tg di -->
-                                      <?php echo $row["DVC_TGBATDAU"] ?>
-                                    </td>
-
-                                    <td class="align-middle text-center">
-                                      <!-- tg den -->
-                                      <?php echo $row["DVC_TGHOANTHANH"] ?>
-                                    </td>
-                                    
-                                    <td class="align-middle text-center">
-                                        <?php
-                                            $style="";
-                                            $stt="";
-                                            $currentDate = date('Y-m-d'); // Lấy ngày hiện tại
-                                            $startDate = $row["DVC_TGBATDAU"];
-                                            $finishDate = $row["DVC_TGHOANTHANH"];
-                                            if (strtotime($currentDate) < strtotime($startDate)) {
-                                                $stt="Chưa bắt đầu";
-                                                $style = "btn-primary";
-                                            } elseif((strtotime($currentDate) >= strtotime($startDate)) && (strtotime($currentDate) <= strtotime($finishDate))) {
-                                                $stt="Đang vận chuyển";
-                                                $style = "btn-warning";
-                                            } else {
-                                                $stt="Đã hoàn thành";
-                                                $style = "btn-success";
-                                            }
-                                        ?>
-                                        <button class="btn text-xs font-weight-bold mb-0 <?php echo $style; ?>"><?php echo $stt ?></button>
-                                   </td>
-
-                                    <td class="align-middle text-center">
-                                      <div class="mt-3 d-flex col-sm-12">
-                                        <?php
-                                          if ($stt=="Chưa bắt đầu"){
-                                            $dp = "";
-                                          } else {
-                                            $dp = "disabled";
-                                          }
-                                        ?>
-                                        <button data-id=<?php echo $row["DVC_ID"] ?>
-                                                data-nvcid=<?php echo $row["NVC_ID"] ?>
-                                                data-nvc="<?php echo $row_nvc["NVC_TEN"]?>"
-                                                data-des="<?php echo $row["DVC_DIACHI"] ?>"
-                                                data-start="<?php echo $row["DVC_TGBATDAU"] ?>"
-                                                data-finish="<?php echo $row["DVC_TGHOANTHANH"] ?>"
-                                                <?php echo $dp ?> class="edit-btn btn btn-link text-primary font-weight-bold text-sm">
-                                          Sửa
-                                        </button>
-                                        <form action="detail_trans_bill.php" method="post">
-                                          <input type="hidden" name="dvcid" value="<?php echo $row["DVC_ID"] ?>">
-                                          <button type="submit" class="view-btn btn btn-link text-warning font-weight-bold text-sm">
-                                            Chi tiết
-                                          </button>
-                                        </form>
-                                      </div>
                                     </td>
                                   </tr>
                                   <?php
