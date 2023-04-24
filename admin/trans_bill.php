@@ -116,11 +116,11 @@
                             <tr class="col-12">
                               <th class="col-1 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mã đơn</th>
                               <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tên Cty VC</th>                              
-                              <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Đến</th>
+                              <th class="col-1 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Đến</th>
                               <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ngày đi</th> 
                               <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ngày đến</th>   
                               <th class="col-2 text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Trạng thái</th>   
-                              <th class="col-1 text-secondary opacity-7"></th>
+                              <th class="col-2 text-secondary opacity-7"></th>
 
                             </tr>
                           </thead>
@@ -191,8 +191,24 @@
 
                                     <td class="align-middle text-center">
                                       <div class="mt-3 d-flex col-sm-12">
-                                        <button class="edit-btn btn btn-link text-primary font-weight-bold text-sm">
+                                        <?php
+                                          if ($stt=="Chưa bắt đầu"){
+                                            $dp = "";
+                                          } else {
+                                            $dp = "disabled";
+                                          }
+                                        ?>
+                                        <button data-id=<?php echo $row["DVC_ID"] ?>
+                                                data-nvcid=<?php echo $row["NVC_ID"] ?>
+                                                data-nvc="<?php echo $row_nvc["NVC_TEN"]?>"
+                                                data-des="<?php echo $row["DVC_DIACHI"] ?>"
+                                                data-start="<?php echo $row["DVC_TGBATDAU"] ?>"
+                                                data-finish="<?php echo $row["DVC_TGHOANTHANH"] ?>"
+                                                <?php echo $dp ?> class="edit-btn btn btn-link text-primary font-weight-bold text-sm">
                                           Sửa
+                                        </button>
+                                        <button class="view-btn btn btn-link text-warning font-weight-bold text-sm">
+                                          Chi tiết
                                         </button>
                                       </div>
                                     </td>
@@ -289,7 +305,7 @@
 
     .my-box {
       width: 30%;
-      height: 42%;
+      height: auto;
       background-color: #fff;
       border-radius: 10px;
       position: absolute;
@@ -302,22 +318,32 @@
   </style>
   <div class="overlay" id="overlay">
     <div class="my-box">
-      <h5 class="ms-3 mt-3 text-primary">Cập nhật thông tin đối tác</h5>
+      <h5 class="ms-3 mt-3 text-primary">Cập nhật thông tin đơn vận chuyển</h5>
       <div class="row">
         <div class="col-12">
-          <form action="update_pdsource.php" method="post">
+          <form action="update_transbill.php" method="post" enctype=multipart/form-data>
             <div class="row">
               <div class="col-12">
                 <input type="hidden" name="temp_id" id="temp_id">
-                <div class="mb-3 mt-4 px-3 name">
+                <div class="mb-3 mt-4 px-3 nvc">
                   
                 </div>
               </div>
               <div class="col-12">
+                <?php require 'datalist_provine.php' ?>
                   <div class="mb-3 mt-4 px-3 des">
                     
                   </div>
-                </div>
+              </div>
+              <div class="col-12">
+                  <div class="mb-3 mt-4 px-3 start">
+                    
+                  </div>
+              </div>
+              <div class="col-12">
+                  <div class="mb-3 mt-4 px-3 finish">
+                    
+                  </div>
               </div>
               <div class="row">
                 <div class="col-12 d-flex justify-content-center align-items-center" >
@@ -347,8 +373,11 @@
     function showProductDetails(event) {
       // Lấy ID của sản phẩm được click
       const id = event.target.getAttribute('data-id');
-      const name = event.target.getAttribute('data-name');
+      const nvcid = event.target.getAttribute('data-nvcid');
+      const nvc = event.target.getAttribute('data-nvc');
       const des = event.target.getAttribute('data-des');
+      const start = event.target.getAttribute('data-start');
+      const finish = event.target.getAttribute('data-finish');
       
       
       document.getElementById("temp_id").value = id;
@@ -358,10 +387,14 @@
       overlay.style.display = 'block';
 
       // Hiển thị thông tin chi tiết của sản phẩm
-      const productName = document.querySelector('.name');
-      productName.innerHTML = 'Tên đối tác <input required value="' + name + '" type="text" name="name" class="form-control form-control-lg mt-3">';
-      const productImg = document.querySelector('.des');
-      productImg.innerHTML = 'Mô tả <textarea required id="myTextarea" name="des" class="form-control form-control-md mt-1">'+des+'</textarea>';
+      const nvct = document.querySelector('.nvc');
+      nvct.innerHTML = 'Tên Cty vận chuyển <input class="form-control form-control-lg mt-1" disabled value = "'+nvc+'" />'
+      const dest = document.querySelector('.des');
+      dest.innerHTML = 'Vận chuyển đến <input required name="giaoden" class="form form-control form-control-lg" list="browsers" value="'+des+'" >'                    
+      const startt = document.querySelector('.start');
+      startt.innerHTML = 'Ngày đi <input required class="form form-control form-control-lg" type="date" name="start_date" id="" value="'+start+'">'
+      const finisht = document.querySelector('.finish');
+      finisht.innerHTML = 'Ngày đến <input required class="form form-control form-control-lg" type="date" name="finish_date" id="" value="'+finish+'">'
       
     }
 
