@@ -50,7 +50,8 @@ $name ="Shop Cá Kiểng";
 			 <label>Tên khách hàng : <?php echo  $_SESSION['name']?></label>
 			 <label>Điện thoại: <?php echo  $_SESSION['sdt']?></label>
 			 <label>Email:<?php echo    $_SESSION['email']?></label>     
-			 <label><input type="text"  class="form-control" placeholder="Nhập địa chỉ giao hàng:" name="diachi"  required ></label>
+			 <!-- <label><input type="text"  class="form-control" placeholder="Nhập địa chỉ giao hàng:" name="diachi"  required ></label> -->
+			 <label>Địa chỉ giao hàng: <?php echo    $_SESSION['location']?></label>
 			 <br/>
 			<label>Ngày đặt hàng: <input type="text" readonly class="form-control" value="<?php echo date('Y-m-d'); ?>" name="date" id="datechoose"  required ></label>
 			<!-- <label> Hình thức thanh toán :<select class="selectpicker" name="hinhthuctt">

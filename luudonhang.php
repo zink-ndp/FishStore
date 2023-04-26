@@ -100,6 +100,7 @@ require 'inc/myconnect.php';
          if ($ok=1) {
             $message = "Đã đặt hàng thành công!";
             echo "<script type='text/javascript'>alert('$message');</script>";
+            $sql = "delete from chitiet_gh where KH_ID = $khid";
             header('Refresh: 0;url=index.php');
         }
     } else {
