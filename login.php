@@ -49,7 +49,7 @@ session_start();
     }
     else
     {
-        $message = $_POST["txtus"] + $_POST["txtem"];
+        $message = "Sai tài khoản hoặc mật khẩu!";
         echo "<script type='text/javascript'>alert('$message');</script>";
         header('Refresh: 0;url=account.php');
         }

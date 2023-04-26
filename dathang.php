@@ -156,6 +156,7 @@ $name ="Shop Cá Kiểng";
 </div>
 </div>
 </div> 
+<h4><?php echo number_format($total,0);  ?> VNĐ</h4>
 <input type="hidden" name="total" value="<?php echo $total ?>">
 <input type="hidden" name="sparray" value="<?php echo $queryString; ?>">
 <input type="hidden" name="slarray" value="<?php echo $queryString1; ?>">
