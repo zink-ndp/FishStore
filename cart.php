@@ -91,7 +91,7 @@ if ($soluonggiohang == 0) {
 											</ul>
 										</div>
 										
-										<div class="price"><?php echo $s["SP_Gia"] ?> VNĐ</div>
+										<div class="price"><?php echo number_format($s["SP_Gia"]) ?> VNĐ</div>
 										
 
 										<label>Số lượng: </label>

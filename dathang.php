@@ -1,15 +1,7 @@
 <?php
 ob_start();
-
- ?>
-<?php
 session_start();
- require "login.php";
-      if(!isset($_SESSION['txtus'])) // If session == null thi tra ve trang login
-       {
-           header("Location:account.php");  
-       }
-
+require "inc/myconnect.php";
 ?>
 
 <?php 
@@ -23,7 +15,7 @@ $name ="Shop Cá Kiểng";
 	include "top.php"
     ?>
     <?php 
-	include "header.php"
+	// include "header.php"
 	?>
 	<?php 
 	include "navigation.php"
@@ -32,7 +24,7 @@ $name ="Shop Cá Kiểng";
 	<!--///////////////////Cart Page//////////////////////-->
 	<!--//////////////////////////////////////////////////-->
 
-  <form name="form6" id="ff6" method="POST" action="<?php include 'luudonhang.php'?>">
+  <form name="form6" id="ff6" method="POST" action="luudonhang.php">
 	<div id="page-content" class="single-page">
 
 		<div class="container">
@@ -50,14 +42,17 @@ $name ="Shop Cá Kiểng";
 			<div class="col-lg-6">
 				    <div class="panel panel-default">
 					<div class="panel-heading">Thông tin khách hàng</div>
-             <div class="panel-body">		 
-			 <div class="col-md-8" style="margin-left: 130px;">
-			 <label>Tên khách hàng : <?php echo  $_SESSION['HoTen']?></label>
-			 <label>Điện thoại: <?php echo  $_SESSION['dienthoai']?></label>
+             <div class="panel-body">	
+			<div class="col-md-4" style="height:250px; width:150px">
+				<img src="assets/img/cus_img/<?php echo $_SESSION["pic"] ?>" alt="" style="heigh:auto; width:auto; object-fit: cover;">
+			</div>	 
+			 <div class="col-md-8">
+			 <label>Tên khách hàng : <?php echo  $_SESSION['name']?></label>
+			 <label>Điện thoại: <?php echo  $_SESSION['sdt']?></label>
 			 <label>Email:<?php echo    $_SESSION['email']?></label>     
 			 <label><input type="text"  class="form-control" placeholder="Nhập địa chỉ giao hàng:" name="diachi"  required ></label>
 			 <br/>
-			<label>Ngày đặt hàng: <input type="date" class="form-control" placeholder="Ngày đặt hàng:" name="date" id="datechoose"  required ></label>
+			<label>Ngày đặt hàng: <input type="text" readonly class="form-control" value="<?php echo date('Y-m-d'); ?>" name="date" id="datechoose"  required ></label>
 			<!-- <label> Hình thức thanh toán :<select class="selectpicker" name="hinhthuctt">
     										<option value="ATM">Trả thẻ</option>
     										<option value="Live">Trực tiếp</option>
@@ -65,7 +60,7 @@ $name ="Shop Cá Kiểng";
 										</select>
 				</label> -->
 				<label>Hình thức thanh toán:
-                    <select class="selectpicker" name="hinhthuctt">
+                    <select class="form-control select2" name="hinhthuctt">
 						<?php
 						require "inc/myconnect.php";
                         $sql="SELECT * from pt_thanhtoan ";
@@ -87,8 +82,8 @@ $name ="Shop Cá Kiểng";
 				   </div>		
 					 		 
 			</div>				
-			<label>Chọn nhà vận chuyển vận chuyển</label>
-                    <select class="form-control select2" multiple="multiple" name="nhavanchuyen" id="nhavanchuyen" data-placeholder="Chọn nhà vận chuyển" >
+			<!-- <label>Chọn nhà vận chuyển vận chuyển</label>
+                    <select class="form-control select2" name="nhavanchuyen" id="nhavanchuyen" data-placeholder="Chọn nhà vận chuyển" >
 										<?php
 													require "inc/myconnect.php";
                          $sql="SELECT * from nha_van_chuyen ";
@@ -102,7 +97,7 @@ $name ="Shop Cá Kiểng";
 													}
 												}
 											?>
-                    </select>						
+                    </select>						 -->
 		</div>        
 		<div class="col-lg-5">
 		<div class="panel panel-default">
@@ -120,140 +115,57 @@ $name ="Shop Cá Kiểng";
       </tr>
     </thead>
     <tbody>
-	<?php
-			if(isset($_SESSION['cart']))
-			{
-				foreach($_SESSION['cart'] as $key  => $value)
-				{
-					$item[]=$key;
-				}
-				// echo $item;
-				$str= implode(",",$item);
-			    $query = "SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as Tenloaisp,s.LSP_ID
-				from san_pham s 
-				LEFT JOIN loai_sp l on s.LSP_ID = l.LSP_ID
-				 WHERE  s.SP_ID  in ($str)";
+	<?php	
+			$sp_array = array();
+			$slsp_array = array();
+			$khid = $_SESSION["khid"];
+			$sl = 0;
+			$sql = "select SP_ID, SP_Soluong from chitiet_gh where KH_ID = {$khid}";
+			$rs = $conn->query($sql);
+			$total = 0;
+			foreach ($rs as $sp) {
+				$sl += 1;
+				$spid = $sp["SP_ID"];
+				$sp_array[] = $spid;
+				$query = "SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as Tenloaisp,s.LSP_ID
+					from san_pham s 
+					LEFT JOIN loai_sp l on s.LSP_ID = l.LSP_ID
+					 WHERE  s.SP_ID  = $spid";
 				$result = $conn->query($query);
-				
-				$total=0;
-				foreach($result as $s)
-				{
-			?>
-      <tr>
-        <td><?php  echo $s["SP_Ten"]?></td>
-        <td><?php echo $_SESSION['cart'][$s["SP_ID"]]?></td>
-		<td><?php  echo $s["SP_Gia"]?> </td>
-		<td><?php echo $_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"]?></td>					
-   
-      </tr>
+				foreach ($result as $s) {
+					?>					
+						<tr>
+						<td><?php  echo $s["SP_Ten"]?></td>
+						<td><?php echo $sp["SP_Soluong"]?></td>
+						<td><?php  echo $s["SP_Gia"]?> </td>
+						<td><?php echo $sp["SP_Soluong"]*$s["SP_Gia"]?></td>					
+						<?php $slsp_array[] = $sp["SP_Soluong"] ?>
+						</tr>
+					<?php
+					$total += $sp["SP_Soluong"]*$s["SP_Gia"];
+				}
+			}
+			$queryString = http_build_query($sp_array);
+			$queryString1 = http_build_query($slsp_array);
+		?>
 	
-		<?php $total +=$_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"]  ?>
-								
-								
-	  <?php 
-				}
-			}?>
     </tbody>
   </table>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Thành tiền:</th>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th  name="result"  style="color:red"><strong style="color:red" id="result" name="total"><?php echo  $total    ?> VNĐ</strong></th>  
-		<input type="hidden" id="thannhtien" name="totalkcodv" value="<?php echo  $total    ?>"/>     
-		<input type="hidden" name="total" id="total" value="" />  
-		<!-- <input type="hidden" name="madv" id="madv" value="" />   -->
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-	</div>            
-	</div>
-		</div>
-		</div> 
-		</div> 
-					<div class="row">
+</div>
+</div>            
+</div>
+</div>
+</div> 
+<input type="hidden" name="total" value="<?php echo $total ?>">
+<input type="hidden" name="sparray" value="<?php echo $queryString; ?>">
+<input type="hidden" name="slarray" value="<?php echo $queryString1; ?>">
+<input style="margin-left:180px;" type="submit" name="Dat" value="Đặt hàng" class="btn btn-1" />	
+</div> 
+			<div class="row">
 			<div class="panel panel-default">	
-			<div class="panel-heading">Số sản phẩm (<?php  echo count($_SESSION['cart'])?>)</div>
-             <div class="panel-body">		
-			 <?php
-
-			require "inc/myconnect.php";
-
-			if(isset($_SESSION['cart']))
-			{
-				foreach($_SESSION['cart'] as $key  => $value)
-				{
-					$item[]=$key;
-				}
-				// echo $item;
-				$str= implode(",",$item);
-			    $query = "SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as Tenloaisp,s.LSP_ID
-				from san_pham s 
-				LEFT JOIN loai_sp l on s.LSP_ID = l.LSP_ID
-				 WHERE  s.SP_ID  in ($str)";
-				$result = $conn->query($query);
-				$total=0;
-				foreach($result as $s)
-				{
-			?>
-				<div class="product well">
-					<div class="col-md-3">
-						<div class="image">
-							<img src="assets/img/product_img/<?php echo $s["SP_HinhAnh"]?>" style="width:300px;height:300px" />
-						</div>
-					</div>
-					<div class="col-md-9">
-						<div class="caption">
-							<div class="name"><h3><a href="product.php?id=<?php  echo $s["SP_ID"]?>"><?php  echo $s["SP_Ten"]?></a></h3></div>
-							<div class="info">	
-								<ul>
-									<li>Tên loại sản phẩm: <?php  echo $s["Tenloaisp"]?></li>
-								</ul>
-							</div>
-							
-							
-							<div class="price"><?php  echo $s["SP_Gia"]?> VNĐ</div>
-								
-			
-							<!-- <label>Số lượng: </label>  -->
-							<input class="form-inline quantity"  type="hidden" name ="qty[<?php echo $s["SP_ID"] ?>]" value="<?php echo $_SESSION['cart'][$s["SP_ID"]]?>"> 
-							<hr>
-					
-							<lable>Số lượng :<?php echo $_SESSION['cart'][$s["SP_ID"]] ?></lable>
-							<input type="hidden" name="idsprm" value="<?php echo $s["SP_ID"] ?>" />
-							
-							<input type="hidden" name="dongia" value="<?php echo $s["SP_Gia"] ?>" />
-							
-						</div>
-					</div>
-
-					<div class="clear"></div>
-				</div>	
-
-			<?php 
-				 $total +=$_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"]?>
-				 	<?php 
-				}
-			}?>
-			</div>
 			</div>
 			</div>	
-							<input type="submit" name="Dat" value="Đặt hàng" class="btn btn-1" />	
+				
 			</div>
 	</div>	
     </form>		

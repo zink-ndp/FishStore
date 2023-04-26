@@ -212,7 +212,7 @@ INSERT INTO `don_van_chuyen` VALUES ('1','2','A, đường A, huyện A, tỉnh 
 DROP TABLE IF EXISTS `hoa_don`;
 CREATE TABLE `hoa_don` (
   `HD_ID` int(11) NOT NULL,
-  `DVC_ID` int(11) NOT NULL,
+  `DVC_ID` int(11),
   `TT_ID` int(11) NOT NULL,
   `NV_ID` int(11) DEFAULT NULL,
   `KM_ID` int(11) DEFAULT NULL,
