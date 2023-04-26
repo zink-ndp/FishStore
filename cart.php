@@ -95,7 +95,7 @@ if ($soluonggiohang == 0) {
 										
 
 										<label>Số lượng: </label>
-										<input class="form-inline quantity" style="margin-right: 80px;width:50px" min="1" max="99" type="number" name="qty[<?php echo $s["SP_ID"] ?>]" value="<?php echo $sp["SP_Soluong"]?>">
+										<input class="form-inline quantity" style="margin-right: 80px;width:50px" min="1" max="99" type="number" name="qty" value="<?php echo $sp["SP_Soluong"]?>">
 										<div>
 											<input type="submit" name="update" style="margin-top:31px" value="Cập nhật sản phẩm" class="btn btn-2" />
 										</div>
@@ -103,7 +103,7 @@ if ($soluonggiohang == 0) {
 										<input type="submit" name="remove" value="Delete" class="btn btn-default pull-right" style="color: #000 !important;"/>
 										<input type="hidden" name="idsprm" value="<?php echo $s["SP_ID"] ?>" />
 										
-										<label style="color:red">Thành tiền: <?php echo number_format($sp["SP_Soluong"]*$s["SP_Gia"],0) ?> </label>
+										<label style="color:red">Thành tiền: <?php echo number_format($sp["SP_Soluong"]*$s["SP_Gia"],0) ?> VNĐ</label>
 																					
 										
 
