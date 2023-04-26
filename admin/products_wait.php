@@ -183,7 +183,7 @@
                   } else {
                     $sql = "select * from hoa_don where TT_ID BETWEEN 0 AND 2";
                   }
-                  $sql .= " order by HD_Ngaydat desc";
+                  $sql .= " order by HD_ID desc";
                 ?>            
                 <div class="card-body px-0 pt-0 pb-2">
                   <div class="table-responsive p-0">
