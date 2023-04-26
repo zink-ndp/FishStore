@@ -1,12 +1,10 @@
 <?php
 ob_start();
+session_start();
+require "inc/myconnect.php";
+require "soluonggh.php";
 ?>
 <?php
-require "login.php";
-if (!isset($_SESSION['txtus'])) // If session is not set then redirect to Login Page
-{
-	// header("Location:giohangchuacodnhap.php");
-}
 
 ?> 
 <?php
@@ -29,7 +27,7 @@ include "navigation.php"
 <!--///////////////////Cart Page//////////////////////-->
 <!--//////////////////////////////////////////////////-->
 <?php
-if (is_countable($_SESSION['cart']) == 0) {
+if ($soluonggiohang == 0) {
 	header('Location: baogiohangtrong.php');
 }
 ?>
@@ -45,97 +43,88 @@ if (is_countable($_SESSION['cart']) == 0) {
 		</div>
 		<div class="cart">
 			<p><?php
-				$ok = 1;
-				if (isset($_SESSION['cart'])) {
-					foreach ($_SESSION['cart'] as $key => $value) {
-						if (isset($key)) {
-							$ok = 2;
-						}
-					}
-				}
 
-				if ($ok == 2) {
-					echo "Có " . count($_SESSION['cart']) . " sản phẩm trong giỏ hàng ";
-				} else {
-					echo   "<p>Không có SẢN PHẨM nào trong giỏ hàng</p>";
-				}
-
-				$sl = count($_SESSION['cart']);
+					echo "Có " . $soluonggiohang . " sản phẩm trong giỏ hàng ";
 				?>
 			</p>
 		</div>
 		<?php
 
-		require "inc/myconnect.php";
 
-		if (isset($_SESSION['cart'])) {
-			foreach ($_SESSION['cart'] as $key  => $value) {
-				$item[] = $key;
-			}
+		if ($soluonggiohang>0) {
+			// foreach ($_SESSION['cart'] as $key  => $value) {
+			// 	$item[] = $key;
+			// }
 			// echo $item;
-			$str = implode(",", $item);
-			$query = "SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as Tenloaisp,s.LSP_ID
-				from san_pham s 
-				LEFT JOIN loai_sp l on s.LSP_ID = l.LSP_ID
-				 WHERE  s.SP_ID  in ($str)";
-			$result = $conn->query($query);
+			// $str = implode(",", $item);
+			$khid = $_SESSION["khid"];
+			$sl = 0;
+			$sql = "select SP_ID, SP_Soluong from chitiet_gh where KH_ID = {$khid}";
+			$rs = $conn->query($sql);
 			$total = 0;
-			foreach ($result as $s) {
-		?>
-
-				<div class="row">
-					<form name="form5" id="ff5" method="POST" action="removecart.php">
-						<div class="product well">
-							<div class="col-md-3">
-								<div class="image">
-									<img src="assets/img/product_img/<?php echo $s["SP_HinhAnh"] ?>" style="width:300px;height:300px" />
+			foreach ($rs as $sp) {
+				$sl += 1;
+				$spid = $sp["SP_ID"];
+				$query = "SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as Tenloaisp,s.LSP_ID
+					from san_pham s 
+					LEFT JOIN loai_sp l on s.LSP_ID = l.LSP_ID
+					 WHERE  s.SP_ID  = $spid";
+				$result = $conn->query($query);
+				foreach ($result as $s) {
+					?>
+					<div class="row">
+						<form name="form5" id="ff5" method="POST" action="removecart.php">
+							<div class="product well">
+								<div class="col-md-3">
+									<div class="image" style="width:230px;height:230px">
+										<img src="assets/img/product_img/<?php echo $s["SP_HinhAnh"] ?>" style="width:100%;height:100%; object-fit:cover;" />
+									</div>
 								</div>
-							</div>
-							<div class="col-md-9">
-								<div class="caption">
-									<div class="name">
-										<h3><a href="product.php?id=<?php echo $s["SP_ID"] ?>"><?php echo $s["SP_Ten"] ?></a></h3>
-									</div>
-									<div class="info">
-										<ul>
-											<li>Loại sản phẩm: <?php echo $s["Tenloaisp"] ?></li>
-										</ul>
-									</div>
-									
-									<div class="price"><?php echo $s["SP_Gia"] ?> VNĐ</div>
-									
+								<div class="col-md-9">
+									<div class="caption">
+										<div class="name">
+											<h3><a href="product.php?id=<?php echo $s["SP_ID"] ?>"><?php echo $s["SP_Ten"] ?></a></h3>
+										</div>
+										<div class="info">
+											<ul>
+												<li>Loại sản phẩm: <?php echo $s["Tenloaisp"] ?></li>
+											</ul>
+										</div>
+										
+										<div class="price"><?php echo $s["SP_Gia"] ?> VNĐ</div>
+										
 
-									<label>Số lượng: </label>
-									<input class="form-inline quantity" style="margin-right: 80px;width:50px" min="1" max="99" type="number" name="qty[<?php echo $s["SP_ID"] ?>]" value="<?php echo $_SESSION['cart'][$s["SP_ID"]] ?>">
-									<div>
-										<input type="submit" name="update" style="margin-top:31px" value="Cập nhật sản phẩm" class="btn btn-2" />
-									</div>
-									<hr>
-									<input type="submit" name="remove" value="Delete" class="btn btn-default pull-right" />
-									<input type="hidden" name="idsprm" value="<?php echo $s["SP_ID"] ?>" />
-									
-									<label style="color:red">Thành tiền: <?php echo  $_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"] ?> </label>
-																				
-									
+										<label>Số lượng: </label>
+										<input class="form-inline quantity" style="margin-right: 80px;width:50px" min="1" max="99" type="number" name="qty[<?php echo $s["SP_ID"] ?>]" value="<?php echo $sp["SP_Soluong"]?>">
+										<div>
+											<input type="submit" name="update" style="margin-top:31px" value="Cập nhật sản phẩm" class="btn btn-2" />
+										</div>
+										<hr>
+										<input type="submit" name="remove" value="Delete" class="btn btn-default pull-right" style="color: #000 !important;"/>
+										<input type="hidden" name="idsprm" value="<?php echo $s["SP_ID"] ?>" />
+										
+										<label style="color:red">Thành tiền: <?php echo number_format($sp["SP_Soluong"]*$s["SP_Gia"],0) ?> </label>
+																					
+										
 
+									</div>
 								</div>
-							</div>
 
-							<div class="clear"></div>
-						</div>
-					</form>
-					
-					<?php $total += $_SESSION['cart'][$s["SP_ID"]] * $s["SP_Gia"] ?>
-						
-					
-				</div>
-		<?php
+								<div class="clear"></div>
+							</div>
+						</form>
+					</div>
+					<?php
+					$total += $sp["SP_Soluong"]*$s["SP_Gia"];
+				}
 			}
 		}
 		?>
 
+
 		<div class="row">
 			<a href="rmcart.php" class="btn btn-2" style="margin-bottom:31px">Xóa hết giỏ hàng</a>
+
 			<div class="col-md-4 col-md-offset-8 ">
 				<center><a href="index.php" class="btn btn-1" style="margin-left:-76px">Chọn những sản phẩm khác</a></center>
 			</div>
@@ -152,7 +141,7 @@ if (is_countable($_SESSION['cart']) == 0) {
 								<td>
 									<h5>Tổng cộng</h5>
 								</td>
-								<td><?php echo $total ?>VNĐ</td>
+								<td><?php echo number_format($total,0) ?> VNĐ</td>
 							</tr>
 						</table>
 						<center><a href="dathang.php" class="btn btn-1">Đặt hàng</a></center>

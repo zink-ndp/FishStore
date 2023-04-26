@@ -30,6 +30,7 @@ session_start();
         $result1 = $conn->query($sql1);
         if ($result1->num_rows > 0) {
             $row1 = $result1->fetch_assoc();
+            $_SESSION["khid"] = $row1['KH_ID'];
             $_SESSION["name"] = $row1['KH_HOTEN'];
             $_SESSION["email"] = $row1['KH_EMAIL'];
             $_SESSION["sdt"] = $row1['KH_SDT'];

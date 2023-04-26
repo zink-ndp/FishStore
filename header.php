@@ -12,27 +12,27 @@
 			</div>
 			<div class="col-md-2">
 				<div id="cart"><a class="btn btn-1 h-50" href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span>(<?php
-			$ok=1;
-			 if(isset($_SESSION['cart']))
-			 {
-				 foreach($_SESSION['cart'] as $key => $value)
-				 {
-					 if(isset($key))
-					 {
-						$ok=2;
-					 }
-				 }
-			 }
+			// $ok=1;
+			//  if(isset($_SESSION['cart']))
+			//  {
+			// 	 foreach($_SESSION['cart'] as $key => $value)
+			// 	 {
+			// 		 if(isset($key))
+			// 		 {
+			// 			$ok=2;
+			// 		 }
+			// 	 }
+			//  }
 			
-			 if($ok == 2)
-			 {
-				echo count($_SESSION['cart']);
-			 }
-			else
-			{
-				echo   "0";
-			}
-			
+			//  if($ok == 2)
+			//  {
+			// 	echo count($_SESSION['cart']);
+			//  }
+			// else
+			// {
+			// 	echo   "0";
+			// }			
+				require 'soluonggh.php';
 			
 			?>)</a></div>
 			</div>

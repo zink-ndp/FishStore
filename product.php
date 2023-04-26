@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	require 'inc/myconnect.php';
 ?>
 <?php 
 	include "head.php";
@@ -23,31 +24,14 @@ $name ="Shop Cá Kiểng";
 	<!--//////////////////////////////////////////////////-->
 	<div SP_ID="page-content" class="single-page">
 	<?php
-   require 'inc/myconnect.php';
    //lay san pham theo id
    $spid = $_GET["id"];
-   $query="SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, l.LSP_Ten as TenLsp,s.LSP_ID
+   $query="SELECT s.SP_ID,s.SP_Ten,s.SP_Gia,s.SP_HinhAnh,s.SP_Mota, s.SP_Soluong, l.LSP_Ten as TenLsp,s.LSP_ID
    from san_pham s 
    LEFT JOIN loai_sp l on l.LSP_ID = s.LSP_ID
 	WHERE  s.SP_ID =".$spid;
    $result = $conn->query($query);
 $row = $result->fetch_assoc();
-if(isset($_POST['submit']))
-{
-    $idsp = $_POST["idsp"];
-    $sl;
-        if(isset($_SESSION['cart'][$idsp]))
-        {
-            $sl = $_SESSION['cart'][$idsp] +1;
-        }
-        else
-        {
-            $sl=1;
-        }
-        $_SESSION['cart'][$idsp] = $sl;
-        //  echo "<script>window.location.replace('http://host2.org/cart.php'); </script>";
-
-}
 
 ?>
 		<div class="container">
@@ -72,6 +56,7 @@ if(isset($_POST['submit']))
 						<div class="col-md-6">
 							<div class="caption">
 								<div class="name"><h5><?php echo $row["SP_Ten"]?></h5></div>
+								Kho: <?php echo $row["SP_Soluong"] ?>
 								<div class="info">
 									<ul>
 										<li>Loại sản phẩm: <a href="/category.php?maloaisp=<?php echo $row["LSP_ID"]?>"><?php echo $row["TenLsp"]?></a> <h3></li>
@@ -79,19 +64,20 @@ if(isset($_POST['submit']))
 									</ul>
 								</div>
 
-								<p style="color:red">Không có khuyến mãi</p>
+								<form name="form3" id="ff3" method="POST" action="add_cart.php">
+								<!-- <p style="color:red">Không có khuyến mãi</p> -->
 
 								<div class="price"><?php echo $row["SP_Gia"]?> VNĐ<span></span></div>
 	
 								<div class="well">
-								<form name="form3" id="ff3" method="POST" action="">
-								<input type="submit" name="submit" id="add-to-cart" class="btn btn-2" value="Thêm vào giỏ hàng" />
-								<a href="#" style="margin-top: -1px;" class="btn btn-info mt-n2" data-toggle="modal" data-target="#myModal">Mua ngay</a>
-								<input type="hidden" name="acction" value="them vao gio hang" />
-								<input type="hidden" name="idsp" value="<?php echo $row["SP_ID"] ?>" />
-								</form>
+									Số lượng SP: <input type="number" min=1 name="slsp" id="" value=1 style="margin-bottom: 1rem; width: 5rem;"><br>
+									<input type="submit" name="submit" id="add-to-cart" class="btn btn-2" value="Thêm vào giỏ hàng" />
+									<a href="#" style="margin-top: -1px;" class="btn btn-info mt-n2" data-toggle="modal" data-target="#myModal">Mua ngay</a>
+									<input type="hidden" name="acction" value="them vao gio hang" />
+									<input type="hidden" name="idsp" value="<?php echo $row["SP_ID"] ?>" />
 								</div>
-							
+								
+								</form>
 								
 								<div class="modal fade" id="myModal" role="dialog">
 							
