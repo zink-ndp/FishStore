@@ -39,7 +39,7 @@
 
 					?>
 					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-						<div class="product">
+						<div class="product" style="height:400px">
 							<div class="image" style="width:230px;height:250px">
 								<a href="product.php?id=<?php echo $row["SP_ID"]?>">
 									<img src="assets/img/product_img/<?php echo $row["SP_HINHANH"]?>" style="width:100%;height:100%;object-fit:cover;"/>
