@@ -26,7 +26,14 @@ $rstenloai = $conn->query($laydanhsachsp);
 	}
 					?>
 								</ul>
-								<li><a href="cart.php">Giỏ hàng</a></li>
+								<?php
+									if (isset($_SESSION["id"])){
+										$ref_giohang = "cart.php";
+									} else {
+										$ref_giohang = "account.php";
+									}
+								?>
+								<li><a href="<?php echo $ref_giohang; ?>">Giỏ hàng</a></li>
 								<li><a href="contact.php">Liên hệ</a></li>
 								
 							</div>

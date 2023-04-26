@@ -21,7 +21,7 @@ $name ="Cá kiểng";
 	<!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="plugins/select2/select2.min.css">
-    <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <!-- <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" /> -->
 
 
     <!-- Font Awesome -->
@@ -31,6 +31,7 @@ $name ="Cá kiểng";
 	<!-- Custom Fonts -->
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"  type="text/css">
     <link rel="stylesheet" href="fonts/font-slider.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 	
 	<!-- jQuery and Modernizr-->
 	<script src="js/jquery-2.1.1.js"></script>

@@ -86,7 +86,7 @@ if(isset($_POST['submit']))
 								<div class="well">
 								<form name="form3" id="ff3" method="POST" action="">
 								<input type="submit" name="submit" id="add-to-cart" class="btn btn-2" value="Thêm vào giỏ hàng" />
-								<a href="#" class="btn btn-info" data-toggle="modal" data-target="#myModal">Mua ngay</a>
+								<a href="#" style="margin-top: -1px;" class="btn btn-info mt-n2" data-toggle="modal" data-target="#myModal">Mua ngay</a>
 								<input type="hidden" name="acction" value="them vao gio hang" />
 								<input type="hidden" name="idsp" value="<?php echo $row["SP_ID"] ?>" />
 								</form>
