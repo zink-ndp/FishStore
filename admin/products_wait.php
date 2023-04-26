@@ -209,7 +209,7 @@
                           $result = $conn->query($sql);
                           $result_all = $result -> fetch_all(MYSQLI_ASSOC);
                           foreach ($result_all as $row) {
-                              
+                            
                               $nvid = $row["NV_ID"];
                               $lidohuy = $row["HD_LIDOHUY"];
 
