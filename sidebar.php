@@ -34,7 +34,7 @@ if ($rs->num_rows > 0) {
 
 ?>
 							<div class="product">
-								<a href="product.php?spid=<?php echo $row["SP_ID"]?>">
+								<a href="product.php?id=<?php echo $row["SP_ID"]?>">
 									<div style="width:150px;height:100px;">
 										<img style="width: 100%; height: 100%; object-fit: cover;" src="assets/img/product_img/<?php echo $row["SP_HINHANH"]?>" />
 									</div>
