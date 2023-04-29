@@ -40,7 +40,7 @@ session_start();
     
     
     // Check file size
-    if ($_FILES["staffImg"]["size"] > 500000) {
+    if ($_FILES["staffImg"]["size"] > 5000000) {
       echo "Dung lượng file quá lớn";
       $uploadOk = 0;
     }
@@ -65,7 +65,7 @@ session_start();
     } else {
       if (move_uploaded_file($_FILES["staffImg"]["tmp_name"], $target_file)) {
 
-        $sql = "update tai_khoan set tk_avatar = '".$new_name."' where tk_id = ".$_SESSION["id"]." ";
+        $sql = "update nhan_vien set nv_avatar = '".$new_name."' where nv_id = ".$_SESSION["id"]." ";
 
         if($conn->query($sql)==true){
             $message = "Cập nhật ảnh đại diện thành công!";
