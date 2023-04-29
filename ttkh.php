@@ -112,6 +112,84 @@ $name ="Shop Cá Kiểng";
     </form>
   </div>                
 </div>
+<div id="page-content" class="single-page">
+  <div id='thugiua' class="panel panel-default">
+    <div class="panel-heading text-center">
+    <h1 class="text-uppercase text-sm mt-2">Lịch sử mua hàng</h1>
+    </div>
+<?php $sql = "select * from hoa_don where kh_id=" .$_SESSION['id'].";";?>
+        <div class="panel-body">
+          <div class="">
+                <!-- table 5 cot -->
+                <table id="myTable" class="display" class="table align-items-center mb-0">
+                    <tr>
+                      <th class="panel-body">Ngày đặt hàng </th>
+                      <th class="panel-body"> Số lượng SP </th>
+                      <th class="panel-body"> PT Thanh toán </th>
+                      <th class="panel-body"> Tổng tiền </th>
+                      <th class="panel-body"></th>
+                    </tr>
+                  <tbody>
+                    <!-- 1 hang -->
+                    <?php
+                      $result = $conn->query($sql);
+                      if ($result->num_rows > 0) {
+                        $result = $conn->query($sql);
+                        $result_all = $result -> fetch_all(MYSQLI_ASSOC);
+                        foreach ($result_all as $row) {
+
+                          ?>
+                          <tr class="h-50">
+                            <td class="align-middle text-center">
+                              <!-- ngayhoanthanh -->
+                              <?php echo date('d/m/Y', strtotime($row["HD_NGAYDAT"])) ?>
+                            </td>
+                            <td class="align-middle text-center">
+                              <!-- soluong -->
+                              <?php
+                                $sql_sl = "select count(*) as soluong from chitiet_hd where HD_ID = ".$row["HD_ID"]."";
+                                $rssl = $conn->query($sql_sl);
+                                $rowsl = mysqli_fetch_assoc($rssl);
+                                echo $rowsl["soluong"]
+                              ?>
+                            </td>
+
+                            <!-- phuong thuc thanh toan -->
+                            <td class="align-middle text-xs text-center">
+                                <?php
+                                  $idpttt = $row["PTTT_ID"];
+                                  $sqlpt = "select PTTT_TEN from pt_thanhtoan where PTTT_ID = {$idpttt}";
+                                  $rspt = $conn->query($sqlpt);
+                                  $rowpt = mysqli_fetch_assoc($rspt);
+                                  echo $rowpt["PTTT_TEN"];
+                                ?>
+                            </td>
+
+                            <td class="align-middle font-weight-bold text-success text-center">
+                              <!-- tongtien -->
+                              <?php echo number_format($row["HD_TONGTIEN"], 0) ?>đ
+                            </td>
+                            <td class="align-middle text-center">
+                              <form action="" method="get">
+                                <input type="hidden" name="hd_id" value="<?php echo $row["HD_ID"] ?>">
+                                <button onclick="this.form.submit()" class="view-btn btn btn-outline-primary text-primary font-weight-bold text-xs mt-3 p-1">
+                                  Xem chi tiết >
+                                </button>
+                              </form>
+                            </td>
+                          </tr>
+                          <?php
+                        }
+                      }
+                    ?>  
+                    <!-- het 1 hang -->
+                  </tbody>
+                </table>
+              </div>
+        </div>
+      </div>  
+    </div>
+</div>
 <?php 
 	include "footer.php"
 ?>
