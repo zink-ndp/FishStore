@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require 'connect.php';
 
 $file_name = basename($_FILES["productImg"]["name"]);
 $target_dir = "../assets/img/product_img/";
@@ -47,6 +48,7 @@ if($file_name != null){
   }
 } else {
   $target_file = $target_dir . "default.jpg";
+  $file_name = "default.png";
 }
 
 // Check if $uploadOk is set to 0 by an error
@@ -55,18 +57,13 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
   if (move_uploaded_file($_FILES["productImg"]["tmp_name"], $target_file)) {
-	
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "shop_db";
+    $filename = $file_name;
+  } else {
+    $filename = "default.png";
+  }
 
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-	  die("Connection failed: " . $conn->connect_error);
-	}
+
+  
 
   //Lấy id lớn nhất
 	$sql = "select max(SP_ID) as max_id from san_pham";
@@ -83,7 +80,7 @@ if ($uploadOk == 0) {
   $lspid = $_POST["types"];
   $pdd = $_POST["pd_des"];
   $pdp = $_POST["pd_price"];
-  $pdi = $file_name;
+  $pdi = $filename;
 
   $idnh = $_POST["source"];
   $dvt = $_POST["dvt"];
@@ -108,9 +105,7 @@ if ($uploadOk == 0) {
 		echo "Error: " . $sql . "<br>" . $conn->error;
 	}
 
-  } else {
-    echo "Sorry, there was an error uploading your file.";
-  }
+
   $conn->close();
 }
 
