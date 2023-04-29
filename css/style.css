@@ -789,6 +789,13 @@ div.col-md-6#ff4{
     text-align: center;
 }
 
+div.col-md-8.text-center#ff5{
+    border: 2px solid #666;
+    border-radius: 5px;
+    margin-left: 180px;
+    text-align: center;
+}
+
 /* ---------------------------------------------------------------------------- */
 
 
