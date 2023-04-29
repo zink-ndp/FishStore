@@ -23,7 +23,7 @@ if(isset($_POST['dangky'])){
     $anh = basename($_FILES["cusImg"]["name"]);
     $mk = $_POST['password'];
     $repass = $_POST['repass'];
-    $check = "select tk_tendangnhap from tai_khoan where tk_tendangnhap = '".$tk."'";
+    $check = "select kh_tendangnhap from tai_khoan where kh_tendangnhap = '".$tk."'";
     $rs_check = $conn->query($check);        
     if($rs_check->num_rows >0){
         $message = "Tên đăng nhập đã được sử dụng, vui lòng dùng tên khác!";
@@ -122,20 +122,20 @@ if(isset($_POST['dangky'])){
             $row = mysqli_fetch_assoc($result);
             $kh_max_id = $row["max_id"];
         }
-        $sql = "select max(TK_ID) as max_id from tai_khoan";
-        $result = $conn -> query($sql);
-        if ($result->num_rows > 0) {
-            $row = mysqli_fetch_assoc($result);
-            $tk_max_id = $row["max_id"];
-        }
+        // $sql = "select max(TK_ID) as max_id from tai_khoan";
+        // $result = $conn -> query($sql);
+        // if ($result->num_rows > 0) {
+        //     $row = mysqli_fetch_assoc($result);
+        //     $tk_max_id = $row["max_id"];
+        // }
         
-        $tkid = $tk_max_id+1;
+        // $tkid = $tk_max_id+1;
         $khid = $kh_max_id+1;
-        $vaitro= "custommer";
-        $sql = "insert into tai_khoan
-                values ($tkid,'".$tk."','".$mk."','".$anh."','".$vaitro."');";
+        // $vaitro= "custommer";
+        // $sql = "insert into tai_khoan
+        //         values ($tkid,'".$tk."','".$mk."','".$anh."','".$vaitro."');";
         $sql1 = "insert into khach_hang
-                values ($khid,$tkid,'".$ten."','".$sdt."','".$email."','".$ngaysinh->format('y-m-d')."','".$diachi."','".$gioitinh."',sysdate())";
+                values ($khid,'".$ten."','".$sdt."','".$email."','".$ngaysinh->format('y-m-d')."','".$diachi."','".$gioitinh."',sysdate(),'".$tk."','".$mk."','".$anh."')";
                 
         
         if (($conn->query($sql) == TRUE)&&($conn->query($sql1) == TRUE)) {
