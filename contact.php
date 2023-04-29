@@ -15,7 +15,7 @@ $name ="Shop Cá Kiểng";
 	include "top.php"
     ?>
     <?php 
-	include "Header.php"
+	// include "Header.php"
 	?>
 	<?php 
 	include "navigation.php"
