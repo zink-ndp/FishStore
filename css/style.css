@@ -780,7 +780,14 @@ footer .copyright ul li {
     display: inline-block;
     margin-left: 10px;
 }
-
+div.col-md-6#ff3{
+    width: 437px;
+    text-align: center;
+}
+div.col-md-6#ff4{
+    width: 700px;
+    text-align: center;
+}
 
 /* ---------------------------------------------------------------------------- */
 
@@ -827,11 +834,9 @@ footer .copyright ul li {
     margin: 10px 0;
 }
 
-#thugiua {
+form#ff3{
     width: 437px;
 }
-
-
 /* ---------------------------------------------------------------------------- */
 
 
