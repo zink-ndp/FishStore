@@ -12,7 +12,7 @@ session_start();
             $_SESSION["pic"]=$row['KH_AVATAR'];
             $_SESSION["id"] = $row['KH_ID'];
             $_SESSION["pass"] = $row['KH_MATKHAU'];
-            $_SESSION["khid"] = $row['KH_ID'];
+            $_SESSION["khtk"] = $row['KH_TENDANGNHAP'];
             $_SESSION["name"] = $row['KH_HOTEN'];
             $_SESSION["email"] = $row['KH_EMAIL'];
             $_SESSION["sdt"] = $row['KH_SDT'];

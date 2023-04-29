@@ -33,8 +33,8 @@ include "navigation.php"
 </div>
 <div class="row">
     <div class="col-md-8 text-center" id="ff5">
-        <?php
-            if(isset($_GET["hd_id"])){
+    <?php
+          if(isset($_GET["hd_id"])){
             $hdid = $_GET["hd_id"];
             $sql = "select hd.HD_ID as mahd, hd.HD_NGAYDAT as ngay, kh.KH_ID as makh, kh.KH_HOTEN as tenkh, kh.KH_SDT as sdtkh, kh.KH_DIACHI as dckh, nv.NV_ID as manv, nv.NV_HOTEN as tennv
                     from hoa_don hd
@@ -43,8 +43,7 @@ include "navigation.php"
                     where hd.HD_ID={$hdid};";
             $rs = $conn->query($sql);
             $row = mysqli_fetch_assoc($rs);
-        ?>
-        <div class="row">
+            ?>        <div class="row">
             <div class="heading">
                 <h1>Chi tiết hoá đơn</h1>
             </div>

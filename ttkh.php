@@ -37,7 +37,7 @@ $name ="Shop Cá Kiểng";
           <h1 class="text-uppercase text-sm mt-2">Thông tin cá nhân</h1>
         </div>
         <form name="form1" action="capnhatttkh.php" method="post">
-        <input type="hidden" name="tkid" value="<?php echo $_SESSION['id']; ?>">
+        <input type="hidden" name="khid" value="<?php echo $_SESSION['id']; ?>">
           <div class="form-group">
             <label for="example-text-input" class="form-control-label">Họ và tên</label>
             <input class="form-control text-center" type="text" name="khname" value="<?php echo $_SESSION['name']; ?>">
@@ -97,7 +97,6 @@ $name ="Shop Cá Kiểng";
         </form>
       </div>
       <div class="col-md-6" id="ff4">
-        <form action="chitiethd.php" method="get">
         <div class="heading">
           <h1 class="text-uppercase text-sm mt-2">Lịch sử mua hàng</h1>
           <?php $sql = "select * from hoa_don where kh_id=".$_SESSION['id'].";"; ?>
@@ -152,10 +151,12 @@ $name ="Shop Cá Kiểng";
                   <?php echo number_format($row["HD_TONGTIEN"], 0) ?>đ
                 </td>
                 <td class="align-middle text-center">
+                  <form action="chitiethd.php" method="get">
                     <input type="hidden" name="hd_id" value="<?php echo $row["HD_ID"] ?>">
-                    <button type="submit" class="view-btn btn btn-outline-primary text-primary font-weight-bold text-xs mt-3 p-1">
+                    <button onclick="this.form.submit()" class="view-btn btn btn-outline-primary text-primary font-weight-bold text-xs mt-3 p-1">
                       Xem chi tiết >
                     </button>
+                  </form>
                 </td>
               </tr>
               <?php
@@ -164,7 +165,6 @@ $name ="Shop Cá Kiểng";
         ?>
           </tbody>         
         </table>
-      </form>
       </div>
     </div>
   </div>

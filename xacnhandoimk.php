@@ -1,6 +1,6 @@
 <?php
     session_start();
-                    $tkid = $_SESSION["id"];
+                    $khid = $_SESSION["id"];
                     $mk = $_SESSION["pass"];
                     $mkcu = $_POST["oldpw"];
                     $mkmoi = $_POST["newpw"];
@@ -25,7 +25,7 @@
                             die("Connection failed: " . $conn->connect_error);
                         }
 
-                        $sql = "update tai_khoan set tk_matkhau = '$mkmoi' where tk_id = '$tkid' ";
+                        $sql = "update khach_hang set kh_matkhau = '$mkmoi' where kh_id = '$khid' ";
 
                         if($conn->query($sql)==true){
                             $message = "Thay đổi mật khẩu thành công. Vui lòng đăng nhập lại!";
