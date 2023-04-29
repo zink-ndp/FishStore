@@ -35,9 +35,9 @@ $name ="Shop Cá Kiểng";
       <div class="col-md-6" id="ff3">
         <div class="heading">
           <h1 class="text-uppercase text-sm mt-2">Thông tin cá nhân</h1>
-          <input type="hidden" name="tkid" value="<?php echo $_SESSION['id']; ?>">
         </div>
         <form name="form1" action="capnhatttkh.php" method="post">
+        <input type="hidden" name="tkid" value="<?php echo $_SESSION['id']; ?>">
           <div class="form-group">
             <label for="example-text-input" class="form-control-label">Họ và tên</label>
             <input class="form-control text-center" type="text" name="khname" value="<?php echo $_SESSION['name']; ?>">
@@ -96,8 +96,8 @@ $name ="Shop Cá Kiểng";
           </div>
         </form>
       </div>
-      <form action="chitiethd.php" method="get">
       <div class="col-md-6" id="ff4">
+        <form action="chitiethd.php" method="get">
         <div class="heading">
           <h1 class="text-uppercase text-sm mt-2">Lịch sử mua hàng</h1>
           <?php $sql = "select * from hoa_don where kh_id=".$_SESSION['id'].";"; ?>

@@ -1,5 +1,5 @@
 <?php
-    $TKid= $_POST["tkid"];
+    $tkid= $_POST["tkid"];
     $khname = $_POST["khname"];
     $khbirth = $_POST["khbirth"];
     $khsex = $_POST["khsex"];
@@ -26,7 +26,7 @@
                 KH_NGAYSINH = '$khbirth',
                 KH_DIACHI = '$khdiachi',
                 KH_GIOITINH = '$khsex'
-            where TK_ID = '$TKid'";
+            where TK_ID = '$tkid'";
 
     if ($conn->query($sql) == true){
         $message = "Cập nhật thông tin thành công. Vui lòng đăng nhập lại!";
