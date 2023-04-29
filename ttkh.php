@@ -152,12 +152,10 @@ $name ="Shop Cá Kiểng";
                   <?php echo number_format($row["HD_TONGTIEN"], 0) ?>đ
                 </td>
                 <td class="align-middle text-center">
-                  <form action="" method="get">
                     <input type="hidden" name="hd_id" value="<?php echo $row["HD_ID"] ?>">
                     <button type="submit" class="view-btn btn btn-outline-primary text-primary font-weight-bold text-xs mt-3 p-1">
                       Xem chi tiết >
                     </button>
-                  </form>
                 </td>
               </tr>
               <?php
