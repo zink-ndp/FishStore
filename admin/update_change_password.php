@@ -17,7 +17,7 @@
                         require 'connect.php';
 
 
-                        $sql = "update tai_khoan set tk_matkhau = '{$new_p}' where tk_id = '$tkid' ";
+                        $sql = "update nhan_vien set nv_matkhau = '{$new_p}' where nv_id = '$tkid' ";
 
                         if($conn->query($sql)==true){
                             $message = "Thay đổi mật khẩu thành công. Vui lòng đăng nhập lại!";

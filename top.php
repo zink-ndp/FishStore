@@ -19,12 +19,6 @@ $name ="Shop Cá Kiểng";
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-6">
-					<!-- <select class="language">
-						<option value="English" selected>VietNam</option>
-					</select>
-					<select class="currency">
-						<option value="USD" selected>VNĐ</option>
-					</select> -->
 				</div>
 				<div class="col-xs-6">
 					<ul class="top-link">
@@ -37,18 +31,6 @@ $name ="Shop Cá Kiểng";
 							       }
 							       else{
 							       	echo '<li><img src="assets/img/cus_img/'.$_SESSION["pic"].'"> Xin chào ' ; echo '<span style="color:Tomato;"><a href="ttkh.php"><b>' . $_SESSION['name'] . '</b></a></span></li>' ;
-							       	// echo '<li>
-									// 		<span class="glyphicon glyphicon-user"></span> Xin chào ' ;
-									//  echo '<div class="dropdown">
-									//  	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><b>' . $_SESSION['name'] . '</b>
-									//  	<span class="caret"></span></button>
-									//  	<ul class="dropdown-menu">
-									//    		<li><a href="ttkh.php">Thong tin khach hang</a></li>
-									//    		<li><a href="#">hang hoa da mua</a></li>
-									//  	</ul>
-								   	// 	</div>
-								   	// </li>';
-									// echo '<li><span"><b>' . $_SESSION['pic'] . '</b></span> Xin chào ' ; echo '<span style="color:Tomato;"><b>' . $_SESSION['name'] . '</b></span></li>' ;
 									echo '<li><span class="glyphicon glyphicon-log-out"></span><a href="dangxuat.php"> Đăng xuất!</a></li>';
 							       }
 

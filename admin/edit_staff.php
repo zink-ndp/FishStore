@@ -103,28 +103,25 @@
 
         require 'connect.php';
 
-        $sql = "select nv_id, tk_id, nv_hoten, nv_sdt, nv_email, nv_ngaysinh, nv_gioitinh from nhan_vien where nv_id = ".$nvid."";
+        $sql = "select nv_id, nv_hoten, nv_sdt, nv_email, nv_ngaysinh, nv_gioitinh, nv_tendangnhap, nv_matkhau, nv_avatar, nv_vaitro from nhan_vien where nv_id = ".$nvid."";
         $result = $conn->query($sql);
         if($result->num_rows >0 ){
             $row = mysqli_fetch_assoc($result);
             $nvid = $row["nv_id"];
-            $tkid = $row["tk_id"];
+            $tkid = $row["nv_id"];
             $nvhoten = $row["nv_hoten"];
             $nvsdt = $row["nv_sdt"];
             $nvemail = $row["nv_email"];
             $nvgioitinh = $row["nv_gioitinh"];
             $nvdate = date("Y-m-d", strtotime($row["nv_ngaysinh"]));
+            $tkusn = $row["nv_tendangnhap"];
+            $tkpw = $row["nv_matkhau"];
+            $tkavt = $row["nv_avatar"];
+            $tkvaitro = $row["nv_vaitro"];
         }
 
-        $sql1 = "select tk_tendangnhap, tk_matkhau, tk_avatar, tk_vaitro from tai_khoan where tk_id = ".$tkid."";
-        $result1 = $conn->query($sql1);
-        if ($result1->num_rows >0 ){
-            $row1 = mysqli_fetch_assoc($result1);
-            $tkusn = $row1["tk_tendangnhap"];
-            $tkpw = $row1["tk_matkhau"];
-            $tkavt = $row1["tk_avatar"];
-            $tkvaitro = $row1["tk_vaitro"];
-        }
+        
+        
 
       ?>
         <div class="col-12">
@@ -135,8 +132,8 @@
             <div class="card-body px-2 pt-0 pb-2">
                 <form role="form" method="post" action="update_edit_staff.php" enctype="multipart/form-data">
                     <input type="hidden" name="staff_id" value="<?php echo $nvid; ?>">
-                    <input type="hidden" name="tk_id" value="<?php echo $tkid; ?>">
-                    <input type="hidden" name="tk_avt" value="<?php echo $tkavt; ?>">
+                    <input type="hidden" name="nv_id" value="<?php echo $tkid; ?>">
+                    <input type="hidden" name="nv_avt" value="<?php echo $tkavt; ?>">
                     <div class="col-12 card-header pb-2 d-flex align-items-center">
                       <div class="mb-3 px-3 col-4">
                           Họ và tên

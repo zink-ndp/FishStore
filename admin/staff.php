@@ -164,14 +164,7 @@
                                 $result = $conn->query($sql);
                                 $result_all = $result -> fetch_all(MYSQLI_ASSOC);
                                 foreach ($result_all as $row) {
-                                  $tknvid = $row["TK_ID"];
-
-                                  $sql1 = "SELECT * FROM tai_khoan WHERE TK_ID = {$tknvid} and (TK_VAITRO = 'admin' or TK_VAITRO = 'staff')";
-                                  $result1 = $conn->query($sql1);
-                                  if ($result1->num_rows > 0) {
-                                    $result1 = $conn->query($sql1);
-                                    $result_all1 = $result1 -> fetch_all(MYSQLI_ASSOC);
-                                    foreach ($result_all1 as $row1) {
+                                  $tknvid = $row["NV_ID"];
                                   ?>
                                     <tr class="height-100">
                                       <td>
@@ -179,10 +172,10 @@
                                             <!-- hinh anh nhan vien -->
                                           <div>
                                             <?php
-                                              if($row1["TK_AVATAR"]==null){
+                                              if($row["NV_AVATAR"]==null){
                                                 $file = "macdinh.jpg";
                                               } else {
-                                                $file = $row1["TK_AVATAR"];
+                                                $file = $row["NV_AVATAR"];
                                               } 
                                               $avatar_url = "../assets/img/staff_img/" . $file;
                                               echo "<img src='{$avatar_url}' class='avatar avatar-xl me-3' alt='user1'>";
@@ -203,7 +196,7 @@
                                       <!-- vaitro -->
                                       <td>
                                         <?php
-                                            if($row1["TK_VAITRO"] == "staff") {
+                                            if($row["NV_VAITRO"] == "staff") {
                                               ?>
                                                 <p class="text-sm font-weight-bold mb-0">Nhân viên</p>
                                               <?php
@@ -256,10 +249,8 @@
                                       </td>
                                     </tr>
                                     <?php
-                                    }
                                   }
                                 }
-                              }
                             ?>
                             
                             <!-- het 1 hang -->

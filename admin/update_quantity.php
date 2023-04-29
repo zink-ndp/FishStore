@@ -10,7 +10,7 @@
     $sql = "UPDATE san_pham SET sp_soluong = sp_soluong + CAST('".$quant."' AS int) WHERE sp_id = {$pdid};";
     
     $sql1 = "INSERT INTO chitiet_nhap
-             SELECT NH_ID, {$pdid}, '".$_SESSION["id"]."', sysdate(), CAST('".$quant."' AS int) 
+             SELECT {$pdid}, NH_ID, '".$_SESSION["id"]."', sysdate(), CAST('".$quant."' AS int) 
              FROM chitiet_nhap
              where SP_ID = {$pdid}";
 

@@ -155,32 +155,26 @@
 
                 require 'connect.php';
         
-                $sql = "select nv_id, tk_id, nv_hoten, nv_sdt, nv_email, nv_ngaysinh, nv_gioitinh, nv_ngaytuyen from nhan_vien where nv_id = ".$nvid."";
+                $sql = "select nv_id, nv_hoten, nv_sdt, nv_email, nv_ngaysinh, nv_gioitinh, nv_ngaytuyen, nv_tendangnhap, nv_matkhau, nv_avatar, nv_vaitro from nhan_vien where nv_id = ".$nvid."";
                 $result = $conn->query($sql);
                 if($result->num_rows >0 ){
                     $row = mysqli_fetch_assoc($result);
                     $nvid = $row["nv_id"];
-                    $tkid = $row["tk_id"];
+                    $tkid = $row["nv_id"];
                     $nvhoten = $row["nv_hoten"];
                     $nvsdt = $row["nv_sdt"];
                     $nvemail = $row["nv_email"];
                     $nvgioitinh = $row["nv_gioitinh"];
                     $nvngaytuyen = $row["nv_ngaytuyen"];
                     $nvdate = date("Y-m-d", strtotime($row["nv_ngaysinh"]));
-                }
-        
-                $sql1 = "select tk_tendangnhap, tk_matkhau, tk_avatar, tk_vaitro from tai_khoan where tk_id = ".$tkid."";
-                $result1 = $conn->query($sql1);
-                if ($result1->num_rows >0 ){
-                    $row1 = mysqli_fetch_assoc($result1);
-                    $tkusn = $row1["tk_tendangnhap"];
-                    $tkpw = $row1["tk_matkhau"];
-                    $tkavt = $row1["tk_avatar"];
-                    $tkvaitro = $row1["tk_vaitro"];
+                    $tkusn = $row["nv_tendangnhap"];
+                    $tkpw = $row["nv_matkhau"];
+                    $tkavt = $row["nv_avatar"];
+                    $tkvaitro = $row["nv_vaitro"];
                 }
       
               ?>
-              <input type="hidden" name="tk_id" value="<?php echo $tkid; ?>">
+              <input type="hidden" name="nv_id" value="<?php echo $tkid; ?>">
               <input type="hidden" name="staff_id" value="<?php echo $nvid; ?>">
               <input type="hidden" name="old_staffImg" value="<?php echo $tkavt; ?>">
               <input type="hidden" name="staff_pass" value="<?php echo $tkpw; ?>">

@@ -1,15 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "shop_db";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-die("Connection failed: " . $conn->connect_error);
-}
+require 'inc/myconnect.php';
 
 session_start();
 if(isset($_POST['dangky'])){
@@ -33,27 +23,6 @@ if(isset($_POST['dangky'])){
     else if( $repass != $mk){
         $kqdk = "Mật khẩu nhập lại không chính xác";
     }
-    // if($repass != $mk  )
-    // {
-    //     $kqdk = "Mật khẩu nhập lại không chính xác";
-    // }
-    // else
-    // {
-    //     $sql="INSERT INTO  loginuser (email,matkhau,hoten,DienThoai) 
-    //     VALUES ('$email','$mk' ,'$name','$dt') ";
-    //     // echo  $mk;
-    //     if (mysqli_query($conn, $sql)) {
-    //         $name = "" ;
-    //         $email = "" ;
-    //         $dt= "";
-    //         $mk= "";
-    //         $repass ="";
-    //         $kqdk = "Đăng ký thành công";
-    //     } else {
-    //         $kqdk = "Đăng ký không thành công xin hay kiểm tra lại thông tin";
-    //     }
-    // }       
-    //mysqli_close($conn);
     else 
     {
         $target_dir = "assets/img/cus_img/";
@@ -115,25 +84,13 @@ if(isset($_POST['dangky'])){
             }
         }
     
-        //Lấy id lớn nhất
         $sql = "select max(KH_ID) as max_id from khach_hang";
         $result = $conn -> query($sql);
         if ($result->num_rows > 0) {
             $row = mysqli_fetch_assoc($result);
             $kh_max_id = $row["max_id"];
         }
-        // $sql = "select max(TK_ID) as max_id from tai_khoan";
-        // $result = $conn -> query($sql);
-        // if ($result->num_rows > 0) {
-        //     $row = mysqli_fetch_assoc($result);
-        //     $tk_max_id = $row["max_id"];
-        // }
-        
-        // $tkid = $tk_max_id+1;
         $khid = $kh_max_id+1;
-        // $vaitro= "custommer";
-        // $sql = "insert into tai_khoan
-        //         values ($tkid,'".$tk."','".$mk."','".$anh."','".$vaitro."');";
         $sql1 = "insert into khach_hang
                 values ($khid,'".$ten."','".$sdt."','".$email."','".$ngaysinh->format('y-m-d')."','".$diachi."','".$gioitinh."',sysdate(),'".$tk."','".$mk."','".$anh."')";
                 

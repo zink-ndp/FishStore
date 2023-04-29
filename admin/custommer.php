@@ -161,14 +161,7 @@
                                 $result = $conn->query($sql);
                                 $result_all = $result -> fetch_all(MYSQLI_ASSOC);
                                 foreach ($result_all as $row) {
-                                  $tkkhid = $row["TK_ID"];
-
-                                  $sql1 = "SELECT * FROM tai_khoan WHERE TK_ID = {$tkkhid}";
-                                  $result1 = $conn->query($sql1);
-                                  if ($result1->num_rows > 0) {
-                                    $result1 = $conn->query($sql1);
-                                    $result_all1 = $result1 -> fetch_all(MYSQLI_ASSOC);
-                                    foreach ($result_all1 as $row1) {
+                                  $tkkhid = $row["KH_ID"];
                                   ?>
                                     <tr class="height-100">
                                       <td>
@@ -176,7 +169,7 @@
                                             <!-- hinh anh khach hang -->
                                           <div>
                                             <?php
-                                              $avatar_url = "../assets/img/cus_img/" . $row1["TK_AVATAR"];
+                                              $avatar_url = "../assets/img/cus_img/" . $row["KH_AVATAR"];
                                               echo "<img src='{$avatar_url}' class='avatar avatar-xl me-3' alt='cus'>";
                                             ?> 
                                           </div>
@@ -212,10 +205,8 @@
                                       </td>
                                     </tr>
                                     <?php
-                                    }
                                   }
                                 }
-                              }
                             ?>
                             
                             <!-- het 1 hang -->

@@ -148,15 +148,16 @@ INSERT INTO `chitiet_hd` VALUES ('1','1','2'),
 /*==============================================================*/
 create table CHITIET_NHAP
 (
-   NH_ID                int not null,
    SP_ID                int not null,
+   NH_ID                int not null,
    NV_ID                int not null,
    NH_NGAYNHAP          date not null,
    SP_SOLUONG           int not null,
    primary key (NH_ID, SP_ID, NV_ID, NH_NGAYNHAP)
 );
 
-INSERT INTO `chitiet_nhap` VALUES ('1','1','1','2023-03-13','20'),
+INSERT INTO `chitiet_nhap` VALUES 
+('1','1','1','2023-03-13','20'),
 ('2','2','1','2023-03-19','50'),
 ('3','2','1','2023-03-19','15'),
 ('4','3','1','2023-03-16','4'),
@@ -346,7 +347,8 @@ create table NGUON_HANG
    primary key (NH_ID)
 );
 
-INSERT INTO `nguon_hang` VALUES ('1','Công ty Aqua One','Chuyên cung cấp sản phẩm thuỷ sinh đến từ Châu Âu'),
+INSERT INTO `nguon_hang` VALUES 
+('1','Công ty Aqua One','Chuyên cung cấp sản phẩm thuỷ sinh đến từ Châu Âu'),
 ('2','Công ty Ocean Nutrition','Nhà phân phối chính hãng sản phẩm cá cảnh Anh Quốc'),
 ('3','Công ty Tetra','Chuyên cung cấp đồ trang trí nhỏ đến lớn cho cửa hàng'),
 ('4','Tập đoàn Fisher','Cung cấp các sản phẩm cho người chơi hệ cá'); 
@@ -424,7 +426,8 @@ create table SAN_PHAM
 );
 
 
-INSERT INTO `san_pham` VALUES ('1','1','Cá hề','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque feugiat sapien auctor auctor egestas. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Inter','200000','untitled-1-1.jpg','46','Con'),
+INSERT INTO `san_pham` VALUES 
+('1','1','Cá hề','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque feugiat sapien auctor auctor egestas. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Inter','200000','untitled-1-1.jpg','46','Con'),
 ('2','2','Aquamaster Wheat Gerrm','Thức ăn cho cá Koi vào mùa đông\r\nThức ăn cho cá Koi vào mùa đông\r\nThức ăn cho cá Koi vào mùa đông','100000','0-Thức ăn mùa đông cho cá Koi Aquamaster Aqua Master Wheat Germ Koi Food.jpg','15','Gói'),
 ('3','2','Tôm sấy khô cho cá hộp 85g','Tôm sấy khô cho cá hộp 85gTôm sấy khô cho cá hộp 85gTôm sấy khô cho cá hộp 85g','120000','ff4dde06ff158a22744a1663aa69c74e.jpg','38','Hộp'),
 ('4','3','Tượng đá phục sinh','Tượng đá phục sinh\r\nTượng đá phục sinh\r\nTượng đá phục sinh, Tượng đá phục sinh','250000','27044915_318094348699756_72419214_n.jpg','6','Cái'),

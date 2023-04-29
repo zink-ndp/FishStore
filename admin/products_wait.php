@@ -220,10 +220,6 @@
                               $result_all1 = $result1 -> fetch_all(MYSQLI_ASSOC);
                               foreach ($result_all1 as $row1) {
 
-                                  $sql_tk = "select * from tai_khoan where TK_ID = {$row1["TK_ID"]}";
-                                  $result2 = $conn->query($sql_tk);
-                                  $row2 = mysqli_fetch_assoc($result2);
-
                                   $sql_tt = "select * from trangthai_hd where TT_ID = {$row["TT_ID"]}" ;
                                   $result3 = $conn->query($sql_tt);
                                   $row3 = mysqli_fetch_assoc($result3);
@@ -240,7 +236,7 @@
                                       <!-- hinh anh khach hang -->
                                       <div>
                                       <?php
-                                          $avatar_url = "../assets/img/cus_img/" . $row2["TK_AVATAR"];
+                                          $avatar_url = "../assets/img/cus_img/" . $row1["KH_AVATAR"];
                                           echo "<img src='{$avatar_url}' class='avatar avatar-md me-3 mt-3' alt='cus'>";
                                       ?> 
                                       </div>
@@ -299,7 +295,7 @@
                                       <form action="detail-pdwait.php" method="post">
                                           <input type="hidden" name="mahd" value="<?php echo $row["HD_ID"]; ?>">
                                           <input type="hidden" name="madvc" value="<?php echo $row["DVC_ID"]; ?>">
-                                          <input type="hidden" name="avtkh" value="<?php echo $row2["TK_AVATAR"]; ?>">
+                                          <input type="hidden" name="avtkh" value="<?php echo $row1["KH_AVATAR"]; ?>">
                                           <input type="hidden" name="tenkh" value="<?php echo $row1["KH_HOTEN"]; ?>">
                                           <input type="hidden" name="ngaysinh" value="<?php echo $row1["KH_NGAYSINH"]; ?>">
                                           <input type="hidden" name="diachikh" value="<?php echo $row1["KH_DIACHI"]; ?>">

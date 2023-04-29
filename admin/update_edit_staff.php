@@ -90,24 +90,19 @@ if($nvpass != $nvrepass){
         $tkavt = $new_name;
       }
 
-   
-
-      $sql = "update tai_khoan set 
-                  tk_tendangnhap = '".$nvus."',
-                  tk_matkhau = '".$nvpass."',
-                  tk_avatar = '".$tkavt."',
-                  tk_vaitro = '".$nvvt."'
-              where tk_id = ".$tkid."";
-
-      $sql1 = "update nhan_vien set
+      $sql = "update nhan_vien set
                   nv_hoten = '".$nvname."',
                   nv_sdt = '".$nvsdt."',
                   nv_email = '".$nvemail."',
                   nv_gioitinh = '".$nvsex."',
-                  nv_ngaysinh = '".$nvbirth."'
+                  nv_ngaysinh = '".$nvbirth."',
+                  nv_tendangnhap = '".$nvus."',
+                  nv_matkhau = '".$nvpass."',
+                  nv_avatar = '".$tkavt."',
+                  nv_vaitro = '".$nvvt."'
                 where nv_id = ".$nvid."";
       
-      if (($conn->query($sql) == TRUE)&&($conn->query($sql1) == TRUE)) {
+      if ($conn->query($sql) == TRUE) {
 
           $_SESSION["avt"] = $tkavt;
           $_SESSION["name"] = $nvname;
@@ -116,7 +111,7 @@ if($nvpass != $nvrepass){
           echo "<script type='text/javascript'>alert('$message');</script>";
           header('Refresh: 0;url=staff.php');
       } else {
-        echo "<br>Error: " . $sql . "<br>" . $conn->error."<br>" . $sql1 . "<br>". $conn->error;
+        echo "<br>Error: " . $sql . "<br>" . $conn->error;
       }
       
       $conn->close();

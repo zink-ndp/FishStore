@@ -20,7 +20,7 @@ if($nvpass != $nvrepass){
 
   require 'connect.php';
 
-  $check = "select tk_tendangnhap from tai_khoan where tk_tendangnhap = '".$nvus."'";
+  $check = "select nv_tendangnhap from nhan_vien where nv_tendangnhap = '".$nvus."'";
   $rs_check = $conn->query($check);
   if ($rs_check->num_rows > 0) {
     $message = "Tên đăng nhập đã được sử dụng, vui long dùng tên khác!";
@@ -62,7 +62,7 @@ if($nvpass != $nvrepass){
       
       
       // Check file size
-      if ($_FILES["staffImg"]["size"] > 500000) {
+      if ($_FILES["staffImg"]["size"] > 5000000) {
         echo "Dung lượng file quá lớn";
         $uploadOk = 0;
       }
@@ -95,28 +95,19 @@ if($nvpass != $nvrepass){
         $row = mysqli_fetch_assoc($result);
         $nv_max_id = $row["max_id"];
       }
-      $sql = "select max(TK_ID) as max_id from tai_khoan";
-      $result = $conn -> query($sql);
-      if ($result->num_rows > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $tk_max_id = $row["max_id"];
-      }
       
-      $tkid = $tk_max_id+1;
       $nvid = $nv_max_id+1;
       
-      $sql = "insert into tai_khoan
-              values ($tkid,'".$nvus."','".$nvpass."','".$nvimg."','".$nvvaitro."');";
-      $sql1 = "insert into nhan_vien
-              values ($nvid,$tkid,'".$nvname."','".$nvsdt."','".$nvemail."','".$nvbirth->format('y-m-d')."','".$nvsex."',sysdate())";
+      $sql = "insert into nhan_vien
+              values ($nvid,'".$nvname."','".$nvsdt."','".$nvemail."','".$nvbirth->format('y-m-d')."','".$nvsex."',sysdate(),'".$nvus."','".$nvpass."','".$nvimg."','".$nvvaitro."')";
               
       
-      if (($conn->query($sql) == TRUE)&&($conn->query($sql1) == TRUE)) {
+      if ($conn->query($sql) == TRUE) {
           $message = "Thêm nhân viên thành công";
           echo "<script type='text/javascript'>alert('$message');</script>";
           header('Refresh: 0;url=staff.php');
       } else {
-        echo "<br>Error: " . $sql . "<br>" . $conn->error."<br>" . $sql1 . "<br>". $conn->error;
+        echo "<br>Error: " . $sql . "<br>" . $conn->error;
       }
        
       $conn->close();
