@@ -99,7 +99,7 @@ $name ="Shop Cá Kiểng";
       <div class="col-md-6" id="ff4">
         <div class="heading">
           <h1 class="text-uppercase text-sm mt-2">Lịch sử mua hàng</h1>
-          <?php $sql = "select * from hoa_don where kh_id=".$_SESSION['id'].";"; ?>
+          <?php $sql = "select * from hoa_don where kh_id=".$_SESSION['id']." and nv_id !='null';"; ?>
         </div>
         <table class="table">
         <thead>
@@ -107,6 +107,7 @@ $name ="Shop Cá Kiểng";
             <th class="text-center">Ngày Mua Hàng</th>
             <th class="text-center">Số Lượng</th>
             <th class="text-center">PT Thanh toán</th>
+            <th class="text-center">Tình Trạng</th>
             <th class="text-center">Tổng tiền</th>
           </tr>
         </thead>
@@ -134,7 +135,6 @@ $name ="Shop Cá Kiểng";
                     echo $rowsl["soluong"]
                   ?>
                 </td>
-
                 <!-- phuong thuc thanh toan -->
                 <td class="align-middle text-xs text-center">
                     <?php
@@ -145,7 +145,15 @@ $name ="Shop Cá Kiểng";
                       echo $rowpt["PTTT_TEN"];
                     ?>
                 </td>
-
+                <td class="align-middle text-xs text-center">
+                  <?php
+                      $idtt = $row["TT_ID"];
+                      $sqlpt = "select TT_TEN from trangthai_hd where TT_ID = {$idtt}";
+                      $rspt = $conn->query($sqlpt);
+                      $rowpt = mysqli_fetch_assoc($rspt);
+                      echo $rowpt["TT_TEN"];
+                  ?>
+                </td>
                 <td class="align-middle font-weight-bold text-success text-center">
                   <!-- tongtien -->
                   <?php echo number_format($row["HD_TONGTIEN"], 0) ?>đ
