@@ -159,7 +159,7 @@ $name ="Shop Cá Kiểng";
                   <?php echo number_format($row["HD_TONGTIEN"], 0) ?>đ
                 </td>
                 <td class="align-middle text-center">
-                  <form action="chitiethd.php" method="get">
+                  <form action="chitiethd.php" method="post">
                     <input type="hidden" name="hd_id" value="<?php echo $row["HD_ID"] ?>">
                     <button onclick="this.form.submit()" class="view-btn btn btn-outline-primary text-primary font-weight-bold text-xs mt-3 p-1">
                       Xem chi tiết >

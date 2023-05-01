@@ -34,8 +34,8 @@ include "navigation.php"
 <div class="row">
     <div class="col-md-8 text-center" id="ff5">
     <?php
-          if(isset($_GET["hd_id"])){
-            $hdid = $_GET["hd_id"];
+          if(isset($_POST["hd_id"])){
+            $hdid = $_POST["hd_id"];
             $sql = "select hd.HD_ID as mahd, hd.HD_NGAYDAT as ngay, kh.KH_ID as makh, kh.KH_HOTEN as tenkh, kh.KH_SDT as sdtkh, kh.KH_DIACHI as dckh, nv.NV_ID as manv, nv.NV_HOTEN as tennv
                     from hoa_don hd
                     inner join khach_hang kh on kh.KH_ID = hd.KH_ID
