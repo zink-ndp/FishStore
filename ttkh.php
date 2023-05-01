@@ -27,7 +27,7 @@ $name ="Shop Cá Kiểng";
       <div class="col-lg-12">
         <ul class="breadcrumb">
           <li><a href="index.php">Home</a></li>
-          <li><a href="ttkh.php">thong tin khach hang</a></li>
+          <li><a href="ttkh.php">Thông tin khách hàng</a></li>
         </ul>
       </div>
     </div>
